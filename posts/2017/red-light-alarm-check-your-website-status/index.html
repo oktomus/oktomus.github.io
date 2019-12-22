@@ -179,17 +179,17 @@ b<span style="color:#f92672">.</span>set_light(<span style="color:#ae81ff">1</sp
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">254</span>, <span style="color:#75715e"># Full saturation</span>
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">65535</span> <span style="color:#75715e"># Red</span>
     }
-    
+
     animOut <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">transitiontime</span><span style="color:#e6db74">&#39;</span>: tr_time,
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: True,
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>:<span style="color:#ae81ff">5</span>, <span style="color:#75715e"># Almost off</span>
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">70</span>, <span style="color:#75715e"># Less saturation</span>
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">65535</span> <span style="color:#75715e"># Still red</span>
     }
-    
+
     sleep_time <span style="color:#f92672">=</span> float(tr_time <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10.0</span>
-    
-    
+
+
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, blink_count):
         b<span style="color:#f92672">.</span>set_light(light_id, animIn)
         sleep(sleep_time)
@@ -211,7 +211,7 @@ b<span style="color:#f92672">.</span>set_light(<span style="color:#ae81ff">1</sp
         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>],
     }
 
-    b<span style="color:#f92672">.</span>set_light(light_id, animOut)  <span style="color:#75715e"># Reset to default </span>
+    b<span style="color:#f92672">.</span>set_light(light_id, animOut)  <span style="color:#75715e"># Reset to default</span>
 </code></pre></div><p>You can test your animation by running your function at the end of your script and running your python file.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
 alarm(b, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>)
@@ -241,16 +241,16 @@ site_down <span style="color:#f92672">=</span> False
 </span><span style="color:#e6db74"></span><span style="color:#e6db74">Set a red alarm on a given light when the specified website is down</span><span style="color:#e6db74">
 </span><span style="color:#e6db74"></span><span style="color:#e6db74">
 </span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span>
-    
+
 <span style="color:#f92672">import</span> os
 <span style="color:#f92672">from</span> phue <span style="color:#f92672">import</span> Bridge
 <span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> sleep
 <span style="color:#f92672">from</span> requests <span style="color:#f92672">import</span> get
 <span style="color:#f92672">import</span> sys
-    
+
 SCRIPT_PATH <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(__file__) <span style="color:#75715e"># Directory of the current file</span>
 KEY_FILE <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(SCRIPT_PATH, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.python_hue</span><span style="color:#e6db74">&#34;</span>) <span style="color:#75715e"># Path to hidden key file</span>
-    
+
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">alarm</span>(bridge, light_id, tr_time, blink_count):
     default <span style="color:#f92672">=</span> b<span style="color:#f92672">.</span>get_light(light_id) <span style="color:#75715e"># Default state</span>
 
@@ -287,12 +287,12 @@ KEY_FILE <span style="color:#f92672">=</span> os<span style="color:#f92672">.</s
     b<span style="color:#f92672">.</span>set_light(light_id, animOut)  <span style="color:#75715e"># Reset to default state</span>
 
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">__main__</span><span style="color:#e6db74">&#34;</span>:
-    
+
     b <span style="color:#f92672">=</span> Bridge(IP_ADDRESS, config_file_path<span style="color:#f92672">=</span>KEY_FILE)
     b<span style="color:#f92672">.</span>connect()
-    
+
     site_down <span style="color:#f92672">=</span> False
-    
+
     <span style="color:#66d9ef">try</span>:
         r <span style="color:#f92672">=</span> get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">http://yourwbesite.tld/</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Or you can use sys.argv to specifiy the url when calling the script</span>
 
@@ -304,7 +304,7 @@ KEY_FILE <span style="color:#f92672">=</span> os<span style="color:#f92672">.</s
 
     <span style="color:#66d9ef">if</span> site_down:
         alarm(b, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>)
-        
+
     sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">0</span>)
 </code></pre></div><h2 id="use-cron-to-call-your-script-every-minutes">Use cron to call your script every minutes</h2>
 <p>You can install cron on your personal machine or on your server to run your scripts every minutes to check your website. Of course, this will only work if your computer is in the same network as the light. If you have a NAS, you should have a <strong>Scheduled Tasks</strong> program which allow you to execute something whenever you want; This is generally cron with a GUI.</p>

@@ -133,7 +133,7 @@ The problem Let&#39;s say that you are working on your callback function, everyt
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>(scene):
     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello!</span><span style="color:#e6db74">&#34;</span>)
-        
+
 frame_change_pre<span style="color:#f92672">.</span>append(process)
 
 </code></pre></div><p>Now, check the handler list.</p>
@@ -206,7 +206,7 @@ handler_key <span style="color:#f92672">=</span> <span style="color:#e6db74"></s
 
 <span style="color:#66d9ef">def</span> __init__(self, p_name):
     self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> p_name
-    
+
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>(self, scene):
     <span style="color:#66d9ef">print</span>(self<span style="color:#f92672">.</span>name)
 
@@ -216,7 +216,7 @@ handler_key <span style="color:#f92672">=</span> <span style="color:#e6db74"></s
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_handler</span>(self):
     frame_change_pre<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>process)
-    
+
 
 <span style="color:#66d9ef">if</span> handler_key <span style="color:#f92672">in</span> driver_namespace:
 driver_namespace[handler_key]<span style="color:#f92672">.</span>remove_handler()

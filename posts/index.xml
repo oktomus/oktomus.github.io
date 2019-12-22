@@ -6,10 +6,32 @@
     <description>Recent content in Posts on oktomus | computer graphics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Sep 2017 21:28:15 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jan 2018 21:39:17 +0100</lastBuildDate>
     
 	<atom:link href="https://oktomus.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Swap escape and caps lock on Windows</title>
+      <link>https://oktomus.com/posts/2018/swap-escape-caps-lock-windows/</link>
+      <pubDate>Tue, 30 Jan 2018 21:39:17 +0100</pubDate>
+      
+      <guid>https://oktomus.com/posts/2018/swap-escape-caps-lock-windows/</guid>
+      <description>So you want to switch the caps lock key with the escape key, but you don&#39;t want to edit the register. Don&#39;t worry ! This is fairly simple to do on windows, except that you will need to install a software if you want something that won&#39;t blow up. ¯\_(ツ)_/¯
+Side note: If you are a vim user, this tip will change your life. For real.
+You will need to install AutoHotkey, a lightweight application that allows you to make advanced modifications on your keyboard for specific application.</description>
+    </item>
+    
+    <item>
+      <title>Propagate shortcuts — key inputs — from dialogs to Maya with Qt</title>
+      <link>https://oktomus.com/posts/2018/qt-propagate-shortcuts/</link>
+      <pubDate>Tue, 09 Jan 2018 21:37:43 +0100</pubDate>
+      
+      <guid>https://oktomus.com/posts/2018/qt-propagate-shortcuts/</guid>
+      <description>If you want to use Maya or any other application&#39;s shortcuts while you are using a custom tool, you need to propagate key events to the application. It can be useful with custom Qt dialogs and widgets.
+To propagate a key event, you just need to ignore it in your widget or window.
+class YourWidget(QtGui.QWidget): .... def keyPressEvent(self, event): if ... : event.accept() else: event.ignore() By default, the event is accepted, so accepting is useless.</description>
+    </item>
     
     <item>
       <title>Migrate models when adding inheritance in Django</title>

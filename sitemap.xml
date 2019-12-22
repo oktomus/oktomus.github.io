@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://oktomus.com/posts/2017/migrate-models-when-adding-inheritance-django/</loc>
-    <lastmod>2017-09-17T21:28:15+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://oktomus.com/</loc>
-    <lastmod>2017-09-17T21:28:15+01:00</lastmod>
+    <lastmod>2018-01-30T21:39:17+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://oktomus.com/posts/</loc>
+    <lastmod>2018-01-30T21:39:17+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oktomus.com/posts/2018/swap-escape-caps-lock-windows/</loc>
+    <lastmod>2018-01-30T21:39:17+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oktomus.com/posts/2018/qt-propagate-shortcuts/</loc>
+    <lastmod>2018-01-09T21:37:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://oktomus.com/posts/2017/migrate-models-when-adding-inheritance-django/</loc>
     <lastmod>2017-09-17T21:28:15+01:00</lastmod>
   </url>
   
