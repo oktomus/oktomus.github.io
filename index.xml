@@ -6,10 +6,21 @@
     <description>Recent content on oktomus | computer graphics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Jan 2018 21:39:17 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 18:50:00 +0100</lastBuildDate>
     
 	<atom:link href="https://oktomus.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redirect any link on a GitHub pages website</title>
+      <link>https://oktomus.com/posts/2019/github-pages-redirect-any-link/</link>
+      <pubDate>Sun, 22 Dec 2019 18:50:00 +0100</pubDate>
+      
+      <guid>https://oktomus.com/posts/2019/github-pages-redirect-any-link/</guid>
+      <description>I recently switched my website from django to hugo. All the links referencing to my website are now broken and I need to deal with this.
+ Tip: You can see all your website links that matter to google for referencing by searching for site:example.com in your search engine.
+ When switching to hugo, I also decided to switch to gh-pages. While it&#39;s pretty nice for many reasons, it doesn&#39;t have any server-side configuration and we can&#39;t do proper URL redirection.</description>
+    </item>
     
     <item>
       <title>Swap escape and caps lock on Windows</title>
