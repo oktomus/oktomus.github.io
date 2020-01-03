@@ -6,10 +6,22 @@
     <description>Recent content on oktomus | computer graphics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Dec 2019 18:50:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://oktomus.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Add comments to a static blog with Isso</title>
+      <link>https://oktomus.com/posts/2020/add-comments-to-a-static-blog-with-isso/</link>
+      <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://oktomus.com/posts/2020/add-comments-to-a-static-blog-with-isso/</guid>
+      <description>When adding comments onto your static blog, multiple choices are available. You can either use a service like Disqus, which is really easy to use but cloud-based, or you can self-host one.
+For my blog, I choosed a self-hosting option as I want my website to be compact, fast and without tracking.
+Thankfully, Isso is here: an open source alternative to Disqus.
+To setup Isso on my static Hugo website, I followed this really great post written by Angrisan in 2018.</description>
+    </item>
     
     <item>
       <title>Redirect any link on a GitHub pages website</title>

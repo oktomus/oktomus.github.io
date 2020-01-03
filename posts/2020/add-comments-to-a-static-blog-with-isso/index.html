@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Add comments to a static blog with Isso</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.61.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Kevin Masson" />
+    <meta name="description" content="Install Isso on a debian server to self-host comments on your blog." />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Add comments to a static blog with Isso"/>
+<meta name="twitter:description" content="Install Isso on a debian server to self-host comments on your blog."/>
+
+    <meta property="og:title" content="Add comments to a static blog with Isso" />
+<meta property="og:description" content="Install Isso on a debian server to self-host comments on your blog." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://oktomus.com/posts/2020/add-comments-to-a-static-blog-with-isso/" />
+<meta property="article:published_time" content="2020-01-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-01-03T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://oktomus.com/"><img width="100" height="100" class="app-header-avatar" src="/avatar.jpg" alt="Kevin Masson" /></a>
+      <h1><a href="https://oktomus.com/">oktomus</a></h1>
+      <p>Makes 3D softwares and photography while eating noodles.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/oktomus" rel="noreferrer noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/oktomus" rel="noreferrer noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+          <a target="_blank" href="mailto:hi@oktomus.com" rel="noreferrer noopener" title="hi@oktomus.com"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-mail">
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>
+</svg></a>
+        
+          <a target="_blank" href="https://www.linkedin.com/in/oktomus/" rel="noreferrer noopener" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+          <a target="_blank" href="https://www.instagram.com/oktomus/" rel="noreferrer noopener" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-instagram">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+</svg></a>
+        
+          <a target="_blank" href="https://500px.com/oktomus" rel="noreferrer noopener" title="500px"><svg fill="currentColor" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="48" xml:space="preserve" id="svg2" version="1.1" height="24" viewBox="0 0 666.66669 166.13333">
+  <g transform="matrix(1.3333333,0,0,-1.3333333,0,166.13333)" id="g10">
+    <g transform="scale(0.1)" id="g12">
+      <path id="path14" style="fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 4761.93,915.121 226.03,226.029 c 8.2,8.21 27.42,27.46 -11.48,67.51 -16.68,17.18 -31.89,25.95 -45.19,26.05 h -0.24 c -11.45,0 -19.17,-6.14 -25.21,-12.17 L 4679.28,995.977 4453.09,1223.56 c -18.28,18.3 -39.69,14.01 -67.29,-13.55 -28.07,-28.22 -32.66,-49.89 -14.45,-68.2 l 226.22,-227.564 -221.56,-221.57 -1.58,-1.547 c -5.39,-5.227 -13.53,-13.113 -13.64,-25.973 -0.1,-13.261 8.73,-28.879 26.26,-46.414 14.8,-14.812 28.82,-22.316 41.7,-22.316 h 0.01 c 14.51,0.012 23.78,9.308 29.02,14.543 l 222.4,222.41 227.42,-227.449 c 2.87,-2.86 10.88,-9.457 23.74,-9.457 h 0.46 c 14.38,0.172 29.52,8.515 45.01,24.781 25.52,26.801 29.78,49.129 12.65,66.359 z m -816.56,324.699 c -167.5,-12.74 -298.71,-160.06 -298.71,-335.394 V 350.023 c 0,-32.117 24.42,-38.691 61.07,-38.691 36.65,0 61.07,6.574 61.07,38.691 V 905.73 c 0,109.24 79.47,203.04 180.91,213.54 58.24,5.94 114.22,-12.29 157.76,-51.56 42.74,-38.52 67.26,-93.909 67.28,-151.972 0,-16.617 -8.14,-70.734 -45.28,-120.968 -28.09,-37.958 -81.3,-83.172 -175.65,-83.172 -0.51,-0.012 -1.2,0 -1.79,0 -24.21,0 -44.88,-1.141 -48.86,-58.496 -2.67,-38.594 -2.45,-55.852 30.89,-60.493 59.47,-8.25 120.11,3.375 180.2,34.606 102.61,53.383 171.35,154.535 179.43,264.004 7.02,95.078 -27.27,187.831 -94.09,254.491 -67.07,66.89 -159.69,101.15 -254.23,94.11 z M 477.48,872.383 C 357.461,889.613 240.426,857.684 145.102,784.309 V 1114.5 h 559.531 c 19.437,0 33.379,3.5 33.379,60.91 0,56.02 -22.571,58.24 -37.465,58.24 H 80.9648 c -35.9765,0 -55.0117,-29.1 -55.0117,-61.36 V 630.379 c 0,-28.414 18.0117,-38.043 51.5352,-44.68 29.3477,-5.808 46.3907,-2.414 59.2227,11.809 l 1.351,2.082 C 197.09,684.672 325.527,767.09 447.605,752.148 593.32,734.32 710.648,618.078 726.695,475.762 736.934,384.953 709.223,297.66 648.719,229.961 588.988,163.121 503.48,124.781 414.156,124.781 c -132.328,0 -247.984,85.059 -296.144,208.508 -7.129,18.277 -19.1722,31.809 -71.3011,12.856 C -1.1875,328.73 -3.96484,308.574 2.64062,290.32 65.3398,117.672 230.711,1.66016 414.137,1.66016 c 124.23,0 243.121,53.26174 326.187,146.14084 84.164,94.078 122.391,215.359 108.313,341.504 C 826.574,686.766 673.727,844.293 477.48,872.383 Z M 2896.61,132.852 c -270.27,0 -490.16,219.882 -490.16,490.148 0,270.277 219.89,490.16 490.16,490.16 270.25,0 490.12,-219.883 490.12,-490.16 0,-270.266 -219.87,-490.148 -490.12,-490.148 z m 0,1113.158 c -343.55,0 -623.04,-279.483 -623.04,-623.01 0,-343.527 279.49,-623 623.04,-623 343.53,0 623,279.473 623,623 0,343.527 -279.47,623.01 -623,623.01 z M 1548.3,132.852 c -270.27,0 -490.15,219.882 -490.15,490.148 0,270.277 219.88,490.16 490.15,490.16 270.26,0 490.13,-219.883 490.13,-490.16 0,-270.266 -219.87,-490.148 -490.13,-490.148 z m 0,1113.158 C 1204.76,1246.01 925.262,966.527 925.262,623 925.262,279.473 1204.76,0 1548.3,0 c 343.53,0 623.01,279.473 623.01,623 0,343.527 -279.48,623.01 -623.01,623.01"/>
+    </g>
+  </g>
+</svg></a>
+        
+          <a target="_blank" href="https://www.flickr.com/photos/kevinmasson/" rel="noreferrer noopener" title="Flickr"><svg fill="currentColor" width="24" height="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+<g id="XMLID_830_">
+	<g id="XMLID_833_">
+		<circle cx="67.57" cy="150" r="67.57"/>
+	</g>
+	<g id="XMLID_838_">
+		<circle cx="232.43" cy="150" r="67.57"/>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Add comments to a static blog with Isso</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 3, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>When adding comments onto your static blog, multiple choices are available. You can either use a service like <strong>Disqus</strong>, which is really easy to use but cloud-based, or you can self-host one.</p>
+<p>For my blog, I choosed a self-hosting option as I want my website to be compact, fast and without tracking.</p>
+<p>Thankfully, <a href="https://posativ.org/isso/">Isso</a> is here: an open source alternative to Disqus.</p>
+<p>To setup Isso on my static <strong>Hugo</strong> website, I followed this <a href="https://angristan.xyz/add-comments-to-your-blog-with-isso">really great post</a> written by Angrisan in 2018. But as I wasn't confortable with Isso and nginx, it took me some times. So I decided to detail a bit more the process in this post.</p>
+<p>What you will need to follow this tutorial is a Debian server (here I'm under Debian <code>9.11</code>). If needed, you can check the <a href="https://posativ.org/isso/docs/">official Isso documentation</a>.</p>
+<p>We will start by installing, running and testing Isso.</p>
+<h2 id="install-and-run-isso">Install and run Isso</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Installing dependencies</span>
+sudo apt-get install python-dev python-pip sqlite3 build-essential
+<span style="color:#75715e"># Installing isso</span>
+sudo pip install isso
+</code></pre></div><p>We need to created a dedicated user on the server. We will use it to run Isso and send notification emails. Be sure to give it a Full Name that is relevant, as it will be the author of email notifications.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo adduser isso --disabled-login
+</code></pre></div><p>Give it a strong password.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo passwd isso
+</code></pre></div><p>We now need to create a configuration file for our blog. I placed mine under <code>/etc/isso.d/oktomus.cfg</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>general<span style="color:#f92672">]</span>
+name <span style="color:#f92672">=</span> oktomus
+dbpath <span style="color:#f92672">=</span> /var/lib/isso/oktomus.comments.db
+host <span style="color:#f92672">=</span> https://oktomus.com/
+max-age <span style="color:#f92672">=</span> 15m
+notify <span style="color:#f92672">=</span> smtp
+log-file <span style="color:#f92672">=</span> /var/log/isso.log
+
+<span style="color:#f92672">[</span>moderation<span style="color:#f92672">]</span>
+enabled <span style="color:#f92672">=</span> false
+
+<span style="color:#f92672">[</span>admin<span style="color:#f92672">]</span>
+enabled <span style="color:#f92672">=</span> true
+password <span style="color:#f92672">=</span> <span style="color:#75715e"># A strong password.</span>
+
+<span style="color:#f92672">[</span>server<span style="color:#f92672">]</span>
+listen <span style="color:#f92672">=</span> http://localhost:8080
+reload <span style="color:#f92672">=</span> off
+profile <span style="color:#f92672">=</span> off
+public-endpoint <span style="color:#f92672">=</span> https://isso.oktomus.com
+
+<span style="color:#f92672">[</span>guard<span style="color:#f92672">]</span>
+enabled <span style="color:#f92672">=</span> true
+ratelimit <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+direct-reply <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+reply-to-self <span style="color:#f92672">=</span> false
+require-author <span style="color:#f92672">=</span> false
+require-email <span style="color:#f92672">=</span> false
+
+<span style="color:#f92672">[</span>smtp<span style="color:#f92672">]</span>
+username <span style="color:#f92672">=</span> isso
+password <span style="color:#f92672">=</span> <span style="color:#75715e"># The password of the user isso</span>
+host <span style="color:#f92672">=</span> <span style="color:#75715e"># smtp host (e.g. localhost, oktomus.com)</span>
+port <span style="color:#f92672">=</span> <span style="color:#75715e"># smtp port</span>
+security <span style="color:#f92672">=</span> starttls
+to <span style="color:#f92672">=</span> <span style="color:#75715e"># my personal mail</span>
+from <span style="color:#f92672">=</span> isso@oktomus.com
+timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</code></pre></div><p>In my case, <code>https://oktomus.com</code> is pointing to a <a href="https://github.com/oktomus/oktomus.github.io">GitHub pages repo</a> and <code>https://isso.oktomus.com</code> will point to the Debian server. Both can be on the same server.</p>
+<p>All available options are detailed in the <a href="https://posativ.org/isso/docs/configuration/server/">server documentation</a>.</p>
+<p>If you never configured a smtp service on your server, replace <code>smtp</code> by <code>stdout</code> for the <code>notify</code> setting and remove the <code>smtp</code> block.</p>
+<p>You will need to create a <code>A</code> (and/or <code>AAAA</code> to support IPv6) or <code>CNAME</code> record in your DNS to make <code>isso.oktomus.com</code> pointing to your server.</p>
+<p>To make sure that our user has write and read permissions to the log and database files, run the following :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo touch /var/log/isso.log
+sudo chown isso: /var/log/isso.log
+sudo mkdir /var/lib/isso
+sudo chown: isso /var/lib/isso
+sudo touch /var/lib/isso/oktomus.comments.db
+sudo chown isso: /var/lib/isso/oktomus.comments.db
+</code></pre></div><p>To check if Isso is correctly configured, run it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Log as isso</span>
+su - isso
+<span style="color:#75715e"># Run it</span>
+/usr/local/bin/isso -c /etc/isso.d/oktomus.cfg run
+</code></pre></div><p>If nothing is logged, everything should be fine. You can stop it with <code>CTRL+C</code>.</p>
+<p>We can now create a service so that Isso is always running and start when your server boot. To do so, create the file <code>/etc/systemd/system/isso.service</code> with the following content:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+Description<span style="color:#f92672">=</span>lightweight Disqus alternative
+
+<span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+User<span style="color:#f92672">=</span>isso
+Environment<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ISSO_SETTINGS=/etc/isso.d/oktomus.cfg&#34;</span>
+ExecStart<span style="color:#f92672">=</span>/usr/local/bin/isso -c $ISSO_SETTINGS run
+
+<span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+WantedBy<span style="color:#f92672">=</span>multi-user.target
+</code></pre></div><p>Enable it, run it and check that everything is ok.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo systemctl enable isso
+sudo systemctl start isso
+sudo systemctl status isso
+</code></pre></div><p>You can make sure that isso is working by running the following, you should get an html document:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl localhost:8080/admin
+</code></pre></div><p>If everything is fine, we just need to configure nginx so that Isso can be accessed from outside your server.</p>
+<h2 id="configure-nginx">Configure nginx</h2>
+<p>Start by installing nginx and certbot. The later will be used to enable encryption on your website with a certificate from Let's Encrypt.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install nginx certbot
+</code></pre></div><p>Create a configuration file for isso under <code>/etc/nginx/site-available/isso.conf</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">server <span style="color:#f92672">{</span>
+  server_name isso.oktomus.com;
+
+  listen <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:443 ssl http2;
+  listen <span style="color:#ae81ff">443</span> ssl http2;
+
+  access_log /var/log/nginx/isso-access.log;
+  error_log  /var/log/nginx/isso-error.log;
+
+  location / <span style="color:#f92672">{</span>
+          proxy_set_header Host $http_host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_pass http://localhost:8080;
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+server <span style="color:#f92672">{</span>
+  server_name isso.oktomus.com;
+
+  listen <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:80;
+  listen 80;
+
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>$host <span style="color:#f92672">=</span> isso.oktomus.com<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">301</span> https://$host$request_uri;
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#66d9ef">return</span> 404;
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Enable it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo ln -s /etc/nginx/site-available/isso.conf /etc/nginx/site-enabled/
+</code></pre></div><p>We need to create a certificate for this website so that requests can be encrypted. The command is interactive and may ask you some informations.</p>
+<p>When asked to redirect HTTP to HTTPS, you can choose the redirect option. If this is the first certificate you ever install, consider to setup a crontab so that you can renew it automatically. Otherwise, your website will be considered unsecure in a few months.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo certbot
+</code></pre></div><p>The content of the isso nginx file should have changed now and you can run it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+</code></pre></div><p>You should now be able to acess the admin.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl https://isso.oktomus.com/admin
+</code></pre></div><p>If not, check content of the nginx and Isso log files.</p>
+<p>Now that the Isso server runs correctly and can be accessed from outside, we just need to integrate it into our website.</p>
+<h2 id="integration">Integration</h2>
+<p>This is the simplest part. You just need to add the following snippet in your template:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post-footer&#34;</span>&gt;
+    &lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;isso-thread&#34;</span>&gt;&lt;/<span style="color:#f92672">section</span>&gt;
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">data-isso</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://isso.oktomus.com/&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://isso.oktomus.com/js/embed.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>In my case, for <strong>Hugo</strong>, I added it at the end of <code>themes/my-theme/layouts/_default/single.html</code>.</p>
+<h2 id="communicate">Communicate</h2>
+<p>Tell me if you liked this post by adding a comment !</p>
+
+    </div>
+    <!-- begin comments //-->
+    <div class="post-footer">
+      <section id="isso-thread"></section>
+      <script data-isso="https://isso.oktomus.com/" src="https://isso.oktomus.com/js/embed.min.js"></script>
+    </div>
+    <!-- end comments //-->
+  </article>
+
+    </main>
+
+    
+    
+    <script type="text/javascript">
+      var _paq = window._paq || [];
+       
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//matomo.oktomus.com/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    
+  </body>
+</html>
