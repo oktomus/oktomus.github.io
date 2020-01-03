@@ -1,24 +1,20 @@
 <!doctype html>
 <html lang="en-us">
   <head>
-    <title>Migrate models when adding inheritance in Django // oktomus | computer graphics</title>
+    <title>Migrate models when adding inheritance in Django</title>
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.61.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
-    <meta name="description" content="" />
+    <meta name="description" content="Correctly migrate models when adding a parent class to exisint models." />
     <link rel="stylesheet" href="https://oktomus.com/css/main.min.b16363568b7bfe0556d5c6acc632a226b5398ede593b9fc7ec948420ece0a9aa.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Migrate models when adding inheritance in Django"/>
-<meta name="twitter:description" content="When you have one or more models that you are already using in your application and you want to change the parent class, the Django migration tool doesn&#39;t know what to do with the fields that will be transferred into the parent class values. By default, Django will erase existing fields and create new ones.
-Here is a scheme a what you may want to do.
-Changing the parent class is useful when you want to share some attributes and operations throughout multiple models."/>
+<meta name="twitter:description" content="Correctly migrate models when adding a parent class to exisint models."/>
 
     <meta property="og:title" content="Migrate models when adding inheritance in Django" />
-<meta property="og:description" content="When you have one or more models that you are already using in your application and you want to change the parent class, the Django migration tool doesn&#39;t know what to do with the fields that will be transferred into the parent class values. By default, Django will erase existing fields and create new ones.
-Here is a scheme a what you may want to do.
-Changing the parent class is useful when you want to share some attributes and operations throughout multiple models." />
+<meta property="og:description" content="Correctly migrate models when adding a parent class to exisint models." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://oktomus.com/posts/2017/migrate-models-when-adding-inheritance-django/" />
 <meta property="article:published_time" content="2017-09-17T21:28:15+01:00" />

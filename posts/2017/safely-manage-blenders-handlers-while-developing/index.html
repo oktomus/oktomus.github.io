@@ -1,22 +1,20 @@
 <!doctype html>
 <html lang="en-us">
   <head>
-    <title>Safely manage Blender&#39;s handlers while developing // oktomus | computer graphics</title>
+    <title>Safely manage Blender&#39;s handlers while developing</title>
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.61.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
-    <meta name="description" content="" />
+    <meta name="description" content="Understand how Blender python handlers work while developing an addon." />
     <link rel="stylesheet" href="https://oktomus.com/css/main.min.b16363568b7bfe0556d5c6acc632a226b5398ede593b9fc7ec948420ece0a9aa.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Safely manage Blender&#39;s handlers while developing"/>
-<meta name="twitter:description" content="What is a handler ? Handlers are basically callbacks that you create to execute a specific function every time something happens. Blender&#39;s API currently provide some handlers, frame_change_pre will be used in this article. Each handler is a list of functions, in this case, every function in frame_change_pre will be executed before a switch of frame.
-The problem Let&#39;s say that you are working on your callback function, everytime you change your function you will have to add it in the handler list to be able to use it."/>
+<meta name="twitter:description" content="Understand how Blender python handlers work while developing an addon."/>
 
     <meta property="og:title" content="Safely manage Blender&#39;s handlers while developing" />
-<meta property="og:description" content="What is a handler ? Handlers are basically callbacks that you create to execute a specific function every time something happens. Blender&#39;s API currently provide some handlers, frame_change_pre will be used in this article. Each handler is a list of functions, in this case, every function in frame_change_pre will be executed before a switch of frame.
-The problem Let&#39;s say that you are working on your callback function, everytime you change your function you will have to add it in the handler list to be able to use it." />
+<meta property="og:description" content="Understand how Blender python handlers work while developing an addon." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://oktomus.com/posts/2017/safely-manage-blenders-handlers-while-developing/" />
 <meta property="article:published_time" content="2017-07-14T21:06:12+01:00" />
