@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-us">
   <head>
-    <title>Writting a ray tracer for the web</title>
+    <title>Writing a ray tracer for the web</title>
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.61.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Writting a ray tracer for the web"/>
+<meta name="twitter:title" content="Writing a ray tracer for the web"/>
 <meta name="twitter:description" content="Major issues I encountered while making a toy ray tracer using compute shaders for the web."/>
 
-    <meta property="og:title" content="Writting a ray tracer for the web" />
+    <meta property="og:title" content="Writing a ray tracer for the web" />
 <meta property="og:description" content="Major issues I encountered while making a toy ray tracer using compute shaders for the web." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://oktomus.com/posts/2020/ray-tracer-with-webgl-compute/" />
@@ -105,7 +105,7 @@
       
   <article class="post">
     <header class="post-header">
-      <h1 class ="post-title">Writting a ray tracer for the web</h1>
+      <h1 class ="post-title">Writing a ray tracer for the web</h1>
       <div class="post-meta">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
@@ -337,7 +337,7 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 }
 </code></pre></div><h2 id="acessing-to-the-data-on-the-gpu">Acessing to the data on the GPU</h2>
 <p>Using triangles and materials on the GPU was certainly the most tricky part of this project.</p>
-<p>On CPU, we can almost do whatever we want with the memory. It is very easy to create a custom data type, make some lists and start using them to render. Even when writting multi-threaded applications.</p>
+<p>On CPU, we can almost do whatever we want with the memory. It is very easy to create a custom data type, make some lists and start using them to render. Even when writing multi-threaded applications.</p>
 <p>But on GPU, it can be really irritating. The reason is that you need to send your data to the GPU before running the renderer. Which makes sense. But you can't send custom data types, <strong>you can only send bytes</strong> (at least with WebGL).</p>
 <p>So basically, you will have to write the CPU code to correctly pack your scene (triangles, materials, lights) into a buffer, send this buffer (or more), but also write the GPU code for your custom data types and declare the buffers to use them. On top of that, there is some rules to follow for packing your data like padding (you can't just the binary equivalent of your data on CPU).</p>
 <p>In this project, I used a simple data type to represent each mesh in the scene:</p>
