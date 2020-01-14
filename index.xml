@@ -6,10 +6,21 @@
     <description>Recent content on oktomus | computer graphics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://oktomus.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writting a ray tracer for the web</title>
+      <link>https://oktomus.com/posts/2020/ray-tracer-with-webgl-compute/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://oktomus.com/posts/2020/ray-tracer-with-webgl-compute/</guid>
+      <description>In 2019, Khronos announced and introduced WebGL 2.0 Compute, a new specification allowing to use the GPU for more than rasterisation.
+What it really means is that we will be able to use compute shaders. These shaders allow to do many more things than the classical vertex, fragment and geometry shader pipeline used for realtime 3D applicaitons.
+WebGL 2.0 Compute is still a draft, but some browsers already have implemented it.</description>
+    </item>
     
     <item>
       <title>Add comments to a static blog with Isso</title>
