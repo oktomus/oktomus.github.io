@@ -122,7 +122,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2020/ray-tracer-with-webgl-compute.md" rel="nofollow">2 contributors</a>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2020/ray-tracer-with-webgl-compute.md" rel="nofollow">3 contributors</a>
         </div></div>
     </header>
     <div class="post-content">
@@ -169,7 +169,7 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 </code></pre></div><p>This RNG could be much better. Because the seed is sequential, we can notice some repetitions and patterns. Using a hash of the seed could give better results.</p>
 <p>There is a really nice shadertoy tool to compare different RNGs that you can find <a href="https://www.shadertoy.com/view/wljXDz">here</a>.</p>
 <h2 id="intersections">Intersections</h2>
-<p>Testing for interesection between a ray and a shape is one of the first thing that you implement when making a ray tracer.</p>
+<p>Testing for intersection between a ray and a shape is one of the first thing that you implement when making a ray tracer.</p>
 <p>Compared to CPU, implementing intersection on GPU is pretty much the same. However, it is much more complicated to debug GPU code since you can't attach a debugger or print things.</p>
 <p>Also, don't expect your GPU code to fail and throw an error as it does on the CPU. You won't get runtime shader execution errors printed out like <em>Array index out of bounds</em> or such.</p>
 <p>Here is the code I used to test intersection with triangles:</p>
@@ -218,7 +218,7 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
 }
-</code></pre></div><p>Note that there is a lot of operations that are already implmented on the GPU like <code>cross</code> and <code>dot</code>.</p>
+</code></pre></div><p>Note that there is a lot of operations that are already implemented on the GPU like <code>cross</code> and <code>dot</code>.</p>
 <h2 id="shading">Shading</h2>
 <p>As with intersection, shading is also similar on GPU and CPU. Just know that:</p>
 <ul>
@@ -339,7 +339,7 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 <p>Using triangles and materials on the GPU was certainly the most tricky part of this project.</p>
 <p>On CPU, we can almost do whatever we want with the memory. It is very easy to create a custom data type, make some lists and start using them to render. Even when writing multi-threaded applications.</p>
 <p>But on GPU, it can be really irritating. The reason is that you need to send your data to the GPU before running the renderer. Which makes sense. But you can't send custom data types, <strong>you can only send bytes</strong> (at least with WebGL).</p>
-<p>So basically, you will have to write the CPU code to correctly pack your scene (triangles, materials, lights) into a buffer, send this buffer (or more), but also write the GPU code for your custom data types and declare the buffers to use them. On top of that, there is some rules to follow for packing your data like padding (you can't just the binary equivalent of your data on CPU).</p>
+<p>So basically, you will have to write the CPU code to correctly pack your scene (triangles, materials, lights) into a buffer, send this buffer (or more), but also write the GPU code for your custom data types and declare the buffers to use them. On top of that, there is some rules to follow for packing your data like padding (you can't just use the binary equivalent of your data on CPU).</p>
 <p>In this project, I used a simple data type to represent each mesh in the scene:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">// GLSL</span>
 <span style="color:#66d9ef">struct</span> Mesh
