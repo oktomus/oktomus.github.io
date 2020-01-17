@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Major issues I encountered while making a toy ray tracer using compute shaders for the web." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Writing a ray tracer for the web"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,30 +77,18 @@
     <header class="post-header">
       <h1 class ="post-title">Writing a ray tracer for the web</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jan 13, 2020
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          11 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        13 Jan 2020
+          ·  11 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2020/ray-tracer-with-webgl-compute.md" rel="nofollow">3 contributors</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2020/ray-tracer-with-webgl-compute.md" rel="nofollow">3 contributors</a></span></div>
     </header>
     <div class="post-content">
       <p>In 2019, <em>Khronos</em> announced and introduced <a href="https://www.khronos.org/registry/webgl/specs/latest/2.0-compute/">WebGL 2.0 Compute</a>, a new specification allowing to use the GPU for more than <a href="https://en.wikipedia.org/wiki/Rasterisation">rasterisation</a>.</p>
 <p>What it really means is that we will be able to use <strong>compute shaders</strong>. These shaders allow to do many more things than the classical <em>vertex, fragment and geometry shader</em> pipeline used for realtime 3D applicaitons.</p>
 <p><em>WebGL 2.0 Compute</em> is still a draft, but some browsers already have implemented it. For example, you can use this API on chrome if you enable some flags:</p>
-<pre><code>chrome --use-cmd-decoder=passthrough --use-angle=gl --enable-webgl2-compute-context
-</code></pre><p>I really wanted to test this new API. So I decided to write <a href="https://oktomus.github.io/webgpu-toy-ray-tracer/">a very simple ray tracer</a>. The goal wasn't to make something pretty or production-ready, but  to play with compute shaders and see what can be achieved in a web browser.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-posh" data-lang="posh">chrome --use-cmd-decoder=passthrough --use-angle=gl --enable-webgl2-compute-context
+</code></pre></div><p>I really wanted to test this new API. So I decided to write <a href="https://oktomus.github.io/webgpu-toy-ray-tracer/">a very simple ray tracer</a>. The goal wasn't to make something pretty or production-ready, but  to play with compute shaders and see what can be achieved in a web browser.</p>
 <p>The complete project can be found <a href="https://github.com/oktomus/webgpu-toy-ray-tracer">on github</a>.</p>
 <hr>
 <p>There is another API called <a href="https://gpuweb.github.io/gpuweb/">Web GPU</a> that can be used for the same thing. I will do the same project with this new API and let you know how things go. If you don't want to miss it, follow me on twitter <a href="https://twitter.com/oktomus">@oktomus</a> !</p>
@@ -139,30 +97,30 @@
 <p>We need a way to generate pseudo-random numbers that is fast, must not have noticeable patterns and behave correctly over time.</p>
 <p>The one I use is directly copied from <a href="https://stackoverflow.com/questions/12964279/whats-the-origin-of-this-glsl-rand-one-liner">somewhere on internet</a> and is seed-based.</p>
 <p>I created a simple demo showing the RNG result, so that you can easily understand how to use the WebGL 2.0 Compute API: <a href="https://oktomus.com/web-experiments/webgl-compute/rng/">demo</a> / <a href="https://github.com/oktomus/web-experiments/tree/master/webgl-compute/rng">code</a>. Here is the shader:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">#version 310 es</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#cd2828;font-weight:bold">#version 310 es</span>
 
-layout (local_size_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, local_size_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, local_size_z <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">in</span>;
+layout (local_size_x = <span style="color:#3677a9">16</span>, local_size_y = <span style="color:#3677a9">16</span>, local_size_z = <span style="color:#3677a9">1</span>) <span style="color:#6ab825;font-weight:bold">in</span>;
 
-layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) writeonly <span style="color:#66d9ef">uniform</span> <span style="color:#66d9ef">highp</span> image2D outputTex;
+layout (rgba8, binding = <span style="color:#3677a9">0</span>) writeonly <span style="color:#6ab825;font-weight:bold">uniform</span> <span style="color:#6ab825;font-weight:bold">highp</span> image2D outputTex;
 
-<span style="color:#66d9ef">uniform</span> <span style="color:#66d9ef">float</span> uSeed;
+<span style="color:#6ab825;font-weight:bold">uniform</span> <span style="color:#6ab825;font-weight:bold">float</span> uSeed;
 
-<span style="color:#66d9ef">float</span> rand(<span style="color:#66d9ef">inout</span> <span style="color:#66d9ef">float</span> seed, <span style="color:#66d9ef">vec2</span> pixel)
+<span style="color:#6ab825;font-weight:bold">float</span> rand(<span style="color:#6ab825;font-weight:bold">inout</span> <span style="color:#6ab825;font-weight:bold">float</span> seed, <span style="color:#6ab825;font-weight:bold">vec2</span> pixel)
 {
-    <span style="color:#66d9ef">float</span> result <span style="color:#f92672">=</span> fract(sin(seed <span style="color:#f92672">/</span> <span style="color:#ae81ff">100.0</span>f <span style="color:#f92672">*</span> dot(pixel, <span style="color:#66d9ef">vec2</span>(<span style="color:#ae81ff">12.9898</span>f, <span style="color:#ae81ff">78.233</span>f))) <span style="color:#f92672">*</span> <span style="color:#ae81ff">43758.5453</span>f);
-    seed <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>f;
-    <span style="color:#66d9ef">return</span> result;
+    <span style="color:#6ab825;font-weight:bold">float</span> result = fract(sin(seed / <span style="color:#3677a9">100.0</span>f * dot(pixel, <span style="color:#6ab825;font-weight:bold">vec2</span>(<span style="color:#3677a9">12.9898</span>f, <span style="color:#3677a9">78.233</span>f))) * <span style="color:#3677a9">43758.5453</span>f);
+    seed += <span style="color:#3677a9">1.0</span>f;
+    <span style="color:#6ab825;font-weight:bold">return</span> result;
 }
 
-<span style="color:#66d9ef">void</span> main() {
-    <span style="color:#66d9ef">ivec2</span> storePos <span style="color:#f92672">=</span> <span style="color:#66d9ef">ivec2</span>(gl_GlobalInvocationID.xy);
-    <span style="color:#66d9ef">ivec2</span> imageSize <span style="color:#f92672">=</span> <span style="color:#66d9ef">ivec2</span>(gl_NumWorkGroups.xy <span style="color:#f92672">*</span> gl_WorkGroupSize.xy);
-    <span style="color:#66d9ef">vec2</span> uv <span style="color:#f92672">=</span> <span style="color:#66d9ef">vec2</span>(storePos) <span style="color:#f92672">/</span> <span style="color:#66d9ef">vec2</span>(imageSize);
+<span style="color:#6ab825;font-weight:bold">void</span> main() {
+    <span style="color:#6ab825;font-weight:bold">ivec2</span> storePos = <span style="color:#6ab825;font-weight:bold">ivec2</span>(gl_GlobalInvocationID.xy);
+    <span style="color:#6ab825;font-weight:bold">ivec2</span> imageSize = <span style="color:#6ab825;font-weight:bold">ivec2</span>(gl_NumWorkGroups.xy * gl_WorkGroupSize.xy);
+    <span style="color:#6ab825;font-weight:bold">vec2</span> uv = <span style="color:#6ab825;font-weight:bold">vec2</span>(storePos) / <span style="color:#6ab825;font-weight:bold">vec2</span>(imageSize);
 
-    <span style="color:#66d9ef">float</span> seed <span style="color:#f92672">=</span> uSeed;
+    <span style="color:#6ab825;font-weight:bold">float</span> seed = uSeed;
 
-    <span style="color:#66d9ef">float</span> n <span style="color:#f92672">=</span> rand(seed, uv);
-    <span style="color:#66d9ef">vec4</span> color <span style="color:#f92672">=</span> <span style="color:#66d9ef">vec4</span>(n, n, n, <span style="color:#ae81ff">1.0</span>);
+    <span style="color:#6ab825;font-weight:bold">float</span> n = rand(seed, uv);
+    <span style="color:#6ab825;font-weight:bold">vec4</span> color = <span style="color:#6ab825;font-weight:bold">vec4</span>(n, n, n, <span style="color:#3677a9">1.0</span>);
 
     imageStore(outputTex, storePos, color);
 }
@@ -173,50 +131,50 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 <p>Compared to CPU, implementing intersection on GPU is pretty much the same. However, it is much more complicated to debug GPU code since you can't attach a debugger or print things.</p>
 <p>Also, don't expect your GPU code to fail and throw an error as it does on the CPU. You won't get runtime shader execution errors printed out like <em>Array index out of bounds</em> or such.</p>
 <p>Here is the code I used to test intersection with triangles:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">struct</span> Ray {
-    <span style="color:#66d9ef">vec3</span> origin;
-    <span style="color:#66d9ef">vec3</span> direction;
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#6ab825;font-weight:bold">struct</span> Ray {
+    <span style="color:#6ab825;font-weight:bold">vec3</span> origin;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> direction;
 };
 
-<span style="color:#66d9ef">vec3</span> ray_at(Ray r, <span style="color:#66d9ef">float</span> t)
+<span style="color:#6ab825;font-weight:bold">vec3</span> ray_at(Ray r, <span style="color:#6ab825;font-weight:bold">float</span> t)
 {
-    <span style="color:#66d9ef">return</span> r.origin <span style="color:#f92672">+</span> r.direction <span style="color:#f92672">*</span> t;
+    <span style="color:#6ab825;font-weight:bold">return</span> r.origin + r.direction * t;
 }
 
-<span style="color:#75715e">// Test intersection between a ray and a triangle using Möller–Trumbore algorithm.</span>
-<span style="color:#66d9ef">bool</span> hit_triangle_mt(Ray r, <span style="color:#66d9ef">vec3</span> v0, <span style="color:#66d9ef">vec3</span> v1, <span style="color:#66d9ef">vec3</span> v2, <span style="color:#66d9ef">out</span> <span style="color:#66d9ef">float</span> t)
+<span style="color:#999;font-style:italic">// Test intersection between a ray and a triangle using Möller–Trumbore algorithm.</span>
+<span style="color:#6ab825;font-weight:bold">bool</span> hit_triangle_mt(Ray r, <span style="color:#6ab825;font-weight:bold">vec3</span> v0, <span style="color:#6ab825;font-weight:bold">vec3</span> v1, <span style="color:#6ab825;font-weight:bold">vec3</span> v2, <span style="color:#6ab825;font-weight:bold">out</span> <span style="color:#6ab825;font-weight:bold">float</span> t)
 {
-    <span style="color:#66d9ef">vec3</span> e1 <span style="color:#f92672">=</span> v1 <span style="color:#f92672">-</span> v0;
-    <span style="color:#66d9ef">vec3</span> e2 <span style="color:#f92672">=</span> v2 <span style="color:#f92672">-</span> v0;
-    <span style="color:#66d9ef">vec3</span> h <span style="color:#f92672">=</span> cross(r.direction, e2);
+    <span style="color:#6ab825;font-weight:bold">vec3</span> e1 = v1 - v0;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> e2 = v2 - v0;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> h = cross(r.direction, e2);
 
-    <span style="color:#66d9ef">float</span> a <span style="color:#f92672">=</span> dot(e1, h);
+    <span style="color:#6ab825;font-weight:bold">float</span> a = dot(e1, h);
 
-    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">&lt;</span> EPSILON <span style="color:#f92672">&amp;&amp;</span> a <span style="color:#f92672">&gt;</span> EPSILON)
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#6ab825;font-weight:bold">if</span> (a &lt; EPSILON &amp;&amp; a &gt; EPSILON)
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
 
-    <span style="color:#66d9ef">float</span> f <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span> <span style="color:#f92672">/</span> a;
-    <span style="color:#66d9ef">vec3</span> s <span style="color:#f92672">=</span> r.origin <span style="color:#f92672">-</span> v0;
+    <span style="color:#6ab825;font-weight:bold">float</span> f = <span style="color:#3677a9">1.0</span> / a;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> s = r.origin - v0;
 
-    <span style="color:#66d9ef">float</span> u <span style="color:#f92672">=</span> f <span style="color:#f92672">*</span> dot(s, h);
+    <span style="color:#6ab825;font-weight:bold">float</span> u = f * dot(s, h);
 
-    <span style="color:#66d9ef">if</span> (u <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.0</span> <span style="color:#f92672">||</span> u <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1.0</span>)
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#6ab825;font-weight:bold">if</span> (u &lt; <span style="color:#3677a9">0.0</span> || u &gt; <span style="color:#3677a9">1.0</span>)
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
 
-    <span style="color:#66d9ef">vec3</span> q <span style="color:#f92672">=</span> cross(s, e1);
-    <span style="color:#66d9ef">float</span> v <span style="color:#f92672">=</span> f <span style="color:#f92672">*</span> dot(r.direction, q);
+    <span style="color:#6ab825;font-weight:bold">vec3</span> q = cross(s, e1);
+    <span style="color:#6ab825;font-weight:bold">float</span> v = f * dot(r.direction, q);
 
-    <span style="color:#66d9ef">if</span> (v <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.0</span> <span style="color:#f92672">||</span> u <span style="color:#f92672">+</span> v <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1.0</span>)
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#6ab825;font-weight:bold">if</span> (v &lt; <span style="color:#3677a9">0.0</span> || u + v &gt; <span style="color:#3677a9">1.0</span>)
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
 
-    t <span style="color:#f92672">=</span> f <span style="color:#f92672">*</span> dot(e2, q);
+    t = f * dot(e2, q);
 
-    <span style="color:#66d9ef">if</span> (t <span style="color:#f92672">&gt;</span> EPSILON)
+    <span style="color:#6ab825;font-weight:bold">if</span> (t &gt; EPSILON)
     {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">true</span>;
     }
 
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
 }
 </code></pre></div><p>Note that there is a lot of operations that are already implemented on the GPU like <code>cross</code> and <code>dot</code>.</p>
 <h2 id="shading">Shading</h2>
@@ -228,112 +186,112 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 <p>Regarding dynamic allocation, it's not really a problem because you should already be doing the same on CPU if you want your ray tracer to be fast.</p>
 <p>For the recursive part, it's a bit annoying at the begining and it can make coding a bit more difficult. But in the end, you can achieve the same thing using a good old <code>while</code> loop with some adjustements in your code.</p>
 <p>To compute the color of a pixel given a camera ray, I use the following code:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">// Compute the color for a given ray.</span>
-<span style="color:#66d9ef">vec3</span> color(Ray r, <span style="color:#66d9ef">inout</span> <span style="color:#66d9ef">float</span> seed, <span style="color:#66d9ef">vec2</span> pixel)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#999;font-style:italic">// Compute the color for a given ray.</span>
+<span style="color:#6ab825;font-weight:bold">vec3</span> color(Ray r, <span style="color:#6ab825;font-weight:bold">inout</span> <span style="color:#6ab825;font-weight:bold">float</span> seed, <span style="color:#6ab825;font-weight:bold">vec2</span> pixel)
 {
-    <span style="color:#75715e">// Some variables used in the while loop.</span>
-    <span style="color:#66d9ef">float</span> t;
-    <span style="color:#66d9ef">vec3</span> n;
-    <span style="color:#66d9ef">int</span> mesh_index;
+    <span style="color:#999;font-style:italic">// Some variables used in the while loop.</span>
+    <span style="color:#6ab825;font-weight:bold">float</span> t;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> n;
+    <span style="color:#6ab825;font-weight:bold">int</span> mesh_index;
 
-    <span style="color:#66d9ef">vec3</span> res <span style="color:#f92672">=</span> <span style="color:#66d9ef">vec3</span>(<span style="color:#ae81ff">0.0</span>);
+    <span style="color:#6ab825;font-weight:bold">vec3</span> res = <span style="color:#6ab825;font-weight:bold">vec3</span>(<span style="color:#3677a9">0.0</span>);
 
-    <span style="color:#75715e">// I hard-coded the light in the code, but we could easily</span>
-    <span style="color:#75715e">// make them dynamic.</span>
-    <span style="color:#66d9ef">int</span> light_mesh_index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    Mesh light <span style="color:#f92672">=</span> meshes[light_mesh_index];
-    <span style="color:#66d9ef">int</span> light_count <span style="color:#f92672">=</span> light.triangle_count;
+    <span style="color:#999;font-style:italic">// I hard-coded the light in the code, but we could easily</span>
+    <span style="color:#999;font-style:italic">// make them dynamic.</span>
+    <span style="color:#6ab825;font-weight:bold">int</span> light_mesh_index = <span style="color:#3677a9">0</span>;
+    Mesh light = meshes[light_mesh_index];
+    <span style="color:#6ab825;font-weight:bold">int</span> light_count = light.triangle_count;
 
-    <span style="color:#66d9ef">int</span> depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#6ab825;font-weight:bold">int</span> depth = <span style="color:#3677a9">0</span>;
 
-    <span style="color:#66d9ef">while</span> (depth <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>
-        <span style="color:#f92672">&amp;&amp;</span> hit_world(r, EPSILON, MAX_FLOAT, t, mesh_index, n)
-        <span style="color:#f92672">&amp;&amp;</span> t <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.0</span>)
+    <span style="color:#6ab825;font-weight:bold">while</span> (depth &lt; <span style="color:#3677a9">5</span>
+        &amp;&amp; hit_world(r, EPSILON, MAX_FLOAT, t, mesh_index, n)
+        &amp;&amp; t &gt; <span style="color:#3677a9">0.0</span>)
     {
-        Mesh mesh <span style="color:#f92672">=</span> meshes[mesh_index];
-        <span style="color:#66d9ef">vec3</span> surface_normal <span style="color:#f92672">=</span> n;
+        Mesh mesh = meshes[mesh_index];
+        <span style="color:#6ab825;font-weight:bold">vec3</span> surface_normal = n;
 
-        <span style="color:#75715e">// Primary ray hit a light, stop (for simplicity sake).</span>
-        <span style="color:#66d9ef">if</span> (mesh.emission <span style="color:#f92672">!=</span> <span style="color:#66d9ef">vec3</span>(<span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">&amp;&amp;</span> depth <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        <span style="color:#999;font-style:italic">// Primary ray hit a light, stop (for simplicity sake).</span>
+        <span style="color:#6ab825;font-weight:bold">if</span> (mesh.emission != <span style="color:#6ab825;font-weight:bold">vec3</span>(<span style="color:#3677a9">0.0</span>) &amp;&amp; depth == <span style="color:#3677a9">0</span>)
         {
-            <span style="color:#66d9ef">return</span> mesh.emission;
+            <span style="color:#6ab825;font-weight:bold">return</span> mesh.emission;
         }
 
-        <span style="color:#66d9ef">vec3</span> hit_point <span style="color:#f92672">=</span> ray_at(r, t);
+        <span style="color:#6ab825;font-weight:bold">vec3</span> hit_point = ray_at(r, t);
 
-        <span style="color:#75715e">// Consider hit.</span>
-        <span style="color:#66d9ef">if</span> (mesh.emission <span style="color:#f92672">==</span> <span style="color:#66d9ef">vec3</span>(<span style="color:#ae81ff">0.0</span>))
+        <span style="color:#999;font-style:italic">// Consider hit.</span>
+        <span style="color:#6ab825;font-weight:bold">if</span> (mesh.emission == <span style="color:#6ab825;font-weight:bold">vec3</span>(<span style="color:#3677a9">0.0</span>))
         {
-            <span style="color:#66d9ef">float</span> light_pdf <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+            <span style="color:#6ab825;font-weight:bold">float</span> light_pdf = <span style="color:#3677a9">0.0</span>;
 
-            <span style="color:#75715e">// Generate a point on the light.</span>
-            <span style="color:#66d9ef">vec3</span> light_point <span style="color:#f92672">=</span> random_point_on_mesh(light, seed, pixel, light_pdf);
+            <span style="color:#999;font-style:italic">// Generate a point on the light.</span>
+            <span style="color:#6ab825;font-weight:bold">vec3</span> light_point = random_point_on_mesh(light, seed, pixel, light_pdf);
 
-            <span style="color:#66d9ef">vec3</span> lh <span style="color:#f92672">=</span> light_point <span style="color:#f92672">-</span> hit_point;
-            <span style="color:#66d9ef">float</span> dist <span style="color:#f92672">=</span> length(lh);
+            <span style="color:#6ab825;font-weight:bold">vec3</span> lh = light_point - hit_point;
+            <span style="color:#6ab825;font-weight:bold">float</span> dist = length(lh);
 
-            <span style="color:#75715e">// Trace a shadow ray.</span>
+            <span style="color:#999;font-style:italic">// Trace a shadow ray.</span>
             Ray shadow_ray;
-            shadow_ray.origin <span style="color:#f92672">=</span> hit_point;
-            shadow_ray.direction <span style="color:#f92672">=</span> normalize(lh);
+            shadow_ray.origin = hit_point;
+            shadow_ray.direction = normalize(lh);
 
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>hit_world(shadow_ray, EPSILON, dist, t, mesh_index, n)
-                <span style="color:#f92672">||</span> mesh_index <span style="color:#f92672">==</span> light_mesh_index)
+            <span style="color:#6ab825;font-weight:bold">if</span> (!hit_world(shadow_ray, EPSILON, dist, t, mesh_index, n)
+                || mesh_index == light_mesh_index)
             {
-                <span style="color:#75715e">// Direct lighting contribution.</span>
-                res <span style="color:#f92672">+</span><span style="color:#f92672">=</span> light_pdf <span style="color:#f92672">*</span> mesh.diffuse <span style="color:#f92672">*</span> light.emission <span style="color:#f92672">*</span> abs(dot(surface_normal, shadow_ray.direction));
+                <span style="color:#999;font-style:italic">// Direct lighting contribution.</span>
+                res += light_pdf * mesh.diffuse * light.emission * abs(dot(surface_normal, shadow_ray.direction));
             }
         }
 
-        <span style="color:#75715e">// Bounce.</span>
-        <span style="color:#66d9ef">vec2</span> s <span style="color:#f92672">=</span> rand2(seed, pixel);
-        <span style="color:#66d9ef">vec3</span> target <span style="color:#f92672">=</span> hit_point <span style="color:#f92672">+</span> n <span style="color:#f92672">+</span> sample_sphere_uniform(s);
-        r.origin <span style="color:#f92672">=</span> hit_point;
-        r.direction <span style="color:#f92672">=</span> normalize(target <span style="color:#f92672">-</span> r.origin);
+        <span style="color:#999;font-style:italic">// Bounce.</span>
+        <span style="color:#6ab825;font-weight:bold">vec2</span> s = rand2(seed, pixel);
+        <span style="color:#6ab825;font-weight:bold">vec3</span> target = hit_point + n + sample_sphere_uniform(s);
+        r.origin = hit_point;
+        r.direction = normalize(target - r.origin);
 
-        depth<span style="color:#f92672">+</span><span style="color:#f92672">+</span>;
+        depth++;
     }
 
-    <span style="color:#66d9ef">return</span> res <span style="color:#f92672">/</span> <span style="color:#66d9ef">float</span>(depth);
+    <span style="color:#6ab825;font-weight:bold">return</span> res / <span style="color:#6ab825;font-weight:bold">float</span>(depth);
 }
 </code></pre></div><p>The <code>hit_world</code> method tests the intersection between all triangles and the current ray. To drastically improve performances, and avoid useless triangle-ray tests, we could use an acceleration structure like a <a href="https://en.wikipedia.org/wiki/Bounding_volume_hierarchy">BVH</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#66d9ef">bool</span> hit_world(Ray r, <span style="color:#66d9ef">float</span> t_min, <span style="color:#66d9ef">float</span> t_max, <span style="color:#66d9ef">inout</span> <span style="color:#66d9ef">float</span> t, <span style="color:#66d9ef">inout</span> <span style="color:#66d9ef">int</span> mesh_index, <span style="color:#66d9ef">inout</span> <span style="color:#66d9ef">vec3</span> n)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#6ab825;font-weight:bold">bool</span> hit_world(Ray r, <span style="color:#6ab825;font-weight:bold">float</span> t_min, <span style="color:#6ab825;font-weight:bold">float</span> t_max, <span style="color:#6ab825;font-weight:bold">inout</span> <span style="color:#6ab825;font-weight:bold">float</span> t, <span style="color:#6ab825;font-weight:bold">inout</span> <span style="color:#6ab825;font-weight:bold">int</span> mesh_index, <span style="color:#6ab825;font-weight:bold">inout</span> <span style="color:#6ab825;font-weight:bold">vec3</span> n)
 {
-    <span style="color:#66d9ef">bool</span> does_hit <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
-    t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
-    <span style="color:#66d9ef">float</span> best_min_t <span style="color:#f92672">=</span> t_max;
+    <span style="color:#6ab825;font-weight:bold">bool</span> does_hit = <span style="color:#6ab825;font-weight:bold">false</span>;
+    t = <span style="color:#3677a9">0.0</span>;
+    <span style="color:#6ab825;font-weight:bold">float</span> best_min_t = t_max;
 
-    mesh_index <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    mesh_index = -<span style="color:#3677a9">1</span>;
 
-    <span style="color:#75715e">// Find the closes triangles that the given ray hit.</span>
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> meshes.length(); <span style="color:#f92672">+</span><span style="color:#f92672">+</span>i)
+    <span style="color:#999;font-style:italic">// Find the closes triangles that the given ray hit.</span>
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; meshes.length(); ++i)
     {
-        Mesh mesh <span style="color:#f92672">=</span> meshes[i];
+        Mesh mesh = meshes[i];
 
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> mesh.triangle_count <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>; j <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+        <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> j = <span style="color:#3677a9">0</span>; j &lt; mesh.triangle_count * <span style="color:#3677a9">3</span>; j += <span style="color:#3677a9">3</span>)
         {
-            <span style="color:#66d9ef">vec3</span> v0 <span style="color:#f92672">=</span> vertices[triangles[mesh.offset <span style="color:#f92672">+</span> j]];
-            <span style="color:#66d9ef">vec3</span> v1 <span style="color:#f92672">=</span> vertices[triangles[mesh.offset <span style="color:#f92672">+</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]];
-            <span style="color:#66d9ef">vec3</span> v2 <span style="color:#f92672">=</span> vertices[triangles[mesh.offset <span style="color:#f92672">+</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>]];
+            <span style="color:#6ab825;font-weight:bold">vec3</span> v0 = vertices[triangles[mesh.offset + j]];
+            <span style="color:#6ab825;font-weight:bold">vec3</span> v1 = vertices[triangles[mesh.offset + j + <span style="color:#3677a9">1</span>]];
+            <span style="color:#6ab825;font-weight:bold">vec3</span> v2 = vertices[triangles[mesh.offset + j + <span style="color:#3677a9">2</span>]];
 
-            <span style="color:#66d9ef">if</span> (hit_triangle_mt(r, v0, v1, v2, t) <span style="color:#f92672">&amp;&amp;</span> t <span style="color:#f92672">&gt;=</span> t_min <span style="color:#f92672">&amp;&amp;</span> t <span style="color:#f92672">&lt;</span> t_max <span style="color:#f92672">&amp;&amp;</span> t <span style="color:#f92672">&lt;</span> best_min_t)
+            <span style="color:#6ab825;font-weight:bold">if</span> (hit_triangle_mt(r, v0, v1, v2, t) &amp;&amp; t &gt;= t_min &amp;&amp; t &lt; t_max &amp;&amp; t &lt; best_min_t)
             {
-                best_min_t <span style="color:#f92672">=</span> t;
-                does_hit <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-                mesh_index <span style="color:#f92672">=</span> i;
+                best_min_t = t;
+                does_hit = <span style="color:#6ab825;font-weight:bold">true</span>;
+                mesh_index = i;
 
-                <span style="color:#75715e">// Compute the normal on the fly.</span>
-                n <span style="color:#f92672">=</span> normalize(cross(v1 <span style="color:#f92672">-</span> v0, v2 <span style="color:#f92672">-</span> v0));
+                <span style="color:#999;font-style:italic">// Compute the normal on the fly.</span>
+                n = normalize(cross(v1 - v0, v2 - v0));
             }
         }
     }
 
-    <span style="color:#66d9ef">if</span> (does_hit)
+    <span style="color:#6ab825;font-weight:bold">if</span> (does_hit)
     {
-        t <span style="color:#f92672">=</span> best_min_t;
+        t = best_min_t;
     }
 
-    <span style="color:#66d9ef">return</span> does_hit;
+    <span style="color:#6ab825;font-weight:bold">return</span> does_hit;
 }
 </code></pre></div><h2 id="acessing-to-the-data-on-the-gpu">Acessing to the data on the GPU</h2>
 <p>Using triangles and materials on the GPU was certainly the most tricky part of this project.</p>
@@ -341,160 +299,160 @@ layout (rgba8, binding <span style="color:#f92672">=</span> <span style="color:#
 <p>But on GPU, it can be really irritating. The reason is that you need to send your data to the GPU before running the renderer. Which makes sense. But you can't send custom data types, <strong>you can only send bytes</strong> (at least with WebGL).</p>
 <p>So basically, you will have to write the CPU code to correctly pack your scene (triangles, materials, lights) into a buffer, send this buffer (or more), but also write the GPU code for your custom data types and declare the buffers to use them. On top of that, there is some rules to follow for packing your data like padding (you can't just use the binary equivalent of your data on CPU).</p>
 <p>In this project, I used a simple data type to represent each mesh in the scene:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">// GLSL</span>
-<span style="color:#66d9ef">struct</span> Mesh
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#999;font-style:italic">// GLSL</span>
+<span style="color:#6ab825;font-weight:bold">struct</span> Mesh
 {
-    <span style="color:#66d9ef">int</span> offset;
-    <span style="color:#66d9ef">int</span> triangle_count;
-    <span style="color:#66d9ef">vec3</span> diffuse;
-    <span style="color:#66d9ef">vec3</span> emission;
+    <span style="color:#6ab825;font-weight:bold">int</span> offset;
+    <span style="color:#6ab825;font-weight:bold">int</span> triangle_count;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> diffuse;
+    <span style="color:#6ab825;font-weight:bold">vec3</span> emission;
 };
 </code></pre></div><p>On the GPU, you can't create an array of array with undefined size. Which means that we can't put the 3D points directly in the Mesh object. So instead, I put all vertices and triangle indexes together in another buffer.</p>
 <p><code>offset</code> represents the index of the first mesh's triangle in the buffer <code>Triangles</code> ahd <code>triangle_count</code> gives the number of triangles.</p>
 <p>The buffer <code>Triangles</code> store 3 vertex index for each triangle and the <code>Vertices</code> buffer store all 3D points.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#75715e">// GLSL</span>
-layout (std430, binding <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) readonly buffer Vertices {
-    <span style="color:#66d9ef">vec3</span> vertices[];
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-glsl" data-lang="glsl"><span style="color:#999;font-style:italic">// GLSL</span>
+layout (std430, binding = <span style="color:#3677a9">1</span>) readonly buffer Vertices {
+    <span style="color:#6ab825;font-weight:bold">vec3</span> vertices[];
 };
 
-layout (std430, binding <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) readonly buffer Triangles {
-    <span style="color:#66d9ef">int</span> triangles[];
+layout (std430, binding = <span style="color:#3677a9">2</span>) readonly buffer Triangles {
+    <span style="color:#6ab825;font-weight:bold">int</span> triangles[];
 };
 
-layout (std430, binding <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) readonly buffer Meshes {
+layout (std430, binding = <span style="color:#3677a9">3</span>) readonly buffer Meshes {
     Mesh meshes[];
 };
 </code></pre></div><p>On the CPU, the Mesh data type directly contains the vertices and the indexes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// JS
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mesh</span> {
-    <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">vertices</span>, <span style="color:#a6e22e">indexes</span>) {
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>;
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">vertices</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vertices</span>;
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">indexes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">indexes</span>;
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">triangle_count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">indexes</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>;
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">vertice_count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">vertices</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>;
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">offset</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">undefined</span>;
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">diffuse_color</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">0.4</span>);
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">emission</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glm</span>.<span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">0.0</span>);
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#999;font-style:italic">// JS
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">export</span> <span style="color:#6ab825;font-weight:bold">class</span> Mesh {
+    constructor(name, vertices, indexes) {
+        <span style="color:#6ab825;font-weight:bold">this</span>.name = name;
+        <span style="color:#6ab825;font-weight:bold">this</span>.vertices = vertices;
+        <span style="color:#6ab825;font-weight:bold">this</span>.indexes = indexes;
+        <span style="color:#6ab825;font-weight:bold">this</span>.triangle_count = indexes.length / <span style="color:#3677a9">3</span>;
+        <span style="color:#6ab825;font-weight:bold">this</span>.vertice_count = vertices.length / <span style="color:#3677a9">3</span>;
+        <span style="color:#6ab825;font-weight:bold">this</span>.offset = <span style="color:#6ab825;font-weight:bold">undefined</span>;
+        <span style="color:#6ab825;font-weight:bold">this</span>.diffuse_color = glm.vec3(<span style="color:#3677a9">0.4</span>);
+        <span style="color:#6ab825;font-weight:bold">this</span>.emission = glm.vec3(<span style="color:#3677a9">0.0</span>);
     }
 }
 </code></pre></div><p>As I said earlier, we need to send data to the GPU before being able to use our renderer. Here I have 3 buffers in my shader so I need to fill those 3 buffers from the CPU. Let's start with the <code>Triangles</code> buffer, which is the easiest as it contains only integers.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// JS
-</span><span style="color:#75715e"></span><span style="color:#75715e">// Fill the triangles buffer.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">triangles_buffer_data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Array();
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#999;font-style:italic">// JS
+</span><span style="color:#999;font-style:italic"></span><span style="color:#999;font-style:italic">// Fill the triangles buffer.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">const</span> triangles_buffer_data = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#24909d">Array</span>();
 
-<span style="color:#75715e">// All indicies of all meshes will end up together.
-</span><span style="color:#75715e"></span><span style="color:#75715e">// We need to offset them so that indexes point to the correct vertices.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">indexes_offset</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#999;font-style:italic">// All indicies of all meshes will end up together.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#999;font-style:italic">// We need to offset them so that indexes point to the correct vertices.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">let</span> indexes_offset = <span style="color:#3677a9">0</span>;
 
-<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">meshes</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">mesh</span> =&gt; {
-    <span style="color:#a6e22e">triangles_buffer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">triangles_buffer</span>.<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">mesh</span>.<span style="color:#a6e22e">indexes</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">i</span> =&gt; <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">indexes_offset</span>));
-    <span style="color:#a6e22e">indexes_offset</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">mesh</span>.<span style="color:#a6e22e">vertice_count</span>;
+<span style="color:#6ab825;font-weight:bold">this</span>.meshes.forEach(mesh =&gt; {
+    triangles_buffer = triangles_buffer.concat(mesh.indexes.map(i =&gt; i + indexes_offset));
+    indexes_offset += mesh.vertice_count;
 });
 
-<span style="color:#75715e">// Send the triangles buffer to the gpu.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">triangles_buffer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Int32Array</span>(<span style="color:#a6e22e">triangles_buffer_data</span>);
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">triangles_buffer_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">createBuffer</span>();
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">triangles_buffer_id</span>);
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bufferData</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">triangles_buffer</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">STATIC_DRAW</span>);
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bufferSubData</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">triangles_buffer</span>);
+<span style="color:#999;font-style:italic">// Send the triangles buffer to the gpu.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">const</span> triangles_buffer = <span style="color:#6ab825;font-weight:bold">new</span> Int32Array(triangles_buffer_data);
+<span style="color:#6ab825;font-weight:bold">const</span> triangles_buffer_id = context.createBuffer();
+context.bindBuffer(context.SHADER_STORAGE_BUFFER, triangles_buffer_id);
+context.bufferData(context.SHADER_STORAGE_BUFFER, triangles_buffer.length * <span style="color:#3677a9">4</span>, context.STATIC_DRAW);
+context.bufferSubData(context.SHADER_STORAGE_BUFFER, <span style="color:#3677a9">0</span>, triangles_buffer);
 </code></pre></div><p>We can then send the vertices:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// JS
-</span><span style="color:#75715e"></span><span style="color:#75715e">// Create a buffer containing all vertices.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vertices_buffer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Float32Array</span>((<span style="color:#a6e22e">total_vertice_count</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>);
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#999;font-style:italic">// JS
+</span><span style="color:#999;font-style:italic"></span><span style="color:#999;font-style:italic">// Create a buffer containing all vertices.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">const</span> vertices_buffer = <span style="color:#6ab825;font-weight:bold">new</span> Float32Array((total_vertice_count / <span style="color:#3677a9">3</span>) * <span style="color:#3677a9">4</span>);
 
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">triangles_buffer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Array();
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">accumulating_triangle_count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">gpu_i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#6ab825;font-weight:bold">let</span> triangles_buffer = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#24909d">Array</span>();
+<span style="color:#6ab825;font-weight:bold">let</span> accumulating_triangle_count = <span style="color:#3677a9">0</span>;
+<span style="color:#6ab825;font-weight:bold">let</span> gpu_i = <span style="color:#3677a9">0</span>;
 
-<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">meshes</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">mesh</span> =&gt; {
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">vertices</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">mesh</span>.<span style="color:#a6e22e">vertices</span>;
+<span style="color:#6ab825;font-weight:bold">this</span>.meshes.forEach(mesh =&gt; {
+    <span style="color:#6ab825;font-weight:bold">let</span> vertices = mesh.vertices;
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">vertices</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span>)
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">var</span> i = <span style="color:#3677a9">0</span>; i &lt; vertices.length; i += <span style="color:#3677a9">3</span>)
     {
-        <span style="color:#a6e22e">vertices_buffer</span>[<span style="color:#a6e22e">gpu_i</span><span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">vertices</span>[<span style="color:#a6e22e">i</span>];
-        <span style="color:#a6e22e">vertices_buffer</span>[<span style="color:#a6e22e">gpu_i</span><span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">vertices</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
-        <span style="color:#a6e22e">vertices_buffer</span>[<span style="color:#a6e22e">gpu_i</span><span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">vertices</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>];
-        <span style="color:#75715e">// We must pad to fit in vec4 -&gt; https://stackoverflow.com/questions/29531237/memory-allocation-with-std430-qualifier.
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">vertices_buffer</span>[<span style="color:#a6e22e">gpu_i</span><span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>;
+        vertices_buffer[gpu_i++] = vertices[i];
+        vertices_buffer[gpu_i++] = vertices[i + <span style="color:#3677a9">1</span>];
+        vertices_buffer[gpu_i++] = vertices[i + <span style="color:#3677a9">2</span>];
+        <span style="color:#999;font-style:italic">// We must pad to fit in vec4 -&gt; https://stackoverflow.com/questions/29531237/memory-allocation-with-std430-qualifier.
+</span><span style="color:#999;font-style:italic"></span>        vertices_buffer[gpu_i++] = <span style="color:#3677a9">0.0</span>;
     }
 
-    <span style="color:#a6e22e">mesh</span>.<span style="color:#a6e22e">offset</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">accumulating_triangle_count</span>;
-    <span style="color:#a6e22e">accumulating_triangle_count</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">mesh</span>.<span style="color:#a6e22e">triangle_count</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>;
+    mesh.offset = accumulating_triangle_count;
+    accumulating_triangle_count += mesh.triangle_count * <span style="color:#3677a9">3</span>;
 });
 
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">gpu_i</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">vertices_buffer</span>.<span style="color:#a6e22e">length</span>, <span style="color:#e6db74">&#34;GPU buffer does not match vertices count.&#34;</span>, <span style="color:#a6e22e">gpu_i</span>, <span style="color:#a6e22e">vertices_buffer</span>.<span style="color:#a6e22e">length</span>);
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">assert</span>(<span style="color:#a6e22e">gpu_i</span> <span style="color:#f92672">==</span> ((<span style="color:#a6e22e">total_vertice_count</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>));
+console.assert(gpu_i == vertices_buffer.length, <span style="color:#ed9d13">&#34;GPU buffer does not match vertices count.&#34;</span>, gpu_i, vertices_buffer.length);
+console.assert(gpu_i == ((total_vertice_count / <span style="color:#3677a9">3</span>) * <span style="color:#3677a9">4</span>));
 
-<span style="color:#75715e">// Send the vertices buffer to the gpu.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">cons</span> <span style="color:#a6e22e">vertices_buffer_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">createBuffer</span>();
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">vertices_buffer_id</span>);
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bufferData</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">vertices_buffer</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">STATIC_DRAW</span>);
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bufferSubData</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">vertices_buffer</span>);
+<span style="color:#999;font-style:italic">// Send the vertices buffer to the gpu.
+</span><span style="color:#999;font-style:italic"></span>cons vertices_buffer_id = context.createBuffer();
+context.bindBuffer(context.SHADER_STORAGE_BUFFER, vertices_buffer_id);
+context.bufferData(context.SHADER_STORAGE_BUFFER, vertices_buffer.length * <span style="color:#3677a9">4</span>, context.STATIC_DRAW);
+context.bufferSubData(context.SHADER_STORAGE_BUFFER, <span style="color:#3677a9">0</span>, vertices_buffer);
 </code></pre></div><p>Now that we packed all indexes and vertices together, we can send meshes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// JS
-</span><span style="color:#75715e"></span><span style="color:#75715e">// Create a buffer containing all meshes.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">meshes_buffer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create_meshes_buffer</span>(<span style="color:#a6e22e">meshes</span>);
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#999;font-style:italic">// JS
+</span><span style="color:#999;font-style:italic"></span><span style="color:#999;font-style:italic">// Create a buffer containing all meshes.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">const</span> meshes_buffer = create_meshes_buffer(meshes);
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">meshes_buffer_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">createBuffer</span>();
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">meshes_buffer_id</span>);
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bufferData</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">meshes_buffer</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">STATIC_DRAW</span>);
-<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bindBufferBase</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">meshes_buffer_id</span>);
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// JS
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">create_meshes_buffer</span>(<span style="color:#a6e22e">meshes</span>)
+<span style="color:#6ab825;font-weight:bold">const</span> meshes_buffer_id = context.createBuffer();
+context.bindBuffer(context.SHADER_STORAGE_BUFFER, meshes_buffer_id);
+context.bufferData(context.SHADER_STORAGE_BUFFER, meshes_buffer, context.STATIC_DRAW);
+context.bindBufferBase(context.SHADER_STORAGE_BUFFER, <span style="color:#3677a9">0</span>, meshes_buffer_id);
+</code></pre></div><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#999;font-style:italic">// JS
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">export</span> <span style="color:#6ab825;font-weight:bold">function</span> create_meshes_buffer(meshes)
 {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buffer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ArrayBuffer</span>(<span style="color:#a6e22e">meshes</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">Mesh</span>.<span style="color:#a6e22e">get_padding</span>());
+    <span style="color:#6ab825;font-weight:bold">const</span> buffer = <span style="color:#6ab825;font-weight:bold">new</span> ArrayBuffer(meshes.length * Mesh.get_padding());
 
-    <span style="color:#75715e">// Create 2 different views to fill the buffer.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">int32Data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Int32Array</span>(<span style="color:#a6e22e">buffer</span>);
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">float32Data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Float32Array</span>(<span style="color:#a6e22e">buffer</span>);
+    <span style="color:#999;font-style:italic">// Create 2 different views to fill the buffer.
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">const</span> int32Data = <span style="color:#6ab825;font-weight:bold">new</span> Int32Array(buffer);
+    <span style="color:#6ab825;font-weight:bold">const</span> float32Data = <span style="color:#6ab825;font-weight:bold">new</span> Float32Array(buffer);
 
-    <span style="color:#75715e">// On the GPU we have:
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// int offset            4 bytes
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// int triangle_count    4 bytes
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  8 bytes padding
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// vec3 diffuse_color    12 bytes
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  4 bytes padding
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// vec3 emission         12 bytes
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  4 bytes padding
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// total: 48  Rounded up to 16 byte padding
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mesh_padding</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">48</span>;
+    <span style="color:#999;font-style:italic">// On the GPU we have:
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// int offset            4 bytes
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// int triangle_count    4 bytes
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">//  8 bytes padding
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// vec3 diffuse_color    12 bytes
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">//  4 bytes padding
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// vec3 emission         12 bytes
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">//  4 bytes padding
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">//
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// total: 48  Rounded up to 16 byte padding
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">const</span> mesh_padding = <span style="color:#3677a9">48</span>;
 
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">mesh_padding</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>;
+    <span style="color:#6ab825;font-weight:bold">const</span> four_bytes_padding = mesh_padding / <span style="color:#3677a9">4</span>;
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">index</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">meshes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>) {
-        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">meshes</span>[<span style="color:#a6e22e">index</span>];
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">let</span> index = <span style="color:#3677a9">0</span>; index &lt; meshes.length; index++) {
+        <span style="color:#6ab825;font-weight:bold">const</span> element = meshes[index];
 
-        <span style="color:#a6e22e">int32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">offset</span>;
-        <span style="color:#a6e22e">int32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">triangle_count</span>;
-        <span style="color:#75715e">// padding
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">float32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">diffuse_color</span>.<span style="color:#a6e22e">x</span>;
-        <span style="color:#a6e22e">float32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">diffuse_color</span>.<span style="color:#a6e22e">y</span>;
-        <span style="color:#a6e22e">float32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">diffuse_color</span>.<span style="color:#a6e22e">z</span>;
-        <span style="color:#75715e">// padding
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">float32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">emission</span>.<span style="color:#a6e22e">x</span>;
-        <span style="color:#a6e22e">float32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">emission</span>.<span style="color:#a6e22e">y</span>;
-        <span style="color:#a6e22e">float32Data</span>[<span style="color:#a6e22e">four_bytes_padding</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">emission</span>.<span style="color:#a6e22e">z</span>;
+        int32Data[four_bytes_padding * index] = element.offset;
+        int32Data[four_bytes_padding * index + <span style="color:#3677a9">1</span>] = element.triangle_count;
+        <span style="color:#999;font-style:italic">// padding
+</span><span style="color:#999;font-style:italic"></span>        float32Data[four_bytes_padding * index + <span style="color:#3677a9">4</span>] = element.diffuse_color.x;
+        float32Data[four_bytes_padding * index + <span style="color:#3677a9">5</span>] = element.diffuse_color.y;
+        float32Data[four_bytes_padding * index + <span style="color:#3677a9">6</span>] = element.diffuse_color.z;
+        <span style="color:#999;font-style:italic">// padding
+</span><span style="color:#999;font-style:italic"></span>        float32Data[four_bytes_padding * index + <span style="color:#3677a9">8</span>] = element.emission.x;
+        float32Data[four_bytes_padding * index + <span style="color:#3677a9">9</span>] = element.emission.y;
+        float32Data[four_bytes_padding * index + <span style="color:#3677a9">10</span>] = element.emission.z;
     }
 
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">buffer</span>;
+    <span style="color:#6ab825;font-weight:bold">return</span> buffer;
 }
 </code></pre></div><p>The buffers are now available on the GPU, but we can't use them as-is in the shader. They need to be bound before the shader runs.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>, <span style="color:#a6e22e">compute_program</span>, <span style="color:#a6e22e">buffer_id</span>, <span style="color:#a6e22e">layout_name</span>)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">bindBuffer(context, compute_program, buffer_id, layout_name)
 {
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getProgramResourceIndex</span>(<span style="color:#a6e22e">compute_program</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BLOCK</span>, <span style="color:#a6e22e">layout_name</span>);
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bind</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">getProgramResource</span>(<span style="color:#a6e22e">compute_program</span>, <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BLOCK</span>, <span style="color:#a6e22e">index</span>, [<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">BUFFER_BINDING</span>,])[<span style="color:#ae81ff">0</span>];
+    <span style="color:#6ab825;font-weight:bold">let</span> index = context.getProgramResourceIndex(compute_program, context.SHADER_STORAGE_BLOCK, layout_name);
+    <span style="color:#6ab825;font-weight:bold">let</span> bind = context.getProgramResource(compute_program, context.SHADER_STORAGE_BLOCK, index, [context.BUFFER_BINDING,])[<span style="color:#3677a9">0</span>];
 
-    <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">bindBufferBase</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">SHADER_STORAGE_BUFFER</span>, <span style="color:#a6e22e">bind</span>, <span style="color:#a6e22e">buffer_id</span>);
+    context.bindBufferBase(context.SHADER_STORAGE_BUFFER, bind, buffer_id);
 }
 
 ...
 
-<span style="color:#75715e">//=&gt; Bind the buffers to the rendering shader.
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>, <span style="color:#a6e22e">renderProgram</span>, <span style="color:#a6e22e">vertices_buffer_id</span>, <span style="color:#e6db74">&#34;Vertices&#34;</span>);
-<span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>, <span style="color:#a6e22e">renderProgram</span>, <span style="color:#a6e22e">triangles_buffer_id</span>, <span style="color:#e6db74">&#34;Triangles&#34;</span>);
-<span style="color:#a6e22e">bindBuffer</span>(<span style="color:#a6e22e">context</span>, <span style="color:#a6e22e">renderProgram</span>, <span style="color:#a6e22e">meshes_buffer_id</span>, <span style="color:#e6db74">&#34;Meshes&#34;</span>);
+<span style="color:#999;font-style:italic">//=&gt; Bind the buffers to the rendering shader.
+</span><span style="color:#999;font-style:italic"></span>bindBuffer(context, renderProgram, vertices_buffer_id, <span style="color:#ed9d13">&#34;Vertices&#34;</span>);
+bindBuffer(context, renderProgram, triangles_buffer_id, <span style="color:#ed9d13">&#34;Triangles&#34;</span>);
+bindBuffer(context, renderProgram, meshes_buffer_id, <span style="color:#ed9d13">&#34;Meshes&#34;</span>);
 </code></pre></div><p>If you want to learn more about GPU buffers, you can read about the <a href="https://www.khronos.org/opengl/wiki/Shader_Storage_Buffer_Object">Shader Storage Buffer Object</a>.</p>
 <h2 id="progressive-and-interactive-rendering">Progressive and interactive rendering</h2>
 <p>To keep a realtime frame rate and interactive controls, I used progressive rendering. Many frames are computed over time with low quality settings (<em>samples per pixel = 1</em>) and are accumulated together.</p>

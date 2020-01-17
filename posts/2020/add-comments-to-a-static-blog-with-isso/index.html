@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Install Isso on a debian server to self-host comments on your blog." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Add comments to a static blog with Isso"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,23 +77,11 @@
     <header class="post-header">
       <h1 class ="post-title">Add comments to a static blog with Isso</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jan 3, 2020
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          5 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        3 Jan 2020
+          ·  5 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2020/add-comments-to-a-static-blog-with-isso.md" rel="nofollow">2 contributors</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2020/add-comments-to-a-static-blog-with-isso.md" rel="nofollow">2 contributors</a></span></div>
     </header>
     <div class="post-content">
       <p>When adding comments onto your static blog, multiple choices are available. You can either use a service like <strong>Disqus</strong>, which is really easy to use but cloud-based, or you can self-host one.</p>
@@ -133,141 +91,141 @@
 <p>What you will need to follow this tutorial is a Debian server (here I'm under Debian <code>9.11</code>). If needed, you can check the <a href="https://posativ.org/isso/docs/">official Isso documentation</a>.</p>
 <p>We will start by installing, running and testing Isso.</p>
 <h2 id="install-and-run-isso">Install and run Isso</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Installing dependencies</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#999;font-style:italic"># Installing dependencies</span>
 sudo apt-get install python-dev python-pip sqlite3 build-essential
-<span style="color:#75715e"># Installing isso</span>
+<span style="color:#999;font-style:italic"># Installing isso</span>
 sudo pip install isso
 </code></pre></div><p>We need to created a dedicated user on the server. We will use it to run Isso and send notification emails. Be sure to give it a Full Name that is relevant, as it will be the author of email notifications.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo adduser isso --disabled-login
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo adduser isso --disabled-login
 </code></pre></div><p>Give it a strong password.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo passwd isso
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo passwd isso
 </code></pre></div><p>We now need to create a configuration file for our blog. I placed mine under <code>/etc/isso.d/oktomus.cfg</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>general<span style="color:#f92672">]</span>
-name <span style="color:#f92672">=</span> oktomus
-dbpath <span style="color:#f92672">=</span> /var/lib/isso/oktomus.comments.db
-host <span style="color:#f92672">=</span> https://oktomus.com/
-max-age <span style="color:#f92672">=</span> 15m
-notify <span style="color:#f92672">=</span> smtp
-log-file <span style="color:#f92672">=</span> /var/log/isso.log
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">[general]
+<span style="color:#40ffff">name</span> = oktomus
+<span style="color:#40ffff">dbpath</span> = /var/lib/isso/oktomus.comments.db
+<span style="color:#40ffff">host</span> = https://oktomus.com/
+max-age = 15m
+<span style="color:#40ffff">notify</span> = smtp
+log-file = /var/log/isso.log
 
-<span style="color:#f92672">[</span>moderation<span style="color:#f92672">]</span>
-enabled <span style="color:#f92672">=</span> false
+[moderation]
+<span style="color:#40ffff">enabled</span> = <span style="color:#24909d">false</span>
 
-<span style="color:#f92672">[</span>admin<span style="color:#f92672">]</span>
-enabled <span style="color:#f92672">=</span> true
-password <span style="color:#f92672">=</span> <span style="color:#75715e"># A strong password.</span>
+[admin]
+<span style="color:#40ffff">enabled</span> = <span style="color:#24909d">true</span>
+<span style="color:#40ffff">password</span> = <span style="color:#999;font-style:italic"># A strong password.</span>
 
-<span style="color:#f92672">[</span>server<span style="color:#f92672">]</span>
-listen <span style="color:#f92672">=</span> http://localhost:8080
-reload <span style="color:#f92672">=</span> off
-profile <span style="color:#f92672">=</span> off
-public-endpoint <span style="color:#f92672">=</span> https://isso.oktomus.com
+[server]
+<span style="color:#40ffff">listen</span> = http://localhost:8080
+<span style="color:#40ffff">reload</span> = off
+<span style="color:#40ffff">profile</span> = off
+public-endpoint = https://isso.oktomus.com
 
-<span style="color:#f92672">[</span>guard<span style="color:#f92672">]</span>
-enabled <span style="color:#f92672">=</span> true
-ratelimit <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
-direct-reply <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
-reply-to-self <span style="color:#f92672">=</span> false
-require-author <span style="color:#f92672">=</span> false
-require-email <span style="color:#f92672">=</span> false
+[guard]
+<span style="color:#40ffff">enabled</span> = <span style="color:#24909d">true</span>
+<span style="color:#40ffff">ratelimit</span> = <span style="color:#3677a9">2</span>
+direct-reply = <span style="color:#3677a9">3</span>
+reply-to-self = <span style="color:#24909d">false</span>
+require-author = <span style="color:#24909d">false</span>
+require-email = <span style="color:#24909d">false</span>
 
-<span style="color:#f92672">[</span>smtp<span style="color:#f92672">]</span>
-username <span style="color:#f92672">=</span> isso
-password <span style="color:#f92672">=</span> <span style="color:#75715e"># The password of the user isso</span>
-host <span style="color:#f92672">=</span> <span style="color:#75715e"># smtp host (e.g. localhost, oktomus.com)</span>
-port <span style="color:#f92672">=</span> <span style="color:#75715e"># smtp port</span>
-security <span style="color:#f92672">=</span> starttls
-to <span style="color:#f92672">=</span> <span style="color:#75715e"># my personal mail</span>
-from <span style="color:#f92672">=</span> isso@oktomus.com
-timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+[smtp]
+<span style="color:#40ffff">username</span> = isso
+<span style="color:#40ffff">password</span> = <span style="color:#999;font-style:italic"># The password of the user isso</span>
+<span style="color:#40ffff">host</span> = <span style="color:#999;font-style:italic"># smtp host (e.g. localhost, oktomus.com)</span>
+<span style="color:#40ffff">port</span> = <span style="color:#999;font-style:italic"># smtp port</span>
+<span style="color:#40ffff">security</span> = starttls
+<span style="color:#40ffff">to</span> = <span style="color:#999;font-style:italic"># my personal mail</span>
+<span style="color:#40ffff">from</span> = isso@oktomus.com
+<span style="color:#40ffff">timeout</span> = <span style="color:#3677a9">10</span>
 </code></pre></div><p>In my case, <code>https://oktomus.com</code> is pointing to a <a href="https://github.com/oktomus/oktomus.github.io">GitHub pages repo</a> and <code>https://isso.oktomus.com</code> will point to the Debian server. Both can be on the same server.</p>
 <p>All available options are detailed in the <a href="https://posativ.org/isso/docs/configuration/server/">server documentation</a>.</p>
 <p>If you never configured a smtp service on your server, replace <code>smtp</code> by <code>stdout</code> for the <code>notify</code> setting and remove the <code>smtp</code> block.</p>
 <p>You will need to create a <code>A</code> (and/or <code>AAAA</code> to support IPv6) or <code>CNAME</code> record in your DNS to make <code>isso.oktomus.com</code> pointing to your server.</p>
 <p>To make sure that our user has write and read permissions to the log and database files, run the following :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo touch /var/log/isso.log
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo touch /var/log/isso.log
 sudo chown isso: /var/log/isso.log
 sudo mkdir /var/lib/isso
 sudo chown: isso /var/lib/isso
 sudo touch /var/lib/isso/oktomus.comments.db
 sudo chown isso: /var/lib/isso/oktomus.comments.db
 </code></pre></div><p>To check if Isso is correctly configured, run it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># Log as isso</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#999;font-style:italic"># Log as isso</span>
 su - isso
-<span style="color:#75715e"># Run it</span>
+<span style="color:#999;font-style:italic"># Run it</span>
 /usr/local/bin/isso -c /etc/isso.d/oktomus.cfg run
 </code></pre></div><p>If nothing is logged, everything should be fine. You can stop it with <code>CTRL+C</code>.</p>
 <p>We can now create a service so that Isso is always running and start when your server boot. To do so, create the file <code>/etc/systemd/system/isso.service</code> with the following content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
-Description<span style="color:#f92672">=</span>lightweight Disqus alternative
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">[Unit]
+<span style="color:#40ffff">Description</span>=lightweight Disqus alternative
 
-<span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
-User<span style="color:#f92672">=</span>isso
-Environment<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ISSO_SETTINGS=/etc/isso.d/oktomus.cfg&#34;</span>
-ExecStart<span style="color:#f92672">=</span>/usr/local/bin/isso -c $ISSO_SETTINGS run
+[Service]
+<span style="color:#40ffff">User</span>=isso
+<span style="color:#40ffff">Environment</span>=<span style="color:#ed9d13">&#34;ISSO_SETTINGS=/etc/isso.d/oktomus.cfg&#34;</span>
+<span style="color:#40ffff">ExecStart</span>=/usr/local/bin/isso -c <span style="color:#40ffff">$ISSO_SETTINGS</span> run
 
-<span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
-WantedBy<span style="color:#f92672">=</span>multi-user.target
+[Install]
+<span style="color:#40ffff">WantedBy</span>=multi-user.target
 </code></pre></div><p>Enable it, run it and check that everything is ok.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo systemctl enable isso
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo systemctl <span style="color:#24909d">enable</span> isso
 sudo systemctl start isso
 sudo systemctl status isso
 </code></pre></div><p>You can make sure that isso is working by running the following, you should get an html document:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl localhost:8080/admin
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl localhost:8080/admin
 </code></pre></div><p>If everything is fine, we just need to configure nginx so that Isso can be accessed from outside your server.</p>
 <h2 id="configure-nginx">Configure nginx</h2>
 <p>Start by installing nginx and certbot. The later will be used to enable encryption on your website with a certificate from Let's Encrypt.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install nginx certbot
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install nginx certbot
 </code></pre></div><p>Create a configuration file for isso under <code>/etc/nginx/site-available/isso.conf</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">server <span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">server {
   server_name isso.oktomus.com;
 
-  listen <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:443 ssl http2;
-  listen <span style="color:#ae81ff">443</span> ssl http2;
+  listen [::]:443 ssl http2;
+  listen <span style="color:#3677a9">443</span> ssl http2;
 
   access_log /var/log/nginx/isso-access.log;
   error_log  /var/log/nginx/isso-error.log;
 
-  location / <span style="color:#f92672">{</span>
-          proxy_set_header Host $http_host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
+  location / {
+          proxy_set_header Host <span style="color:#40ffff">$http_host</span>;
+          proxy_set_header X-Real-IP <span style="color:#40ffff">$remote_addr</span>;
+          proxy_set_header X-Forwarded-For <span style="color:#40ffff">$proxy_add_x_forwarded_for</span>;
+          proxy_set_header X-Forwarded-Proto <span style="color:#40ffff">$scheme</span>;
           proxy_pass http://localhost:8080;
-  <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+  }
+}
 
-server <span style="color:#f92672">{</span>
+server {
   server_name isso.oktomus.com;
 
-  listen <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:80;
+  listen [::]:80;
   listen 80;
 
-  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>$host <span style="color:#f92672">=</span> isso.oktomus.com<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">301</span> https://$host$request_uri;
-  <span style="color:#f92672">}</span>
+  <span style="color:#6ab825;font-weight:bold">if</span> (<span style="color:#40ffff">$host</span> = isso.oktomus.com) {
+    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">301</span> https://<span style="color:#40ffff">$host</span><span style="color:#40ffff">$request_uri</span>;
+  }
 
-  <span style="color:#66d9ef">return</span> 404;
-<span style="color:#f92672">}</span>
+  <span style="color:#6ab825;font-weight:bold">return</span> 404;
+}
 </code></pre></div><p>Enable it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo ln -s /etc/nginx/site-available/isso.conf /etc/nginx/site-enabled/
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo ln -s /etc/nginx/site-available/isso.conf /etc/nginx/site-enabled/
 </code></pre></div><p>We need to create a certificate for this website so that requests can be encrypted. The command is interactive and may ask you some informations.</p>
 <p>When asked to redirect HTTP to HTTPS, you can choose the redirect option. If this is the first certificate you ever install, consider to setup a crontab so that you can renew it automatically. Otherwise, your website will be considered unsecure in a few months.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo certbot
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo certbot
 </code></pre></div><p>The content of the isso nginx file should have changed now and you can run it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo systemctl enable nginx
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo systemctl <span style="color:#24909d">enable</span> nginx
 sudo systemctl start nginx
 sudo systemctl status nginx
 </code></pre></div><p>You should now be able to acess the admin.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl https://isso.oktomus.com/admin
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl https://isso.oktomus.com/admin
 </code></pre></div><p>If not, check content of the nginx and Isso log files.</p>
 <p>Now that the Isso server runs correctly and can be accessed from outside, we just need to integrate it into our website.</p>
 <h2 id="integration">Integration</h2>
 <p>This is the simplest part. You just need to add the following snippet in your template:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post-footer&#34;</span>&gt;
-    &lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;isso-thread&#34;</span>&gt;&lt;/<span style="color:#f92672">section</span>&gt;
-    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">data-isso</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://isso.oktomus.com/&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://isso.oktomus.com/js/embed.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;/<span style="color:#f92672">div</span>&gt;
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#6ab825;font-weight:bold">div</span> <span style="color:#bbb">class</span>=<span style="color:#ed9d13">&#34;post-footer&#34;</span>&gt;
+    &lt;<span style="color:#6ab825;font-weight:bold">section</span> <span style="color:#bbb">id</span>=<span style="color:#ed9d13">&#34;isso-thread&#34;</span>&gt;&lt;/<span style="color:#6ab825;font-weight:bold">section</span>&gt;
+    &lt;<span style="color:#6ab825;font-weight:bold">script</span> <span style="color:#bbb">data-isso</span>=<span style="color:#ed9d13">&#34;https://isso.oktomus.com/&#34;</span> <span style="color:#bbb">src</span>=<span style="color:#ed9d13">&#34;https://isso.oktomus.com/js/embed.min.js&#34;</span>&gt;&lt;/<span style="color:#6ab825;font-weight:bold">script</span>&gt;
+&lt;/<span style="color:#6ab825;font-weight:bold">div</span>&gt;
 </code></pre></div><p>In my case, for <strong>Hugo</strong>, I added it at the end of <code>themes/my-theme/layouts/_default/single.html</code>.</p>
 <h2 id="communicate">Communicate</h2>
 <p>Tell me if you liked this post by adding a comment !</p>

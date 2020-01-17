@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Redirect broken HTML links on a static website hosted on GitHub pages." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redirect any link on a GitHub pages website"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,23 +77,11 @@
     <header class="post-header">
       <h1 class ="post-title">Redirect any link on a GitHub pages website</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Dec 22, 2019
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          2 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        22 Dec 2019
+          ·  2 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2019/github-pages-redirect-any-link.md" rel="nofollow">1 contributor</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2019/github-pages-redirect-any-link.md" rel="nofollow">1 contributor</a></span></div>
     </header>
     <div class="post-content">
       <p>I recently switched my website from <em>django</em> to <em>hugo</em>. All the links referencing to my website are now broken and I need to deal with this.</p>
@@ -134,16 +92,16 @@
 <p>Thankfully, there is a way to redirect the user to a correct link on a <em>GitHub pages</em> site.</p>
 <p>To do so, we can create a special <em>html</em> page that will redirect the user to the correct link when loaded.</p>
 <p>Let's say you want to make a redirection from <code>/blogs/2019/i-failed</code> to <code>/posts/2019/i-really-failed</code>: create an html file on your <em>gh-pages</em> repo at <code>/blogs/2019/i-failed/index.html</code> and complete it with this :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-    &lt;<span style="color:#f92672">head</span>&gt;
-        &lt;<span style="color:#f92672">title</span>&gt;Redirection to https://oktomus.com/posts/2019/i-really-failed&lt;/<span style="color:#f92672">title</span>&gt;
-        &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://oktomus.com/posts/2019/i-really-failed&#34;</span>/&gt;
-        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robots&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noindex&#34;</span>&gt;
-        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">http-equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;refresh&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0; url=https://oktomus.com/posts/2019/i-really-failed&#34;</span> /&gt;
-    &lt;/<span style="color:#f92672">head</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#cd2828;font-weight:bold">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#6ab825;font-weight:bold">html</span>&gt;
+    &lt;<span style="color:#6ab825;font-weight:bold">head</span>&gt;
+        &lt;<span style="color:#6ab825;font-weight:bold">title</span>&gt;Redirection to https://oktomus.com/posts/2019/i-really-failed&lt;/<span style="color:#6ab825;font-weight:bold">title</span>&gt;
+        &lt;<span style="color:#6ab825;font-weight:bold">link</span> <span style="color:#bbb">rel</span>=<span style="color:#ed9d13">&#34;canonical&#34;</span> <span style="color:#bbb">href</span>=<span style="color:#ed9d13">&#34;https://oktomus.com/posts/2019/i-really-failed&#34;</span>/&gt;
+        &lt;<span style="color:#6ab825;font-weight:bold">meta</span> <span style="color:#bbb">name</span>=<span style="color:#ed9d13">&#34;robots&#34;</span> <span style="color:#bbb">content</span>=<span style="color:#ed9d13">&#34;noindex&#34;</span>&gt;
+        &lt;<span style="color:#6ab825;font-weight:bold">meta</span> <span style="color:#bbb">charset</span>=<span style="color:#ed9d13">&#34;utf-8&#34;</span> /&gt;
+        &lt;<span style="color:#6ab825;font-weight:bold">meta</span> <span style="color:#bbb">http-equiv</span>=<span style="color:#ed9d13">&#34;refresh&#34;</span> <span style="color:#bbb">content</span>=<span style="color:#ed9d13">&#34;0; url=https://oktomus.com/posts/2019/i-really-failed&#34;</span> /&gt;
+    &lt;/<span style="color:#6ab825;font-weight:bold">head</span>&gt;
+&lt;/<span style="color:#6ab825;font-weight:bold">html</span>&gt;
 </code></pre></div><p>With this, the user will be redirected to <code>/posts/2019/i-really-failed</code> when going to <code>/blog/2019/i-failed</code>.</p>
 <p>You can push these html redirection files directly on your repo.</p>
 <blockquote>

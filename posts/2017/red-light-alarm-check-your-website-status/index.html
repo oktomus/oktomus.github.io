@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Fun project where I link LED home lights to the status of my server." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Set up a red light alarm to check your website status with python, cron and the Philips hue API"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,23 +77,11 @@
     <header class="post-header">
       <h1 class ="post-title">Set up a red light alarm to check your website status with python, cron and the Philips hue API</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jul 29, 2017
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          7 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        29 Jul 2017
+          ·  7 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/red-light-alarm-check-your-website-status.md" rel="nofollow">1 contributor</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/red-light-alarm-check-your-website-status.md" rel="nofollow">1 contributor</a></span></div>
     </header>
     <div class="post-content">
       <p>Just to let you know, there are much better ways to monitor your services. But I found this quite funny to make and it's a first step on creating incredibly useful Hue apps \o/.</p>
@@ -142,178 +100,178 @@
 <p>Then create your file for your script using your favorite editor.
 <code>vim webCheck.py</code></p>
 <p>We now need to connect to the Bridge which will then provides us all the required functions to play with our lights.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#75715e">#!/usr/bin/python</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#999;font-style:italic">#!/usr/bin/python</span>
 
-<span style="color:#f92672">from</span> phue <span style="color:#f92672">import</span> Bridge
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">phue</span> <span style="color:#6ab825;font-weight:bold">import</span> Bridge
 
-b <span style="color:#f92672">=</span> Bridge(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">192.168.0.12</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># You should know your bridge&#39;s ip if you had read Phillips&#39; guide</span>
+b = Bridge(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">192.168.0.12</span><span style="color:#ed9d13">&#39;</span>) <span style="color:#999;font-style:italic"># You should know your bridge&#39;s ip if you had read Phillips&#39; guide</span>
 
-b<span style="color:#f92672">.</span>connect()
+b.connect()
 </code></pre></div><p>Now run the script using <code>python webCheck.py</code> and you should get <strong>an exception</strong> telling you that you haven't any API key. This is <code>b.connect()</code> that actually fails, you have to press the button on your Bridge and re-run the script.</p>
 <p><em>phue</em> will then create a file in your user directory containing the API key, this will prevent you to press the button each time you want to run the script. But I suggest you to <strong>specify a key file</strong>, because when you will deploy your script, you won't have to press the button again and if you use a system user to run your script (<strong>highly recommended</strong>), it will still work.</p>
 <p>So let's define this key file based on our script path.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-<span style="color:#f92672">import</span> os
-<span style="color:#f92672">from</span> phue <span style="color:#f92672">import</span> Bridge
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">os</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">phue</span> <span style="color:#6ab825;font-weight:bold">import</span> Bridge
 
-SCRIPT_PATH <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(__file__) <span style="color:#75715e"># Directory of the current file</span>
-KEY_FILE <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(SCRIPT_PATH, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.python_hue</span><span style="color:#e6db74">&#34;</span>) <span style="color:#75715e"># Path to hidden key file</span>
+SCRIPT_PATH = os.path.dirname(__file__) <span style="color:#999;font-style:italic"># Directory of the current file</span>
+KEY_FILE = os.path.join(SCRIPT_PATH, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">.python_hue</span><span style="color:#ed9d13">&#34;</span>) <span style="color:#999;font-style:italic"># Path to hidden key file</span>
 
-b <span style="color:#f92672">=</span> Bridge(IP_ADDRESS, config_file_path<span style="color:#f92672">=</span>KEY_FILE)
-b<span style="color:#f92672">.</span>connect()
+b = Bridge(IP_ADDRESS, config_file_path=KEY_FILE)
+b.connect()
 </code></pre></div><p>You should have to press the button again or copy the file <code>.python_hue</code> from your user or documents directory into your script's directory.</p>
 <p>You can now easily play with your lights, just modify your script and run it again.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-b<span style="color:#f92672">.</span>set_light(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>, False)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+b.set_light(<span style="color:#3677a9">1</span>,<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>, False)
 </code></pre></div><p>Checkout the <a href="https://github.com/studioimaginaire/phue"><em>phue</em> GitHub page</a> to see what you can do with it.</p>
 <h3 id="red-alarm-animation">Red alarm animation</h3>
 <p>We will create a function for this, it's basically turning the light on and off multiple times with a defined animation time.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> sleep
-<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">alarm</span>(bridge, light_id, tr_time, blink_count):
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">time</span> <span style="color:#6ab825;font-weight:bold">import</span> sleep
+...
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">alarm</span>(bridge, light_id, tr_time, blink_count):
 
-    animIn <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">transitiontime</span><span style="color:#e6db74">&#39;</span>: tr_time,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: True,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>:<span style="color:#ae81ff">254</span>, <span style="color:#75715e"># Full luminosity</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">254</span>, <span style="color:#75715e"># Full saturation</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">65535</span> <span style="color:#75715e"># Red</span>
+    animIn = {<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">transitiontime</span><span style="color:#ed9d13">&#39;</span>: tr_time,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>: True,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>:<span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full luminosity</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full saturation</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Red</span>
     }
 
-    animOut <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">transitiontime</span><span style="color:#e6db74">&#39;</span>: tr_time,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: True,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>:<span style="color:#ae81ff">5</span>, <span style="color:#75715e"># Almost off</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">70</span>, <span style="color:#75715e"># Less saturation</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">65535</span> <span style="color:#75715e"># Still red</span>
+    animOut = {<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">transitiontime</span><span style="color:#ed9d13">&#39;</span>: tr_time,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>: True,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>:<span style="color:#3677a9">5</span>, <span style="color:#999;font-style:italic"># Almost off</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">70</span>, <span style="color:#999;font-style:italic"># Less saturation</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Still red</span>
     }
 
-    sleep_time <span style="color:#f92672">=</span> float(tr_time <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10.0</span>
+    sleep_time = <span style="color:#24909d">float</span>(tr_time + <span style="color:#3677a9">1</span>) / <span style="color:#3677a9">10.0</span>
 
 
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, blink_count):
-        b<span style="color:#f92672">.</span>set_light(light_id, animIn)
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(<span style="color:#3677a9">0</span>, blink_count):
+        b.set_light(light_id, animIn)
         sleep(sleep_time)
-        b<span style="color:#f92672">.</span>set_light(light_id, animOut)
+        b.set_light(light_id, animOut)
         sleep(sleep_time)
 </code></pre></div><p>This will turn the light red then <em>on</em> and <em>off</em> <em>blink_count</em> times with a transition time of <em>tr_time</em>. The unit time used by the Philips hue API is 1/100 seconds, so you have to set it to 10 if you want a transition of 1 seconds &ndash; which is very long, I personally use 5 for 500ms.</p>
 <p>Each time you send an animation to the lamp, you have to wait the end of the animation before starting another, this is what <code>sleep</code> does. But <code>sleep</code> requires seconds, if you give 1 to it, it will sleep for 1 second. So divide it by 10 to get the same time as the light animation. I use a float conversion before dividing to avoid weird results that you can get when mixing integers and floats (<a href="https://stackoverflow.com/questions/2958684/python-division">which is totally normal by the way</a>).</p>
 <p>This is not enough, this script won't set our light to it's initial state after the alarm ends. To do this, we must get the light state before and reset it after the animation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">alarm</span>(bridge, light_id, tr_time, blink_count):
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">alarm</span>(bridge, light_id, tr_time, blink_count):
 
-    default <span style="color:#f92672">=</span> b<span style="color:#f92672">.</span>get_light(light_id) <span style="color:#75715e"># Default state</span>
+    default = b.get_light(light_id) <span style="color:#999;font-style:italic"># Default state</span>
 
-    <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
+    ....
 
-    animOut <span style="color:#f92672">=</span> {
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>],
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>],
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>],
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>],
+    animOut = {
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>],
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>],
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>],
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>],
     }
 
-    b<span style="color:#f92672">.</span>set_light(light_id, animOut)  <span style="color:#75715e"># Reset to default</span>
+    b.set_light(light_id, animOut)  <span style="color:#999;font-style:italic"># Reset to default</span>
 </code></pre></div><p>You can test your animation by running your function at the end of your script and running your python file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-alarm(b, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+alarm(b, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>)
 </code></pre></div><h3 id="detect-if-your-website-is-down">Detect if your website is down</h3>
 <p>Simply sending a request and looking the response code is enough to determine if the website is ok or not. A response code above or equal to 400 on our main page (<code>/</code>) is when we suppose that the site is down.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> requests <span style="color:#f92672">import</span> get
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">requests</span> <span style="color:#6ab825;font-weight:bold">import</span> get
 
-<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
+...
 
-site_down <span style="color:#f92672">=</span> False
+site_down = False
 
-<span style="color:#66d9ef">try</span>:
-    r <span style="color:#f92672">=</span> get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">http://yourwbesite.tld/</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#6ab825;font-weight:bold">try</span>:
+    r = get(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">http://yourwbesite.tld/</span><span style="color:#ed9d13">&#34;</span>)
 
-    <span style="color:#66d9ef">if</span> r<span style="color:#f92672">.</span>status_code <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>:
-        site_down <span style="color:#f92672">=</span> True
+    <span style="color:#6ab825;font-weight:bold">if</span> r.status_code &gt;= <span style="color:#3677a9">400</span>:
+        site_down = True
 
-<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
-    site_down <span style="color:#f92672">=</span> True
+<span style="color:#6ab825;font-weight:bold">except</span> <span style="color:#bbb">Exception</span>:
+    site_down = True
 </code></pre></div><p>Then silmply call the function if the site is down.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> site_down:
-    alarm(b, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">if</span> site_down:
+    alarm(b, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>)
 </code></pre></div><p>That's it. Let met show the <a href="https://gist.github.com/oktomus/1928ee05353e573ad0410bcff6cd46af">full script</a> before going further.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/python</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#999;font-style:italic">#!/usr/bin/python</span>
 
-<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">Set a red alarm on a given light when the specified website is down</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;&#34;&#34;</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">Set a red alarm on a given light when the specified website is down</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;&#34;&#34;</span>
 
-<span style="color:#f92672">import</span> os
-<span style="color:#f92672">from</span> phue <span style="color:#f92672">import</span> Bridge
-<span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> sleep
-<span style="color:#f92672">from</span> requests <span style="color:#f92672">import</span> get
-<span style="color:#f92672">import</span> sys
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">os</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">phue</span> <span style="color:#6ab825;font-weight:bold">import</span> Bridge
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">time</span> <span style="color:#6ab825;font-weight:bold">import</span> sleep
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">requests</span> <span style="color:#6ab825;font-weight:bold">import</span> get
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">sys</span>
 
-SCRIPT_PATH <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(__file__) <span style="color:#75715e"># Directory of the current file</span>
-KEY_FILE <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(SCRIPT_PATH, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.python_hue</span><span style="color:#e6db74">&#34;</span>) <span style="color:#75715e"># Path to hidden key file</span>
+SCRIPT_PATH = os.path.dirname(__file__) <span style="color:#999;font-style:italic"># Directory of the current file</span>
+KEY_FILE = os.path.join(SCRIPT_PATH, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">.python_hue</span><span style="color:#ed9d13">&#34;</span>) <span style="color:#999;font-style:italic"># Path to hidden key file</span>
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">alarm</span>(bridge, light_id, tr_time, blink_count):
-    default <span style="color:#f92672">=</span> b<span style="color:#f92672">.</span>get_light(light_id) <span style="color:#75715e"># Default state</span>
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">alarm</span>(bridge, light_id, tr_time, blink_count):
+    default = b.get_light(light_id) <span style="color:#999;font-style:italic"># Default state</span>
 
-    animIn <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">transitiontime</span><span style="color:#e6db74">&#39;</span>: tr_time,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: True,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>:<span style="color:#ae81ff">254</span>, <span style="color:#75715e"># Full luminosity</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">254</span>, <span style="color:#75715e"># Full saturation</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">65535</span> <span style="color:#75715e"># Red</span>
+    animIn = {<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">transitiontime</span><span style="color:#ed9d13">&#39;</span>: tr_time,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>: True,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>:<span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full luminosity</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full saturation</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Red</span>
     }
 
-    animOut <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">transitiontime</span><span style="color:#e6db74">&#39;</span>: tr_time,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: True,
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>:<span style="color:#ae81ff">5</span>, <span style="color:#75715e"># Almost off</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">70</span>, <span style="color:#75715e"># Less saturation</span>
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">65535</span> <span style="color:#75715e"># Still red</span>
+    animOut = {<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">transitiontime</span><span style="color:#ed9d13">&#39;</span>: tr_time,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>: True,
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>:<span style="color:#3677a9">5</span>, <span style="color:#999;font-style:italic"># Almost off</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">70</span>, <span style="color:#999;font-style:italic"># Less saturation</span>
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Still red</span>
     }
 
-    sleep_time <span style="color:#f92672">=</span> float(tr_time <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10.0</span>
+    sleep_time = <span style="color:#24909d">float</span>(tr_time + <span style="color:#3677a9">1</span>) / <span style="color:#3677a9">10.0</span>
 
 
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, blink_count):
-        b<span style="color:#f92672">.</span>set_light(light_id, animIn)
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(<span style="color:#3677a9">0</span>, blink_count):
+        b.set_light(light_id, animIn)
         sleep(sleep_time)
-        b<span style="color:#f92672">.</span>set_light(light_id, animOut)
+        b.set_light(light_id, animOut)
         sleep(sleep_time)
 
-    animOut <span style="color:#f92672">=</span> {
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">on</span><span style="color:#e6db74">&#39;</span>],
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">sat</span><span style="color:#e6db74">&#39;</span>],
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">hue</span><span style="color:#e6db74">&#39;</span>],
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>: default[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">state</span><span style="color:#e6db74">&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bri</span><span style="color:#e6db74">&#39;</span>],
+    animOut = {
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">on</span><span style="color:#ed9d13">&#39;</span>],
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">sat</span><span style="color:#ed9d13">&#39;</span>],
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">hue</span><span style="color:#ed9d13">&#39;</span>],
+        <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>: default[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">state</span><span style="color:#ed9d13">&#39;</span>][<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">bri</span><span style="color:#ed9d13">&#39;</span>],
     }
 
-    b<span style="color:#f92672">.</span>set_light(light_id, animOut)  <span style="color:#75715e"># Reset to default state</span>
+    b.set_light(light_id, animOut)  <span style="color:#999;font-style:italic"># Reset to default state</span>
 
-<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">__main__</span><span style="color:#e6db74">&#34;</span>:
+<span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">__main__</span><span style="color:#ed9d13">&#34;</span>:
 
-    b <span style="color:#f92672">=</span> Bridge(IP_ADDRESS, config_file_path<span style="color:#f92672">=</span>KEY_FILE)
-    b<span style="color:#f92672">.</span>connect()
+    b = Bridge(IP_ADDRESS, config_file_path=KEY_FILE)
+    b.connect()
 
-    site_down <span style="color:#f92672">=</span> False
+    site_down = False
 
-    <span style="color:#66d9ef">try</span>:
-        r <span style="color:#f92672">=</span> get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">http://yourwbesite.tld/</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Or you can use sys.argv to specifiy the url when calling the script</span>
+    <span style="color:#6ab825;font-weight:bold">try</span>:
+        r = get(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">http://yourwbesite.tld/</span><span style="color:#ed9d13">&#34;</span>)  <span style="color:#999;font-style:italic"># Or you can use sys.argv to specifiy the url when calling the script</span>
 
-        <span style="color:#66d9ef">if</span> r<span style="color:#f92672">.</span>status_code <span style="color:#f92672">&gt;</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>:
-            site_down <span style="color:#f92672">=</span> True
+        <span style="color:#6ab825;font-weight:bold">if</span> r.status_code &gt;= <span style="color:#3677a9">400</span>:
+            site_down = True
 
-    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
-        site_down <span style="color:#f92672">=</span> True
+    <span style="color:#6ab825;font-weight:bold">except</span> <span style="color:#bbb">Exception</span>:
+        site_down = True
 
-    <span style="color:#66d9ef">if</span> site_down:
-        alarm(b, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>)
+    <span style="color:#6ab825;font-weight:bold">if</span> site_down:
+        alarm(b, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>)
 
-    sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">0</span>)
+    sys.exit(<span style="color:#3677a9">0</span>)
 </code></pre></div><h2 id="use-cron-to-call-your-script-every-minutes">Use cron to call your script every minutes</h2>
 <p>You can install cron on your personal machine or on your server to run your scripts every minutes to check your website. Of course, this will only work if your computer is in the same network as the light. If you have a NAS, you should have a <strong>Scheduled Tasks</strong> program which allow you to execute something whenever you want; This is generally cron with a GUI.</p>
 <p>Copy the script on your server, and then edit your cron configuration. And don't forget to install python, pip, phue and cron on the server.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">crontab -e
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">crontab -e
 </code></pre></div><p>This will open your cron configuration with your pre-configured (or not) editor.
 At the end of it, add a line like the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/python<span style="color:#f92672">[</span>3/2.7/...<span style="color:#f92672">]</span> /home/login/path/to/the/script/webCheck.py &gt; /dev/null
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/python[3/2.7/...] /home/login/path/to/the/script/webCheck.py &gt; /dev/null
 </code></pre></div><p>That should call the given command every minute of every hour of every day of the current month for every months and for every days in the current week.Just that :)</p>
 <p>If you want to run it every 15 minutes, just change the first star by <code>*/15</code>.</p>
 <p><code>&gt; /dev/null</code> allow you to ignore standard outputs, which has the effect to only send you mails if your script fails (if you have a mail service configured).</p>

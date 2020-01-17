@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Understand how Blender python handlers work while developing an addon." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Safely manage Blender&#39;s handlers while developing"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,23 +77,11 @@
     <header class="post-header">
       <h1 class ="post-title">Safely manage Blender&#39;s handlers while developing</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jul 14, 2017
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          4 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        14 Jul 2017
+          ·  4 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/safely-manage-blenders-handlers-while-developing.md" rel="nofollow">1 contributor</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/safely-manage-blenders-handlers-while-developing.md" rel="nofollow">1 contributor</a></span></div>
     </header>
     <div class="post-content">
       <h2 id="what-is-a-handler-">What is a handler ?</h2>
@@ -132,20 +90,20 @@
 <p>Let's say that you are working on your callback function, everytime you change your function you will have to add it in the handler list to be able to use it. But you also have to remove the old one, otherwise, both functions would be executed. However, you can't be 100% sure which one is your function in the handler list.</p>
 <h2 id="cant-i-just-clear-the-handler-list-">Can't I just clear the handler list ?</h2>
 <p>Take this script, run it, modify the process function and run it again.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> bpy.app.handlers <span style="color:#f92672">import</span> frame_change_pre
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">bpy.app.handlers</span> <span style="color:#6ab825;font-weight:bold">import</span> frame_change_pre
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>(scene):
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello!</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">process</span>(scene):
+    <span style="color:#6ab825;font-weight:bold">print</span>(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">Hello!</span><span style="color:#ed9d13">&#34;</span>)
 
-frame_change_pre<span style="color:#f92672">.</span>append(process)
+frame_change_pre.append(process)
 
 </code></pre></div><p>Now, check the handler list.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> bpy<span style="color:#f92672">.</span>app<span style="color:#f92672">.</span>handlers<span style="color:#f92672">.</span>frame_change_pre
-[<span style="color:#f92672">&lt;</span>function my_func at <span style="color:#ae81ff">0x7f50e1087c80</span><span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>function process at <span style="color:#ae81ff">0x7f50e0a6d510</span><span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>function process at <span style="color:#ae81ff">0x7f50e0a6d598</span><span style="color:#f92672">&gt;</span>]
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; bpy.app.handlers.frame_change_pre
+[&lt;function my_func at <span style="color:#3677a9">0x7f50e1087c80</span>&gt;, &lt;function process at <span style="color:#3677a9">0x7f50e0a6d510</span>&gt;, &lt;function process at <span style="color:#3677a9">0x7f50e0a6d598</span>&gt;]
 </code></pre></div><p>Every versions of your function will be executed on the handler event. So you have to remove old versions before adding a new one, but how can you be sure on which one you should delete ? The simpliest way it to clear the list before you add your function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-bpy<span style="color:#f92672">.</span>app<span style="color:#f92672">.</span>handlers<span style="color:#f92672">.</span>frame_change_pre<span style="color:#f92672">.</span>clear()
-frame_change_pre<span style="color:#f92672">.</span>append(process)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+bpy.app.handlers.frame_change_pre.clear()
+frame_change_pre.append(process)
 </code></pre></div><p>But if you are using multiple handlers, or if one of your addon does, you will also get rid of them. Thus, to be sure to don't break anything, you should delete from the list only the function you add in the current script. To do that, you need to store the function you have added.</p>
 <h2 id="use-the-driver-namespace">Use the driver namespace</h2>
 <p><a href="https://docs.blender.org/api/blender_python_api_2_77_1/bpy.app.html#bpy.app.driver_namespace">bpy.app.driver_namespace</a> is a global dictionary. It means that you can store anything you want, and take it back the next time you execute the script.</p>
@@ -153,96 +111,96 @@ frame_change_pre<span style="color:#f92672">.</span>append(process)
 <ol>
 <li>
 <p>Import the driver namespace</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> bpy.app <span style="color:#f92672">import</span> driver_namespace
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">bpy.app</span> <span style="color:#6ab825;font-weight:bold">import</span> driver_namespace
 </code></pre></div></li>
 <li>
 <p>Create a specific key for your callback</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">handler_key <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">DEV_FUNC_01</span><span style="color:#e6db74">&#34;</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">handler_key = <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">DEV_FUNC_01</span><span style="color:#ed9d13">&#34;</span>
 </code></pre></div><p>This key has to be unique, to be sure to don't mess with what is already in the driver namespace.</p>
 </li>
 <li>
 <p>Remove the callback if it is already there</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">if</span> handler_key <span style="color:#f92672">in</span> driver_namespace:
-        <span style="color:#66d9ef">if</span> driver_namespace[handler_key] <span style="color:#f92672">in</span> frame_change_pre:
-            frame_change_pre<span style="color:#f92672">.</span>remove(driver_namespace[handler_key])
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#6ab825;font-weight:bold">if</span> handler_key <span style="color:#6ab825;font-weight:bold">in</span> driver_namespace:
+        <span style="color:#6ab825;font-weight:bold">if</span> driver_namespace[handler_key] <span style="color:#6ab825;font-weight:bold">in</span> frame_change_pre:
+            frame_change_pre.remove(driver_namespace[handler_key])
 
-        <span style="color:#66d9ef">del</span> driver_namespace[handler_key]
+        <span style="color:#6ab825;font-weight:bold">del</span> driver_namespace[handler_key]
 </code></pre></div></li>
 <li>
 <p>Add the modified function in the driver namespace</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    driver_namespace[handler_key] <span style="color:#f92672">=</span> process
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    driver_namespace[handler_key] = process
 </code></pre></div></li>
 </ol>
 <p>This way, you can be sure that old functions aren't in the handler list and only the newest one is present. Here is the full script.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
-<span style="color:#f92672">from</span> bpy.app.handlers <span style="color:#f92672">import</span> frame_change_pre
-<span style="color:#f92672">from</span> bpy.app <span style="color:#f92672">import</span> driver_namespace
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">bpy.app.handlers</span> <span style="color:#6ab825;font-weight:bold">import</span> frame_change_pre
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">bpy.app</span> <span style="color:#6ab825;font-weight:bold">import</span> driver_namespace
 
 
-handler_key <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">DEV_FUNC_01</span><span style="color:#e6db74">&#34;</span>
+handler_key = <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">DEV_FUNC_01</span><span style="color:#ed9d13">&#34;</span>
 
-<span style="color:#66d9ef">if</span> handler_key <span style="color:#f92672">in</span> driver_namespace:
-<span style="color:#66d9ef">if</span> driver_namespace[handler_key] <span style="color:#f92672">in</span> frame_change_pre:
-    frame_change_pre<span style="color:#f92672">.</span>remove(driver_namespace[handler_key])
+<span style="color:#6ab825;font-weight:bold">if</span> handler_key <span style="color:#6ab825;font-weight:bold">in</span> driver_namespace:
+<span style="color:#6ab825;font-weight:bold">if</span> driver_namespace[handler_key] <span style="color:#6ab825;font-weight:bold">in</span> frame_change_pre:
+    frame_change_pre.remove(driver_namespace[handler_key])
 
-<span style="color:#66d9ef">del</span> driver_namespace[handler_key]
+<span style="color:#6ab825;font-weight:bold">del</span> driver_namespace[handler_key]
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>(scene):
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello 2!</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">process</span>(scene):
+<span style="color:#6ab825;font-weight:bold">print</span>(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">Hello 2!</span><span style="color:#ed9d13">&#34;</span>)
 
 
-frame_change_pre<span style="color:#f92672">.</span>append(process)
-driver_namespace[handler_key] <span style="color:#f92672">=</span> process
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">You can run the script <span style="color:#f92672">and</span> check <span style="color:#f92672">in</span> the console that your function <span style="color:#f92672">is</span> here<span style="color:#f92672">.</span>
+frame_change_pre.append(process)
+driver_namespace[handler_key] = process
+</code></pre></div><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">You can run the script <span style="color:#6ab825;font-weight:bold">and</span> check <span style="color:#6ab825;font-weight:bold">in</span> the console that your function <span style="color:#6ab825;font-weight:bold">is</span> here.
 
-<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> bpy<span style="color:#f92672">.</span>app<span style="color:#f92672">.</span>driver_namespace[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">DEV_FUNC_01</span><span style="color:#e6db74">&#34;</span>]
-<span style="color:#f92672">&lt;</span>function process at <span style="color:#ae81ff">0x7f50e0a6d598</span><span style="color:#f92672">&gt;</span>
+&gt;&gt;&gt; bpy.app.driver_namespace[<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">DEV_FUNC_01</span><span style="color:#ed9d13">&#34;</span>]
+&lt;function process at <span style="color:#3677a9">0x7f50e0a6d598</span>&gt;
 </code></pre></div><p>And now, if you modify the process function and run the script, only the new callback will be executed.</p>
 <h2 id="going-further-use-a-class">Going further, use a class</h2>
 <p>If you want, you can do something more developed and for example, use a class. Like this, you will also be able to share attributes and create multiple callbacks with different parameters easily.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> bpy.app.handlers <span style="color:#f92672">import</span> frame_change_pre
-<span style="color:#f92672">from</span> bpy.app <span style="color:#f92672">import</span> driver_namespace
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">bpy.app.handlers</span> <span style="color:#6ab825;font-weight:bold">import</span> frame_change_pre
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">bpy.app</span> <span style="color:#6ab825;font-weight:bold">import</span> driver_namespace
 
-handler_key <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">DEV_HAND_01</span><span style="color:#e6db74">&#34;</span>
+handler_key = <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">DEV_HAND_01</span><span style="color:#ed9d13">&#34;</span>
 
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProcessHandler</span>():
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">ProcessHandler</span>():
 
-<span style="color:#66d9ef">def</span> __init__(self, p_name):
-    self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> p_name
+<span style="color:#6ab825;font-weight:bold">def</span> __init__(self, p_name):
+    self.name = p_name
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>(self, scene):
-    <span style="color:#66d9ef">print</span>(self<span style="color:#f92672">.</span>name)
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">process</span>(self, scene):
+    <span style="color:#6ab825;font-weight:bold">print</span>(self.name)
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove_handler</span>(self):
-    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>process <span style="color:#f92672">in</span> frame_change_pre:
-	frame_change_pre<span style="color:#f92672">.</span>remove(self<span style="color:#f92672">.</span>process)
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">remove_handler</span>(self):
+    <span style="color:#6ab825;font-weight:bold">if</span> self.process <span style="color:#6ab825;font-weight:bold">in</span> frame_change_pre:
+	frame_change_pre.remove(self.process)
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_handler</span>(self):
-    frame_change_pre<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>process)
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">add_handler</span>(self):
+    frame_change_pre.append(self.process)
 
 
-<span style="color:#66d9ef">if</span> handler_key <span style="color:#f92672">in</span> driver_namespace:
-driver_namespace[handler_key]<span style="color:#f92672">.</span>remove_handler()
+<span style="color:#6ab825;font-weight:bold">if</span> handler_key <span style="color:#6ab825;font-weight:bold">in</span> driver_namespace:
+driver_namespace[handler_key].remove_handler()
 
-driver_namespace[handler_key] <span style="color:#f92672">=</span> ProcessHandler(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">joseph</span><span style="color:#e6db74">&#34;</span>)
-driver_namespace[handler_key]<span style="color:#f92672">.</span>add_handler()
+driver_namespace[handler_key] = ProcessHandler(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">joseph</span><span style="color:#ed9d13">&#34;</span>)
+driver_namespace[handler_key].add_handler()
 </code></pre></div><p>When you work on an addon, you won't do this that way, it's better to remove your callbacks in the unregister function. But while you are programming or if you don't wish to make an addon, this technique can be really usefull.</p>
 <h2 id="why-these-snippets-doesnt-work-">Why these snippets doesn't work ?</h2>
 <h3 id="the-memory-address-has-changed">The memory address has changed</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-    <span style="color:#66d9ef">if</span> process <span style="color:#f92672">in</span> frame_change_pre:
-        frame_change_pre<span style="color:#f92672">.</span>remove(process)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    ...
+    <span style="color:#6ab825;font-weight:bold">if</span> process <span style="color:#6ab825;font-weight:bold">in</span> frame_change_pre:
+        frame_change_pre.remove(process)
 
-    frame_change_pre<span style="color:#f92672">.</span>append(process)
+    frame_change_pre.append(process)
 </code></pre></div><p>Here, you already have modified the function, so its memory address won't be the same and you won't be able to find the old function in the list.</p>
 <h3 id="remove-it-before-modifying-it">Remove it before modifying it</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-<span style="color:#66d9ef">if</span> process <span style="color:#f92672">in</span> frame_change_pre:
-frame_change_pre<span style="color:#f92672">.</span>remove(process)
-<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>():
-<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-frame_change_pre<span style="color:#f92672">.</span>append(process)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+<span style="color:#6ab825;font-weight:bold">if</span> process <span style="color:#6ab825;font-weight:bold">in</span> frame_change_pre:
+frame_change_pre.remove(process)
+...
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">process</span>():
+...
+frame_change_pre.append(process)
 </code></pre></div><p>You can't do this, because at this level, the function doesn't exists yet. This is why we store it to be able to get it when we run the script.</p>
 <h3 id="insert-at-a-specific-index-instead-of-appending">Insert at a specific index instead of appending</h3>
 <p>If so, imagine that you enable an addon or that you have another script which does the same, you can't be sure that your function will always be at the same index. And it's a list, its size isn't deterministic.</p>

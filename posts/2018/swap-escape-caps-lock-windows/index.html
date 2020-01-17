@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Swap the Esc and Capslock keys on Windows." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Swap escape and caps lock on Windows"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,30 +77,18 @@
     <header class="post-header">
       <h1 class ="post-title">Swap escape and caps lock on Windows</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jan 30, 2018
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          2 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        30 Jan 2018
+          ·  2 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2018/swap-escape-caps-lock-windows.md" rel="nofollow">1 contributor</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2018/swap-escape-caps-lock-windows.md" rel="nofollow">1 contributor</a></span></div>
     </header>
     <div class="post-content">
       <p>So you want to switch the caps lock key with the escape key, but you don't want to edit the register. Don't worry ! This is fairly simple to do on windows, except that you will need to install a software if you want something that won't blow up. ¯\_(ツ)_/¯</p>
 <p><strong>Side note:</strong> If you are a vim user, this tip will change your life. For real.</p>
 <p>You will need to install <strong><a href="https://www.autohotkey.com/">AutoHotkey</a></strong>, a lightweight application that allows you to make advanced modifications on your keyboard for specific application. We won't need all that fancy stuff.</p>
 <p>Once you have installed it, create a file named <code>capsEscapeSwitch.ahk</code> wherever you want and place the following lines in it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">Capslock<span style="color:#f92672">:</span><span style="color:#f92672">:</span>Esc
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">Capslock::Esc
 </code></pre></div><p>You can now open the file with <em>AutoHotkey</em>, and it should already work. If not, try to open the application and see the log if there is any, otherwise, <code>gl hf</code> – <em>Good luck, have fun</em> for the non-gamer readers among us.</p>
 <p>Now, if you want to <strong>make the changes permanent</strong>, you just need to move this script to the <em>Windows Startup</em> folder. Place it in the first directory if you want this to work for <strong>all your users</strong>, and in the second one if you want this to work <strong>only for you</strong>.</p>
 <ul>

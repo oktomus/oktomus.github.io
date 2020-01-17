@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Prevent your Qt tool from blocking the software&#39;s keyboard shortcuts." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Propagate shortcuts — key inputs — from dialogs to Maya with Qt"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,39 +77,27 @@
     <header class="post-header">
       <h1 class ="post-title">Propagate shortcuts — key inputs — from dialogs to Maya with Qt</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jan 9, 2018
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          1 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        9 Jan 2018
+          ·  1 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2018/qt-propagate-shortcuts.md" rel="nofollow">1 contributor</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2018/qt-propagate-shortcuts.md" rel="nofollow">1 contributor</a></span></div>
     </header>
     <div class="post-content">
       <p>If you want to use Maya or any other application's shortcuts while you are using a custom tool, you need to propagate key events to the application. It can be useful with custom Qt dialogs and widgets.</p>
 <p>To propagate a key event, you just need to ignore it in your widget or window.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">YourWidget</span>(QtGui<span style="color:#f92672">.</span>QWidget):
-    <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">YourWidget</span>(QtGui.QWidget):
+    ....
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">keyPressEvent</span>(self, event):
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span> :
-            event<span style="color:#f92672">.</span>accept()
-        <span style="color:#66d9ef">else</span>:
-            event<span style="color:#f92672">.</span>ignore()
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">keyPressEvent</span>(self, event):
+        <span style="color:#6ab825;font-weight:bold">if</span> ... :
+            event.accept()
+        <span style="color:#6ab825;font-weight:bold">else</span>:
+            event.ignore()
 </code></pre></div><p>By default, the event is accepted, so accepting is useless. And don't call the base class's implementation after you ignore the event. Your actions will have no effect.</p>
 <p>When you ignore an event, it will be transferred to the parent until a widget accepts it.</p>
 <p>You can also disable keyboard focus on your widget.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">self<span style="color:#f92672">.</span>setFocusPolicy(QtCore<span style="color:#f92672">.</span>Qt<span style="color:#f92672">.</span>ClickFocus)  <span style="color:#75715e"># or Qt.NoFocus</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">self.setFocusPolicy(QtCore.Qt.ClickFocus)  <span style="color:#999;font-style:italic"># or Qt.NoFocus</span>
 </code></pre></div><p>See <a href="https://srinikom.github.io/pyside-docs/PySide/QtGui/QWidget.html#PySide.QtGui.PySide.QtGui.QWidget.setFocusPolicy">setFocusPolicy</a> and <a href="https://srinikom.github.io/pyside-docs/PySide/QtGui/QKeyEvent.html#PySide.QtGui.QKeyEvent">QKeyEvent</a> for more details.</p>
 
     </div>

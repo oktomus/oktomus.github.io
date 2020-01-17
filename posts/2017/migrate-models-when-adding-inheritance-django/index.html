@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Kevin Masson" />
     <meta name="description" content="Correctly migrate models when adding a parent class to exisint models." />
-    <link rel="stylesheet" href="https://oktomus.com/css/main.min.18e3cc34f6a5ea1fbed9416123167d13199e81316e86e3a595dfc82c812b1938.css" />
+    <link rel="stylesheet" href="https://oktomus.com/css/main.min.9d867273c5025f09852a9852db09d6830e2c92fb65f66b96ada66f4cf07c6b84.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Migrate models when adding inheritance in Django"/>
@@ -67,36 +67,6 @@
 		<circle cx="232.43" cy="150" r="67.57"/>
 	</g>
 </g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg></a>
         
       </div>
@@ -107,23 +77,11 @@
     <header class="post-header">
       <h1 class ="post-title">Migrate models when adding inheritance in Django</h1>
       <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Sep 17, 2017
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          5 min read
-        </div><div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+        17 Sep 2017
+          ·  5 min read<span>  ·  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
 </svg>
-          <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/migrate-models-when-adding-inheritance-django.md" rel="nofollow">1 contributor</a>
-        </div></div>
+          <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/migrate-models-when-adding-inheritance-django.md" rel="nofollow">1 contributor</a></span></div>
     </header>
     <div class="post-content">
       <p>When you have one or more models that you are already using in your application and you want to change the parent class, the Django migration tool doesn't know what to do with the fields that will be transferred into the parent class values. By default, Django will erase existing fields and create new ones.</p>
@@ -140,61 +98,61 @@
 <p>Before making any change on your child classes, you must have created and migrated your parent class. Also, be aware that shared fields have to be exactly the same. If you want to modify them (length, default value, &hellip;), do it after you have migrated your child classes.</p>
 <h2 id="1-create-the-default-migration-step">1. Create the default migration step</h2>
 <p>After having modified your child class (changing the parent and removing the common fields), you can start the process.</p>
-<pre><code>$ python manage.py makemigrations
-You are trying to add a non-nullable field 'post_ptr' to blog without a default; we can't do that (the database needs something to populate existing rows).
-Please select a fix:
-1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
-    2) Quit, and let me add a default in models.py
-    Select an option: 1 # &lt;- Choose One
-    Please enter the default value now, as valid Python
-    The datetime and Django.utils.timezone modules are available, so you can do e.g. timezone.now
-    Type 'exit' to exit this prompt
-    &gt;&gt;&gt; 0 # &lt;- Add a default value
-    Migrations for 'blog':
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python manage.py makemigrations
+You are trying to add a non-nullable field <span style="color:#ed9d13">&#39;post_ptr&#39;</span> to blog without a default; we can<span style="color:#ed9d13">&#39;t do that (the database needs something to populate existing rows).
+</span><span style="color:#ed9d13">Please select a fix:
+</span><span style="color:#ed9d13">1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+</span><span style="color:#ed9d13">    2) Quit, and let me add a default in models.py
+</span><span style="color:#ed9d13">    Select an option: 1 # &lt;- Choose One
+</span><span style="color:#ed9d13">    Please enter the default value now, as valid Python
+</span><span style="color:#ed9d13">    The datetime and Django.utils.timezone modules are available, so you can do e.g. timezone.now
+</span><span style="color:#ed9d13">    Type &#39;</span>exit<span style="color:#ed9d13">&#39; to exit this prompt
+</span><span style="color:#ed9d13">    &gt;&gt;&gt; 0 # &lt;- Add a default value
+</span><span style="color:#ed9d13">    Migrations for &#39;</span>blog<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>:
     blog/migrations/0002_auto_20170916_1247.py
     - Remove field id from blog
     - Remove field title from blog
     - Add field post_ptr to blog
-</code></pre><p>You can specify whatever you want for the default value since we will add our own script.</p>
+</code></pre></div><p>You can specify whatever you want for the default value since we will add our own script.</p>
 <h2 id="2-modify-the-migration-operations">2. Modify the migration operations</h2>
 <p>Open the migration file located in your application</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vim blog/migrations/0002_auto_20170916_1247.py
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vim blog/migrations/0002_auto_20170916_1247.py
 </code></pre></div><p>We can now change the operations with our own.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># New operations</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#999;font-style:italic"># New operations</span>
 
-operations <span style="color:#f92672">=</span> [
-    migrations<span style="color:#f92672">.</span>RenameModel(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Blog</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">OldBlog</span><span style="color:#e6db74">&#39;</span>),
-    migrations<span style="color:#f92672">.</span>CreateModel(
-        name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">NewBlog</span><span style="color:#e6db74">&#39;</span>,
-        fields<span style="color:#f92672">=</span>[
-            (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">post_ptr</span><span style="color:#e6db74">&#39;</span>, models<span style="color:#f92672">.</span>OneToOneField(auto_created<span style="color:#f92672">=</span>True, on_delete<span style="color:#f92672">=</span>Django<span style="color:#f92672">.</span>db<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>deletion<span style="color:#f92672">.</span>CASCADE, parent_link<span style="color:#f92672">=</span>True, primary_key<span style="color:#f92672">=</span>True, serialize<span style="color:#f92672">=</span>False, to<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">post.Post</span><span style="color:#e6db74">&#39;</span>)),
-            (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog_only_field</span><span style="color:#e6db74">&#39;</span>, models<span style="color:#f92672">.</span>TextField()), <span style="color:#75715e"># DON&#39;T FORGET NON COMMON FIELDS</span>
+operations = [
+    migrations.RenameModel(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">Blog</span><span style="color:#ed9d13">&#39;</span>, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">OldBlog</span><span style="color:#ed9d13">&#39;</span>),
+    migrations.CreateModel(
+        name=<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">NewBlog</span><span style="color:#ed9d13">&#39;</span>,
+        fields=[
+            (<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">post_ptr</span><span style="color:#ed9d13">&#39;</span>, models.OneToOneField(auto_created=True, on_delete=Django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to=<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">post.Post</span><span style="color:#ed9d13">&#39;</span>)),
+            (<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog_only_field</span><span style="color:#ed9d13">&#39;</span>, models.TextField()), <span style="color:#999;font-style:italic"># DON&#39;T FORGET NON COMMON FIELDS</span>
         ],
-        bases<span style="color:#f92672">=</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">post.post</span><span style="color:#e6db74">&#39;</span>,),
+        bases=(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">post.post</span><span style="color:#ed9d13">&#39;</span>,),
     ),
-    migrations<span style="color:#f92672">.</span>RunPython(switch_to_post, switch_to_nopost),
-    migrations<span style="color:#f92672">.</span>DeleteModel(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">OldBlog</span><span style="color:#e6db74">&#39;</span>),
-    migrations<span style="color:#f92672">.</span>RenameModel(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">NewBlog</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Blog</span><span style="color:#e6db74">&#39;</span>)
+    migrations.RunPython(switch_to_post, switch_to_nopost),
+    migrations.DeleteModel(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">OldBlog</span><span style="color:#ed9d13">&#39;</span>),
+    migrations.RenameModel(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">NewBlog</span><span style="color:#ed9d13">&#39;</span>, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">Blog</span><span style="color:#ed9d13">&#39;</span>)
 ]
 
-<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74"> Original operations</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">migrations.RemoveField(</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    model_name=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    name=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">id</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">),</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">migrations.RemoveField(</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    model_name=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    name=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">title</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">),</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">migrations.AddField(</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    model_name=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    name=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">post_ptr</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    field=models.OneToOneField(auto_created=True, default=0, on_delete=Django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">post.Post</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">),</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">    preserve_default=False,</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">),</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;&#34;&#34;</span><span style="color:#ed9d13"> Original operations</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">migrations.RemoveField(</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    model_name=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    name=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">id</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">),</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">migrations.RemoveField(</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    model_name=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    name=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">title</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">),</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">migrations.AddField(</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    model_name=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    name=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">post_ptr</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    field=models.OneToOneField(auto_created=True, default=0, on_delete=Django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to=</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">post.Post</span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">),</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">    preserve_default=False,</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">),</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;&#34;&#34;</span>
 </code></pre></div><p>As you can see, the original operations were supposed to remove the fields, which will erase all the entries&rsquo; fields you have in your database.</p>
 <p><strong>Very important</strong>, don't forget in the CreateModel operation to add fields that are not shared with the parent class. To know what to add, check out the previous migration files of your model.</p>
 <p>Here is what the new operations do:</p>
@@ -209,31 +167,31 @@ All inherited fields must be only in the parent class (e.g. you can't have a fie
 <p>Now we need to define the two functions required to transfer the entries of our model to the new model.</p>
 <h2 id="3-create-transfer-functions">3. Create transfer functions</h2>
 <p>These functions have to be defined outside the <em>Migration</em> class.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">switch_to_post</span>(apps, schema_editor):
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74"> From non inehirtance to post inheritance </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
-    OldBlog <span style="color:#f92672">=</span> apps<span style="color:#f92672">.</span>get_model(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">OldBlog</span><span style="color:#e6db74">&#39;</span>)
-    NewBlog <span style="color:#f92672">=</span> apps<span style="color:#f92672">.</span>get_model(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">NewBlog</span><span style="color:#e6db74">&#39;</span>)
-    <span style="color:#66d9ef">for</span> blog <span style="color:#f92672">in</span> OldBlog<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>all():
-        new_post_blog <span style="color:#f92672">=</span> NewBlog<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>create(title<span style="color:#f92672">=</span>blog<span style="color:#f92672">.</span>title)
-        blog<span style="color:#f92672">.</span>delete()
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">switch_to_post</span>(apps, schema_editor):
+    <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;&#34;&#34;</span><span style="color:#ed9d13"> From non inehirtance to post inheritance </span><span style="color:#ed9d13">&#34;&#34;&#34;</span>
+    OldBlog = apps.get_model(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span>, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">OldBlog</span><span style="color:#ed9d13">&#39;</span>)
+    NewBlog = apps.get_model(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span>, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">NewBlog</span><span style="color:#ed9d13">&#39;</span>)
+    <span style="color:#6ab825;font-weight:bold">for</span> blog <span style="color:#6ab825;font-weight:bold">in</span> OldBlog.objects.all():
+        new_post_blog = NewBlog.objects.create(title=blog.title)
+        blog.delete()
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">switch_to_nopost</span>(apps, schema_editor):
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74"> Rollback </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
-    OldBlog <span style="color:#f92672">=</span> apps<span style="color:#f92672">.</span>get_model(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">OldBlog</span><span style="color:#e6db74">&#39;</span>)
-    NewBlog <span style="color:#f92672">=</span> apps<span style="color:#f92672">.</span>get_model(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">blog</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">NewBlog</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">switch_to_nopost</span>(apps, schema_editor):
+    <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#34;&#34;&#34;</span><span style="color:#ed9d13"> Rollback </span><span style="color:#ed9d13">&#34;&#34;&#34;</span>
+    OldBlog = apps.get_model(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span>, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">OldBlog</span><span style="color:#ed9d13">&#39;</span>)
+    NewBlog = apps.get_model(<span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">blog</span><span style="color:#ed9d13">&#39;</span>, <span style="color:#ed9d13"></span><span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">NewBlog</span><span style="color:#ed9d13">&#39;</span>)
 
-    <span style="color:#66d9ef">for</span> blog <span style="color:#f92672">in</span> NewBlog<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>all():
-        new_blog <span style="color:#f92672">=</span> OldBlog<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>create(title<span style="color:#f92672">=</span>blog<span style="color:#f92672">.</span>title)
-        blog<span style="color:#f92672">.</span>delete()
+    <span style="color:#6ab825;font-weight:bold">for</span> blog <span style="color:#6ab825;font-weight:bold">in</span> NewBlog.objects.all():
+        new_blog = OldBlog.objects.create(title=blog.title)
+        blog.delete()
 </code></pre></div><p><em>switch_to_post</em> create a new model for each old model, and <em>switch_to_nopost</em> revert new models to old ones.</p>
 <p>We have to do it this way because all shared fields&rsquo; data have to be transferred to the parent model in the database. If we don't provide our own operations, Django will just erase old fields and create new ones with default values.</p>
 <h2 id="4-migrate">4. Migrate!</h2>
-<pre><code>$ python manage.py migrate
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python manage.py migrate
 Operations to perform:
     Apply all migrations: admin, auth, blog, contenttypes, post, sessions
 Running migrations:
     Applying blog.0002_auto_20170916_1247... OK
-</code></pre><p>And now, your application is still working with all the entires you had before.</p>
+</code></pre></div><p>And now, your application is still working with all the entires you had before.</p>
 <p>You can now do the same for all the models you want to change parent class.</p>
 
     </div>
