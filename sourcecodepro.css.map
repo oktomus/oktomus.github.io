@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "sourcecodepro.css",
+	"sourceRoot": "D:/dev/oktomus/website",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"/* source-code-pro-regular - latin */\n@font-face {\n  font-family: 'Source Code Pro';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Source Code Pro Regular'), local('SourceCodePro-Regular'),\n       url('../fonts/source-code-pro-v11-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */\n       url('../fonts/source-code-pro-v11-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\n}\n\n/* source-code-pro-700 - latin */\n@font-face {\n  font-family: 'Source Code Pro';\n  font-style: normal;\n  font-weight: 700;\n  src: local('Source Code Pro Bold'), local('SourceCodePro-Bold'),\n       url('../fonts/source-code-pro-v11-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */\n       url('../fonts/source-code-pro-v11-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\n}\n"
+	],
+	"names": [],
+	"mappings": "AACA,UAAU,CACR,WAAW,CAAE,iBAAiB,CAC9B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,GAAG,CAAE,gCAAgC,CAAE,8BAA8B,CAChE,uDAAuD,CAAC,eAAe,CACvE,sDAAsD,CAAC,cAAc,CAI5E,UAAU,CACR,WAAW,CAAE,iBAAiB,CAC9B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,GAAG,CAAE,6BAA6B,CAAE,2BAA2B,CAC1D,mDAAmD,CAAC,eAAe,CACnE,kDAAkD,CAAC,cAAc"
+}

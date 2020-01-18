@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "sourcesanspro.css",
+	"sourceRoot": "D:/dev/oktomus/website",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"/* source-sans-pro-regular - latin */\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),\n       url('../fonts/source-sans-pro-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */\n       url('../fonts/source-sans-pro-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\n}\n\n/* source-sans-pro-italic - latin */\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 400;\n  src: local('Source Sans Pro Italic'), local('SourceSansPro-Italic'),\n       url('../fonts/source-sans-pro-v13-latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */\n       url('../fonts/source-sans-pro-v13-latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\n}\n\n/* source-sans-pro-700 - latin */\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),\n       url('../fonts/source-sans-pro-v13-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */\n       url('../fonts/source-sans-pro-v13-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\n}\n\n/* source-sans-pro-700italic - latin */\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'),\n       url('../fonts/source-sans-pro-v13-latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */\n       url('../fonts/source-sans-pro-v13-latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\n}\n"
+	],
+	"names": [],
+	"mappings": "AACA,UAAU,CACR,WAAW,CAAE,iBAAiB,CAC9B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,GAAG,CAAE,gCAAgC,CAAE,8BAA8B,CAChE,uDAAuD,CAAC,eAAe,CACvE,sDAAsD,CAAC,cAAc,CAI5E,UAAU,CACR,WAAW,CAAE,iBAAiB,CAC9B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,GAAG,CAAE,+BAA+B,CAAE,6BAA6B,CAC9D,sDAAsD,CAAC,eAAe,CACtE,qDAAqD,CAAC,cAAc,CAI3E,UAAU,CACR,WAAW,CAAE,iBAAiB,CAC9B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,GAAG,CAAE,6BAA6B,CAAE,2BAA2B,CAC1D,mDAAmD,CAAC,eAAe,CACnE,kDAAkD,CAAC,cAAc,CAIxE,UAAU,CACR,WAAW,CAAE,iBAAiB,CAC9B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,GAAG,CAChB,GAAG,CAAE,oCAAoC,CAAE,iCAAiC,CACvE,yDAAyD,CAAC,eAAe,CACzE,wDAAwD,CAAC,cAAc"
+}
