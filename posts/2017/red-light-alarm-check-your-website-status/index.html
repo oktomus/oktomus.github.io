@@ -1,158 +1,304 @@
-<!doctype html><html lang=en-us><head><title>Set up a red light alarm to check your website status with python, cron and the Philips hue API</title><meta charset=utf-8><meta name=generator content="Hugo 0.68.3"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Kevin Masson"><meta name=description content="Fun project where I link LED home lights to the status of my server."><link rel=stylesheet href=https://oktomus.com/style.94a9b83dc82e53db416f878e5e4ddd1efbba3beccd384aa0a5c90046b55aba4d.css><link rel=stylesheet href=https://oktomus.com/sourcesanspro.976c714211e70394d35449e7ce2aee72b91cbf727b752cfb6a9c52bbc22c00fa.css><link rel=stylesheet href=https://oktomus.com/sourcecodepro.5dad8ddf281225439c9ef9a8ed92baf168af538c41d755c1fe26cc869ed0e6f3.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Set up a red light alarm to check your website status with python, cron and the Philips hue API"><meta name=twitter:description content="Fun project where I link LED home lights to the status of my server."><meta property="og:title" content="Set up a red light alarm to check your website status with python, cron and the Philips hue API"><meta property="og:description" content="Fun project where I link LED home lights to the status of my server."><meta property="og:type" content="article"><meta property="og:url" content="https://oktomus.com/posts/2017/red-light-alarm-check-your-website-status/"><meta property="article:published_time" content="2017-07-29T21:18:57+01:00"><meta property="article:modified_time" content="2017-07-29T21:18:57+01:00"></head><body><header class=app-header><a href=https://oktomus.com/><img width=100 height=100 class=app-header-avatar src=/avatar.jpg alt="Kevin Masson"></a><h1><a href=https://oktomus.com/>oktomus</a></h1><p>Makes 3D softwares and photography while eating noodles.</p><div class=app-header-social><a target=_blank href=https://github.com/oktomus rel="noreferrer noopener" title=Github><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77a5.44 5.44.0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/oktomus rel="noreferrer noopener" title=Twitter><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a><a target=_blank href=mailto:hi@oktomus.com rel="noreferrer noopener" title=hi@oktomus.com><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a target=_blank href=https://www.linkedin.com/in/oktomus/ rel="noreferrer noopener" title=LinkedIn><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a target=_blank href=https://www.instagram.com/oktomus/ rel="noreferrer noopener" title=Instagram><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a><a target=_blank href=https://500px.com/oktomus rel="noreferrer noopener" title=500px><svg fill="currentcolor" width="48" id="svg2" height="24" viewBox="0 0 666.66669 166.13333"><g transform="matrix(1.3333333,0,0,-1.3333333,0,166.13333)" id="g10"><g transform="scale(0.1)" id="g12"><path id="path14" style="fill-opacity:1;fill-rule:nonzero;stroke:none" d="m4761.93 915.121 226.03 226.029c8.2 8.21 27.42 27.46-11.48 67.51-16.68 17.18-31.89 25.95-45.19 26.05h-.24c-11.45.0-19.17-6.14-25.21-12.17L4679.28 995.977 4453.09 1223.56c-18.28 18.3-39.69 14.01-67.29-13.55-28.07-28.22-32.66-49.89-14.45-68.2l226.22-227.564-221.56-221.57-1.58-1.547c-5.39-5.227-13.53-13.113-13.64-25.973-.1-13.261 8.73-28.879 26.26-46.414 14.8-14.812 28.82-22.316 41.7-22.316h.01c14.51.012 23.78 9.308 29.02 14.543l222.4 222.41 227.42-227.449c2.87-2.86 10.88-9.457 23.74-9.457h.46c14.38.172 29.52 8.515 45.01 24.781 25.52 26.801 29.78 49.129 12.65 66.359zm-816.56 324.699c-167.5-12.74-298.71-160.06-298.71-335.394V350.023c0-32.117 24.42-38.691 61.07-38.691s61.07 6.574 61.07 38.691V905.73c0 109.24 79.47 203.04 180.91 213.54 58.24 5.94 114.22-12.29 157.76-51.56 42.74-38.52 67.26-93.909 67.28-151.972.0-16.617-8.14-70.734-45.28-120.968-28.09-37.958-81.3-83.172-175.65-83.172-.51-.012-1.2.0-1.79.0-24.21.0-44.88-1.141-48.86-58.496-2.67-38.594-2.45-55.852 30.89-60.493 59.47-8.25 120.11 3.375 180.2 34.606 102.61 53.383 171.35 154.535 179.43 264.004 7.02 95.078-27.27 187.831-94.09 254.491-67.07 66.89-159.69 101.15-254.23 94.11zM477.48 872.383C357.461 889.613 240.426 857.684 145.102 784.309V1114.5h559.531c19.437.0 33.379 3.5 33.379 60.91.0 56.02-22.571 58.24-37.465 58.24H80.9648c-35.9765.0-55.0117-29.1-55.0117-61.36V630.379c0-28.414 18.0117-38.043 51.5352-44.68 29.3477-5.808 46.3907-2.414 59.2227 11.809l1.351 2.082C197.09 684.672 325.527 767.09 447.605 752.148 593.32 734.32 710.648 618.078 726.695 475.762 736.934 384.953 709.223 297.66 648.719 229.961 588.988 163.121 503.48 124.781 414.156 124.781c-132.328.0-247.984 85.059-296.144 208.508-7.129 18.277-19.1722 31.809-71.3011 12.856C-1.1875 328.73-3.96484 308.574 2.64062 290.32 65.3398 117.672 230.711 1.66016 414.137 1.66016c124.23.0 243.121 53.26174 326.187 146.14084 84.164 94.078 122.391 215.359 108.313 341.504C826.574 686.766 673.727 844.293 477.48 872.383zM2896.61 132.852c-270.27.0-490.16 219.882-490.16 490.148.0 270.277 219.89 490.16 490.16 490.16 270.25.0 490.12-219.883 490.12-490.16.0-270.266-219.87-490.148-490.12-490.148zm0 1113.158c-343.55.0-623.04-279.483-623.04-623.01.0-343.527 279.49-623 623.04-623 343.53.0 623 279.473 623 623s-279.47 623.01-623 623.01zM1548.3 132.852c-270.27.0-490.15 219.882-490.15 490.148.0 270.277 219.88 490.16 490.15 490.16 270.26.0 490.13-219.883 490.13-490.16.0-270.266-219.87-490.148-490.13-490.148zm0 1113.158C1204.76 1246.01 925.262 966.527 925.262 623 925.262 279.473 1204.76.0 1548.3.0c343.53.0 623.01 279.473 623.01 623s-279.48 623.01-623.01 623.01"/></g></g></svg></a><a target=_blank href=https://www.flickr.com/photos/kevinmasson/ rel="noreferrer noopener" title=Flickr><svg fill="currentcolor" width="24" height="24" id="Layer_1" viewBox="0 0 300 300" style="enable-background:new 0 0 300 300"><g id="XMLID_830_"><g id="XMLID_833_"><circle cx="67.57" cy="150" r="67.57"/></g><g id="XMLID_838_"><circle cx="232.43" cy="150" r="67.57"/></g></g></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Set up a red light alarm to check your website status with python, cron and the Philips hue API</h1><div class=post-meta>29 Jul 2017
-&nbsp;<span class=separator>·</span>&nbsp;
-7 min read&nbsp;<span class=separator>·</span>&nbsp;<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77a5.44 5.44.0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-<a href=https://github.com/oktomus/website/blob/master/content/posts/2017/red-light-alarm-check-your-website-status.md rel=nofollow>1 contributor</a></div></header><div class=post-content><p>Just to let you know, there are much better ways to monitor your services. But I found this quite funny to make and it&rsquo;s a first step on creating incredibly useful Hue apps \o/.</p><h2 id=the-result>The result</h2><video mute preload controls autoplay>
-<source src=/2017/hue-web-alarm-demo.webm type='video/webm;codecs="vp8"'><p>It seems that your browser doesn't support native HTML5 videos..</p></video><p>A cron tab is set on the NAS which run my python script every minutes. The script then check for the website and if it&rsquo;s down, it makes the lamps blink.</p><h2 id=play-with-the-philips-hue-api>Play with the Philips hue API</h2><p>Before diving in the code, I suggest to you to read the official <a href=https://www.developers.meethue.com/documentation/getting-started>hue beginner&rsquo;s guide</a> if you never have used a REST application before.</p><h2 id=write-your-script>Write your script</h2><p>For the script, I choosed to use Python because it&rsquo;s really easy to get started.</p><p>Before working on the module which would have helped me interface the Hue API, I have made some researches and I came across with <a href=https://github.com/studioimaginaire/phue>phue</a>, a lightweight Python library for the Philips Hue system. It&rsquo;s even easier to manage your lights.</p><h3 id=getting-started-with-phue>Getting started with phue</h3><p>To install it, just run <code>pip install phue</code>. If you have pip but it&rsquo;s not available in your path or you want to use a sepcific version of Python, use this instead: <code>python -m pip install phue</code>.</p><p>Then create your file for your script using your favorite editor.
-<code>vim webCheck.py</code></p><p>We now need to connect to the Bridge which will then provides us all the required functions to play with our lights.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>
-<span style=color:#999;font-style:italic>#!/usr/bin/python</span>
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Set up a red light alarm to check your website status with python, cron and the Philips hue API</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.68.3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Kevin Masson" />
+    <meta name="description" content="Fun project where I link LED home lights to the status of my server." />
+    
+    <link rel="stylesheet" href="https://oktomus.com/style.94a9b83dc82e53db416f878e5e4ddd1efbba3beccd384aa0a5c90046b55aba4d.css" />
 
-<span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>phue</span> <span style=color:#6ab825;font-weight:700>import</span> Bridge
+    
+    <link rel="stylesheet" href="https://oktomus.com/sourcesanspro.976c714211e70394d35449e7ce2aee72b91cbf727b752cfb6a9c52bbc22c00fa.css" />
 
-b = Bridge(<span style=color:#ed9d13>&#39;192.168.0.12&#39;</span>) <span style=color:#999;font-style:italic># You should know your bridge&#39;s ip if you had read Phillips&#39; guide</span>
+    
+      
+      <link rel="stylesheet" href="https://oktomus.com/sourcecodepro.5dad8ddf281225439c9ef9a8ed92baf168af538c41d755c1fe26cc869ed0e6f3.css" />
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Set up a red light alarm to check your website status with python, cron and the Philips hue API"/>
+<meta name="twitter:description" content="Fun project where I link LED home lights to the status of my server."/>
+
+    <meta property="og:title" content="Set up a red light alarm to check your website status with python, cron and the Philips hue API" />
+<meta property="og:description" content="Fun project where I link LED home lights to the status of my server." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://oktomus.com/posts/2017/red-light-alarm-check-your-website-status/" />
+<meta property="article:published_time" content="2017-07-29T21:18:57+01:00" />
+<meta property="article:modified_time" content="2017-07-29T21:18:57+01:00" />
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://oktomus.com/"><img width="100" height="100" class="app-header-avatar" src="/avatar.jpg" alt="Kevin Masson" /></a>
+      <h1><a href="https://oktomus.com/">oktomus</a></h1>
+      <p>Makes 3D softwares and photography while eating noodles.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/oktomus" rel="noreferrer noopener" title="Github"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/oktomus" rel="noreferrer noopener" title="Twitter"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+          <a target="_blank" href="mailto:hi@oktomus.com" rel="noreferrer noopener" title="hi@oktomus.com"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-mail">
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>
+</svg></a>
+        
+          <a target="_blank" href="https://www.linkedin.com/in/oktomus/" rel="noreferrer noopener" title="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+          <a target="_blank" href="https://www.instagram.com/oktomus/" rel="noreferrer noopener" title="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-instagram">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+</svg></a>
+        
+          <a target="_blank" href="https://500px.com/oktomus" rel="noreferrer noopener" title="500px"><svg fill="currentColor" width="48" xml:space="preserve" id="svg2" version="1.1" height="24" viewBox="0 0 666.66669 166.13333">
+  <g transform="matrix(1.3333333,0,0,-1.3333333,0,166.13333)" id="g10">
+    <g transform="scale(0.1)" id="g12">
+      <path id="path14" style="fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 4761.93,915.121 226.03,226.029 c 8.2,8.21 27.42,27.46 -11.48,67.51 -16.68,17.18 -31.89,25.95 -45.19,26.05 h -0.24 c -11.45,0 -19.17,-6.14 -25.21,-12.17 L 4679.28,995.977 4453.09,1223.56 c -18.28,18.3 -39.69,14.01 -67.29,-13.55 -28.07,-28.22 -32.66,-49.89 -14.45,-68.2 l 226.22,-227.564 -221.56,-221.57 -1.58,-1.547 c -5.39,-5.227 -13.53,-13.113 -13.64,-25.973 -0.1,-13.261 8.73,-28.879 26.26,-46.414 14.8,-14.812 28.82,-22.316 41.7,-22.316 h 0.01 c 14.51,0.012 23.78,9.308 29.02,14.543 l 222.4,222.41 227.42,-227.449 c 2.87,-2.86 10.88,-9.457 23.74,-9.457 h 0.46 c 14.38,0.172 29.52,8.515 45.01,24.781 25.52,26.801 29.78,49.129 12.65,66.359 z m -816.56,324.699 c -167.5,-12.74 -298.71,-160.06 -298.71,-335.394 V 350.023 c 0,-32.117 24.42,-38.691 61.07,-38.691 36.65,0 61.07,6.574 61.07,38.691 V 905.73 c 0,109.24 79.47,203.04 180.91,213.54 58.24,5.94 114.22,-12.29 157.76,-51.56 42.74,-38.52 67.26,-93.909 67.28,-151.972 0,-16.617 -8.14,-70.734 -45.28,-120.968 -28.09,-37.958 -81.3,-83.172 -175.65,-83.172 -0.51,-0.012 -1.2,0 -1.79,0 -24.21,0 -44.88,-1.141 -48.86,-58.496 -2.67,-38.594 -2.45,-55.852 30.89,-60.493 59.47,-8.25 120.11,3.375 180.2,34.606 102.61,53.383 171.35,154.535 179.43,264.004 7.02,95.078 -27.27,187.831 -94.09,254.491 -67.07,66.89 -159.69,101.15 -254.23,94.11 z M 477.48,872.383 C 357.461,889.613 240.426,857.684 145.102,784.309 V 1114.5 h 559.531 c 19.437,0 33.379,3.5 33.379,60.91 0,56.02 -22.571,58.24 -37.465,58.24 H 80.9648 c -35.9765,0 -55.0117,-29.1 -55.0117,-61.36 V 630.379 c 0,-28.414 18.0117,-38.043 51.5352,-44.68 29.3477,-5.808 46.3907,-2.414 59.2227,11.809 l 1.351,2.082 C 197.09,684.672 325.527,767.09 447.605,752.148 593.32,734.32 710.648,618.078 726.695,475.762 736.934,384.953 709.223,297.66 648.719,229.961 588.988,163.121 503.48,124.781 414.156,124.781 c -132.328,0 -247.984,85.059 -296.144,208.508 -7.129,18.277 -19.1722,31.809 -71.3011,12.856 C -1.1875,328.73 -3.96484,308.574 2.64062,290.32 65.3398,117.672 230.711,1.66016 414.137,1.66016 c 124.23,0 243.121,53.26174 326.187,146.14084 84.164,94.078 122.391,215.359 108.313,341.504 C 826.574,686.766 673.727,844.293 477.48,872.383 Z M 2896.61,132.852 c -270.27,0 -490.16,219.882 -490.16,490.148 0,270.277 219.89,490.16 490.16,490.16 270.25,0 490.12,-219.883 490.12,-490.16 0,-270.266 -219.87,-490.148 -490.12,-490.148 z m 0,1113.158 c -343.55,0 -623.04,-279.483 -623.04,-623.01 0,-343.527 279.49,-623 623.04,-623 343.53,0 623,279.473 623,623 0,343.527 -279.47,623.01 -623,623.01 z M 1548.3,132.852 c -270.27,0 -490.15,219.882 -490.15,490.148 0,270.277 219.88,490.16 490.15,490.16 270.26,0 490.13,-219.883 490.13,-490.16 0,-270.266 -219.87,-490.148 -490.13,-490.148 z m 0,1113.158 C 1204.76,1246.01 925.262,966.527 925.262,623 925.262,279.473 1204.76,0 1548.3,0 c 343.53,0 623.01,279.473 623.01,623 0,343.527 -279.48,623.01 -623.01,623.01"/>
+    </g>
+  </g>
+</svg></a>
+        
+          <a target="_blank" href="https://www.flickr.com/photos/kevinmasson/" rel="noreferrer noopener" title="Flickr"><svg fill="currentColor" width="24" height="24" version="1.1" id="Layer_1" x="0px" y="0px"
+	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+<g id="XMLID_830_">
+	<g id="XMLID_833_">
+		<circle cx="67.57" cy="150" r="67.57"/>
+	</g>
+	<g id="XMLID_838_">
+		<circle cx="232.43" cy="150" r="67.57"/>
+	</g>
+</g>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Set up a red light alarm to check your website status with python, cron and the Philips hue API</h1>
+      <div class="post-meta">
+        29 Jul 2017
+        &nbsp;<span class="separator">·</span>&nbsp;
+        7 min read&nbsp;<span class="separator">·</span>&nbsp;
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+        <a href="https://github.com/oktomus/website/blob/master/content/posts/2017/red-light-alarm-check-your-website-status.md" rel="nofollow">1 contributor</a></div>
+    </header>
+    <div class="post-content">
+      <p>Just to let you know, there are much better ways to monitor your services. But I found this quite funny to make and it&rsquo;s a first step on creating incredibly useful Hue apps \o/.</p>
+<h2 id="the-result">The result</h2>
+<video mute preload controls autoplay>
+    <source src="/2017/hue-web-alarm-demo.webm" type='video/webm;codecs="vp8"'><p>It seems that your browser doesn't support native HTML5 videos..</p>
+</video>
+<p>A cron tab is set on the NAS which run my python script every minutes. The script then check for the website and if it&rsquo;s down, it makes the lamps blink.</p>
+<h2 id="play-with-the-philips-hue-api">Play with the Philips hue API</h2>
+<p>Before diving in the code, I suggest to you to read the official <a href="https://www.developers.meethue.com/documentation/getting-started">hue beginner&rsquo;s guide</a> if you never have used a REST application before.</p>
+<h2 id="write-your-script">Write your script</h2>
+<p>For the script, I choosed to use Python because it&rsquo;s really easy to get started.</p>
+<p>Before working on the module which would have helped me interface the Hue API, I have made some researches and I came across with <a href="https://github.com/studioimaginaire/phue">phue</a>, a lightweight Python library for the Philips Hue system. It&rsquo;s even easier to manage your lights.</p>
+<h3 id="getting-started-with-phue">Getting started with phue</h3>
+<p>To install it, just run <code>pip install phue</code>. If you have pip but it&rsquo;s not available in your path or you want to use a sepcific version of Python, use this instead: <code>python -m pip install phue</code>.</p>
+<p>Then create your file for your script using your favorite editor.
+<code>vim webCheck.py</code></p>
+<p>We now need to connect to the Bridge which will then provides us all the required functions to play with our lights.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#999;font-style:italic">#!/usr/bin/python</span>
+
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">phue</span> <span style="color:#6ab825;font-weight:bold">import</span> Bridge
+
+b = Bridge(<span style="color:#ed9d13">&#39;192.168.0.12&#39;</span>) <span style="color:#999;font-style:italic"># You should know your bridge&#39;s ip if you had read Phillips&#39; guide</span>
 
 b.connect()
-</code></pre></div><p>Now run the script using <code>python webCheck.py</code> and you should get <strong>an exception</strong> telling you that you haven&rsquo;t any API key. This is <code>b.connect()</code> that actually fails, you have to press the button on your Bridge and re-run the script.</p><p><em>phue</em> will then create a file in your user directory containing the API key, this will prevent you to press the button each time you want to run the script. But I suggest you to <strong>specify a key file</strong>, because when you will deploy your script, you won&rsquo;t have to press the button again and if you use a system user to run your script (<strong>highly recommended</strong>), it will still work.</p><p>So let&rsquo;s define this key file based on our script path.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>...
-<span style=color:#6ab825;font-weight:700>import</span> <span style=color:#447fcf;text-decoration:underline>os</span>
-<span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>phue</span> <span style=color:#6ab825;font-weight:700>import</span> Bridge
+</code></pre></div><p>Now run the script using <code>python webCheck.py</code> and you should get <strong>an exception</strong> telling you that you haven&rsquo;t any API key. This is <code>b.connect()</code> that actually fails, you have to press the button on your Bridge and re-run the script.</p>
+<p><em>phue</em> will then create a file in your user directory containing the API key, this will prevent you to press the button each time you want to run the script. But I suggest you to <strong>specify a key file</strong>, because when you will deploy your script, you won&rsquo;t have to press the button again and if you use a system user to run your script (<strong>highly recommended</strong>), it will still work.</p>
+<p>So let&rsquo;s define this key file based on our script path.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">os</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">phue</span> <span style="color:#6ab825;font-weight:bold">import</span> Bridge
 
-SCRIPT_PATH = os.path.dirname(__file__) <span style=color:#999;font-style:italic># Directory of the current file</span>
-KEY_FILE = os.path.join(SCRIPT_PATH, <span style=color:#ed9d13>&#34;.python_hue&#34;</span>) <span style=color:#999;font-style:italic># Path to hidden key file</span>
+SCRIPT_PATH = os.path.dirname(__file__) <span style="color:#999;font-style:italic"># Directory of the current file</span>
+KEY_FILE = os.path.join(SCRIPT_PATH, <span style="color:#ed9d13">&#34;.python_hue&#34;</span>) <span style="color:#999;font-style:italic"># Path to hidden key file</span>
 
 b = Bridge(IP_ADDRESS, config_file_path=KEY_FILE)
 b.connect()
-</code></pre></div><p>You should have to press the button again or copy the file <code>.python_hue</code> from your user or documents directory into your script&rsquo;s directory.</p><p>You can now easily play with your lights, just modify your script and run it again.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>...
-b.set_light(<span style=color:#3677a9>1</span>,<span style=color:#ed9d13>&#39;on&#39;</span>, False)
-</code></pre></div><p>Checkout the <a href=https://github.com/studioimaginaire/phue><em>phue</em> GitHub page</a> to see what you can do with it.</p><h3 id=red-alarm-animation>Red alarm animation</h3><p>We will create a function for this, it&rsquo;s basically turning the light on and off multiple times with a defined animation time.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>
-<span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>time</span> <span style=color:#6ab825;font-weight:700>import</span> sleep
+</code></pre></div><p>You should have to press the button again or copy the file <code>.python_hue</code> from your user or documents directory into your script&rsquo;s directory.</p>
+<p>You can now easily play with your lights, just modify your script and run it again.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+b.set_light(<span style="color:#3677a9">1</span>,<span style="color:#ed9d13">&#39;on&#39;</span>, False)
+</code></pre></div><p>Checkout the <a href="https://github.com/studioimaginaire/phue"><em>phue</em> GitHub page</a> to see what you can do with it.</p>
+<h3 id="red-alarm-animation">Red alarm animation</h3>
+<p>We will create a function for this, it&rsquo;s basically turning the light on and off multiple times with a defined animation time.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">time</span> <span style="color:#6ab825;font-weight:bold">import</span> sleep
 ...
-<span style=color:#6ab825;font-weight:700>def</span> <span style=color:#447fcf>alarm</span>(bridge, light_id, tr_time, blink_count):
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">alarm</span>(bridge, light_id, tr_time, blink_count):
 
-    animIn = {<span style=color:#ed9d13>&#39;transitiontime&#39;</span>: tr_time,
-        <span style=color:#ed9d13>&#39;on&#39;</span>: True,
-        <span style=color:#ed9d13>&#39;bri&#39;</span>:<span style=color:#3677a9>254</span>, <span style=color:#999;font-style:italic># Full luminosity</span>
-        <span style=color:#ed9d13>&#39;sat&#39;</span>: <span style=color:#3677a9>254</span>, <span style=color:#999;font-style:italic># Full saturation</span>
-        <span style=color:#ed9d13>&#39;hue&#39;</span>: <span style=color:#3677a9>65535</span> <span style=color:#999;font-style:italic># Red</span>
+    animIn = {<span style="color:#ed9d13">&#39;transitiontime&#39;</span>: tr_time,
+        <span style="color:#ed9d13">&#39;on&#39;</span>: True,
+        <span style="color:#ed9d13">&#39;bri&#39;</span>:<span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full luminosity</span>
+        <span style="color:#ed9d13">&#39;sat&#39;</span>: <span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full saturation</span>
+        <span style="color:#ed9d13">&#39;hue&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Red</span>
     }
 
-    animOut = {<span style=color:#ed9d13>&#39;transitiontime&#39;</span>: tr_time,
-        <span style=color:#ed9d13>&#39;on&#39;</span>: True,
-        <span style=color:#ed9d13>&#39;bri&#39;</span>:<span style=color:#3677a9>5</span>, <span style=color:#999;font-style:italic># Almost off</span>
-        <span style=color:#ed9d13>&#39;sat&#39;</span>: <span style=color:#3677a9>70</span>, <span style=color:#999;font-style:italic># Less saturation</span>
-        <span style=color:#ed9d13>&#39;hue&#39;</span>: <span style=color:#3677a9>65535</span> <span style=color:#999;font-style:italic># Still red</span>
+    animOut = {<span style="color:#ed9d13">&#39;transitiontime&#39;</span>: tr_time,
+        <span style="color:#ed9d13">&#39;on&#39;</span>: True,
+        <span style="color:#ed9d13">&#39;bri&#39;</span>:<span style="color:#3677a9">5</span>, <span style="color:#999;font-style:italic"># Almost off</span>
+        <span style="color:#ed9d13">&#39;sat&#39;</span>: <span style="color:#3677a9">70</span>, <span style="color:#999;font-style:italic"># Less saturation</span>
+        <span style="color:#ed9d13">&#39;hue&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Still red</span>
     }
 
-    sleep_time = <span style=color:#24909d>float</span>(tr_time + <span style=color:#3677a9>1</span>) / <span style=color:#3677a9>10.0</span>
+    sleep_time = <span style="color:#24909d">float</span>(tr_time + <span style="color:#3677a9">1</span>) / <span style="color:#3677a9">10.0</span>
 
 
-    <span style=color:#6ab825;font-weight:700>for</span> i <span style=color:#6ab825;font-weight:700>in</span> <span style=color:#24909d>range</span>(<span style=color:#3677a9>0</span>, blink_count):
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(<span style="color:#3677a9">0</span>, blink_count):
         b.set_light(light_id, animIn)
         sleep(sleep_time)
         b.set_light(light_id, animOut)
         sleep(sleep_time)
-</code></pre></div><p>This will turn the light red then <em>on</em> and <em>off</em> <em>blink_count</em> times with a transition time of <em>tr_time</em>. The unit time used by the Philips hue API is 1/100 seconds, so you have to set it to 10 if you want a transition of 1 seconds &ndash; which is very long, I personally use 5 for 500ms.</p><p>Each time you send an animation to the lamp, you have to wait the end of the animation before starting another, this is what <code>sleep</code> does. But <code>sleep</code> requires seconds, if you give 1 to it, it will sleep for 1 second. So divide it by 10 to get the same time as the light animation. I use a float conversion before dividing to avoid weird results that you can get when mixing integers and floats (<a href=https://stackoverflow.com/questions/2958684/python-division>which is totally normal by the way</a>).</p><p>This is not enough, this script won&rsquo;t set our light to it&rsquo;s initial state after the alarm ends. To do this, we must get the light state before and reset it after the animation.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#6ab825;font-weight:700>def</span> <span style=color:#447fcf>alarm</span>(bridge, light_id, tr_time, blink_count):
+</code></pre></div><p>This will turn the light red then <em>on</em> and <em>off</em> <em>blink_count</em> times with a transition time of <em>tr_time</em>. The unit time used by the Philips hue API is 1/100 seconds, so you have to set it to 10 if you want a transition of 1 seconds &ndash; which is very long, I personally use 5 for 500ms.</p>
+<p>Each time you send an animation to the lamp, you have to wait the end of the animation before starting another, this is what <code>sleep</code> does. But <code>sleep</code> requires seconds, if you give 1 to it, it will sleep for 1 second. So divide it by 10 to get the same time as the light animation. I use a float conversion before dividing to avoid weird results that you can get when mixing integers and floats (<a href="https://stackoverflow.com/questions/2958684/python-division">which is totally normal by the way</a>).</p>
+<p>This is not enough, this script won&rsquo;t set our light to it&rsquo;s initial state after the alarm ends. To do this, we must get the light state before and reset it after the animation.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">alarm</span>(bridge, light_id, tr_time, blink_count):
 
-    default = b.get_light(light_id) <span style=color:#999;font-style:italic># Default state</span>
+    default = b.get_light(light_id) <span style="color:#999;font-style:italic"># Default state</span>
 
     ....
 
     animOut = {
-        <span style=color:#ed9d13>&#39;on&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;on&#39;</span>],
-        <span style=color:#ed9d13>&#39;sat&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;sat&#39;</span>],
-        <span style=color:#ed9d13>&#39;hue&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;hue&#39;</span>],
-        <span style=color:#ed9d13>&#39;bri&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;bri&#39;</span>],
+        <span style="color:#ed9d13">&#39;on&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;on&#39;</span>],
+        <span style="color:#ed9d13">&#39;sat&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;sat&#39;</span>],
+        <span style="color:#ed9d13">&#39;hue&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;hue&#39;</span>],
+        <span style="color:#ed9d13">&#39;bri&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;bri&#39;</span>],
     }
 
-    b.set_light(light_id, animOut)  <span style=color:#999;font-style:italic># Reset to default</span>
-</code></pre></div><p>You can test your animation by running your function at the end of your script and running your python file.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>...
-alarm(b, <span style=color:#3677a9>1</span>, <span style=color:#3677a9>5</span>, <span style=color:#3677a9>10</span>)
-</code></pre></div><h3 id=detect-if-your-website-is-down>Detect if your website is down</h3><p>Simply sending a request and looking the response code is enough to determine if the website is ok or not. A response code above or equal to 400 on our main page (<code>/</code>) is when we suppose that the site is down.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>requests</span> <span style=color:#6ab825;font-weight:700>import</span> get
+    b.set_light(light_id, animOut)  <span style="color:#999;font-style:italic"># Reset to default</span>
+</code></pre></div><p>You can test your animation by running your function at the end of your script and running your python file.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+alarm(b, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>)
+</code></pre></div><h3 id="detect-if-your-website-is-down">Detect if your website is down</h3>
+<p>Simply sending a request and looking the response code is enough to determine if the website is ok or not. A response code above or equal to 400 on our main page (<code>/</code>) is when we suppose that the site is down.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">requests</span> <span style="color:#6ab825;font-weight:bold">import</span> get
 
 ...
 
 site_down = False
 
-<span style=color:#6ab825;font-weight:700>try</span>:
-    r = get(<span style=color:#ed9d13>&#34;http://yourwbesite.tld/&#34;</span>)
+<span style="color:#6ab825;font-weight:bold">try</span>:
+    r = get(<span style="color:#ed9d13">&#34;http://yourwbesite.tld/&#34;</span>)
 
-    <span style=color:#6ab825;font-weight:700>if</span> r.status_code &gt;= <span style=color:#3677a9>400</span>:
+    <span style="color:#6ab825;font-weight:bold">if</span> r.status_code &gt;= <span style="color:#3677a9">400</span>:
         site_down = True
 
-<span style=color:#6ab825;font-weight:700>except</span> <span style=color:#bbb>Exception</span>:
+<span style="color:#6ab825;font-weight:bold">except</span> <span style="color:#bbb">Exception</span>:
     site_down = True
-</code></pre></div><p>Then silmply call the function if the site is down.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#6ab825;font-weight:700>if</span> site_down:
-    alarm(b, <span style=color:#3677a9>1</span>, <span style=color:#3677a9>5</span>, <span style=color:#3677a9>10</span>)
-</code></pre></div><p>That&rsquo;s it. Let met show the <a href=https://gist.github.com/oktomus/1928ee05353e573ad0410bcff6cd46af>full script</a> before going further.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#999;font-style:italic>#!/usr/bin/python</span>
+</code></pre></div><p>Then silmply call the function if the site is down.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">if</span> site_down:
+    alarm(b, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>)
+</code></pre></div><p>That&rsquo;s it. Let met show the <a href="https://gist.github.com/oktomus/1928ee05353e573ad0410bcff6cd46af">full script</a> before going further.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#999;font-style:italic">#!/usr/bin/python</span>
 
-<span style=color:#ed9d13>&#34;&#34;&#34;
-</span><span style=color:#ed9d13>Set a red alarm on a given light when the specified website is down
-</span><span style=color:#ed9d13>
-</span><span style=color:#ed9d13>&#34;&#34;&#34;</span>
+<span style="color:#ed9d13">&#34;&#34;&#34;
+</span><span style="color:#ed9d13">Set a red alarm on a given light when the specified website is down
+</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13">&#34;&#34;&#34;</span>
 
-<span style=color:#6ab825;font-weight:700>import</span> <span style=color:#447fcf;text-decoration:underline>os</span>
-<span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>phue</span> <span style=color:#6ab825;font-weight:700>import</span> Bridge
-<span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>time</span> <span style=color:#6ab825;font-weight:700>import</span> sleep
-<span style=color:#6ab825;font-weight:700>from</span> <span style=color:#447fcf;text-decoration:underline>requests</span> <span style=color:#6ab825;font-weight:700>import</span> get
-<span style=color:#6ab825;font-weight:700>import</span> <span style=color:#447fcf;text-decoration:underline>sys</span>
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">os</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">phue</span> <span style="color:#6ab825;font-weight:bold">import</span> Bridge
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">time</span> <span style="color:#6ab825;font-weight:bold">import</span> sleep
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">requests</span> <span style="color:#6ab825;font-weight:bold">import</span> get
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">sys</span>
 
-SCRIPT_PATH = os.path.dirname(__file__) <span style=color:#999;font-style:italic># Directory of the current file</span>
-KEY_FILE = os.path.join(SCRIPT_PATH, <span style=color:#ed9d13>&#34;.python_hue&#34;</span>) <span style=color:#999;font-style:italic># Path to hidden key file</span>
+SCRIPT_PATH = os.path.dirname(__file__) <span style="color:#999;font-style:italic"># Directory of the current file</span>
+KEY_FILE = os.path.join(SCRIPT_PATH, <span style="color:#ed9d13">&#34;.python_hue&#34;</span>) <span style="color:#999;font-style:italic"># Path to hidden key file</span>
 
-<span style=color:#6ab825;font-weight:700>def</span> <span style=color:#447fcf>alarm</span>(bridge, light_id, tr_time, blink_count):
-    default = b.get_light(light_id) <span style=color:#999;font-style:italic># Default state</span>
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">alarm</span>(bridge, light_id, tr_time, blink_count):
+    default = b.get_light(light_id) <span style="color:#999;font-style:italic"># Default state</span>
 
-    animIn = {<span style=color:#ed9d13>&#39;transitiontime&#39;</span>: tr_time,
-        <span style=color:#ed9d13>&#39;on&#39;</span>: True,
-        <span style=color:#ed9d13>&#39;bri&#39;</span>:<span style=color:#3677a9>254</span>, <span style=color:#999;font-style:italic># Full luminosity</span>
-        <span style=color:#ed9d13>&#39;sat&#39;</span>: <span style=color:#3677a9>254</span>, <span style=color:#999;font-style:italic># Full saturation</span>
-        <span style=color:#ed9d13>&#39;hue&#39;</span>: <span style=color:#3677a9>65535</span> <span style=color:#999;font-style:italic># Red</span>
+    animIn = {<span style="color:#ed9d13">&#39;transitiontime&#39;</span>: tr_time,
+        <span style="color:#ed9d13">&#39;on&#39;</span>: True,
+        <span style="color:#ed9d13">&#39;bri&#39;</span>:<span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full luminosity</span>
+        <span style="color:#ed9d13">&#39;sat&#39;</span>: <span style="color:#3677a9">254</span>, <span style="color:#999;font-style:italic"># Full saturation</span>
+        <span style="color:#ed9d13">&#39;hue&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Red</span>
     }
 
-    animOut = {<span style=color:#ed9d13>&#39;transitiontime&#39;</span>: tr_time,
-        <span style=color:#ed9d13>&#39;on&#39;</span>: True,
-        <span style=color:#ed9d13>&#39;bri&#39;</span>:<span style=color:#3677a9>5</span>, <span style=color:#999;font-style:italic># Almost off</span>
-        <span style=color:#ed9d13>&#39;sat&#39;</span>: <span style=color:#3677a9>70</span>, <span style=color:#999;font-style:italic># Less saturation</span>
-        <span style=color:#ed9d13>&#39;hue&#39;</span>: <span style=color:#3677a9>65535</span> <span style=color:#999;font-style:italic># Still red</span>
+    animOut = {<span style="color:#ed9d13">&#39;transitiontime&#39;</span>: tr_time,
+        <span style="color:#ed9d13">&#39;on&#39;</span>: True,
+        <span style="color:#ed9d13">&#39;bri&#39;</span>:<span style="color:#3677a9">5</span>, <span style="color:#999;font-style:italic"># Almost off</span>
+        <span style="color:#ed9d13">&#39;sat&#39;</span>: <span style="color:#3677a9">70</span>, <span style="color:#999;font-style:italic"># Less saturation</span>
+        <span style="color:#ed9d13">&#39;hue&#39;</span>: <span style="color:#3677a9">65535</span> <span style="color:#999;font-style:italic"># Still red</span>
     }
 
-    sleep_time = <span style=color:#24909d>float</span>(tr_time + <span style=color:#3677a9>1</span>) / <span style=color:#3677a9>10.0</span>
+    sleep_time = <span style="color:#24909d">float</span>(tr_time + <span style="color:#3677a9">1</span>) / <span style="color:#3677a9">10.0</span>
 
 
-    <span style=color:#6ab825;font-weight:700>for</span> i <span style=color:#6ab825;font-weight:700>in</span> <span style=color:#24909d>range</span>(<span style=color:#3677a9>0</span>, blink_count):
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(<span style="color:#3677a9">0</span>, blink_count):
         b.set_light(light_id, animIn)
         sleep(sleep_time)
         b.set_light(light_id, animOut)
         sleep(sleep_time)
 
     animOut = {
-        <span style=color:#ed9d13>&#39;on&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;on&#39;</span>],
-        <span style=color:#ed9d13>&#39;sat&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;sat&#39;</span>],
-        <span style=color:#ed9d13>&#39;hue&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;hue&#39;</span>],
-        <span style=color:#ed9d13>&#39;bri&#39;</span>: default[<span style=color:#ed9d13>&#39;state&#39;</span>][<span style=color:#ed9d13>&#39;bri&#39;</span>],
+        <span style="color:#ed9d13">&#39;on&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;on&#39;</span>],
+        <span style="color:#ed9d13">&#39;sat&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;sat&#39;</span>],
+        <span style="color:#ed9d13">&#39;hue&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;hue&#39;</span>],
+        <span style="color:#ed9d13">&#39;bri&#39;</span>: default[<span style="color:#ed9d13">&#39;state&#39;</span>][<span style="color:#ed9d13">&#39;bri&#39;</span>],
     }
 
-    b.set_light(light_id, animOut)  <span style=color:#999;font-style:italic># Reset to default state</span>
+    b.set_light(light_id, animOut)  <span style="color:#999;font-style:italic"># Reset to default state</span>
 
-<span style=color:#6ab825;font-weight:700>if</span> __name__ == <span style=color:#ed9d13>&#34;__main__&#34;</span>:
+<span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13">&#34;__main__&#34;</span>:
 
     b = Bridge(IP_ADDRESS, config_file_path=KEY_FILE)
     b.connect()
 
     site_down = False
 
-    <span style=color:#6ab825;font-weight:700>try</span>:
-        r = get(<span style=color:#ed9d13>&#34;http://yourwbesite.tld/&#34;</span>)  <span style=color:#999;font-style:italic># Or you can use sys.argv to specifiy the url when calling the script</span>
+    <span style="color:#6ab825;font-weight:bold">try</span>:
+        r = get(<span style="color:#ed9d13">&#34;http://yourwbesite.tld/&#34;</span>)  <span style="color:#999;font-style:italic"># Or you can use sys.argv to specifiy the url when calling the script</span>
 
-        <span style=color:#6ab825;font-weight:700>if</span> r.status_code &gt;= <span style=color:#3677a9>400</span>:
+        <span style="color:#6ab825;font-weight:bold">if</span> r.status_code &gt;= <span style="color:#3677a9">400</span>:
             site_down = True
 
-    <span style=color:#6ab825;font-weight:700>except</span> <span style=color:#bbb>Exception</span>:
+    <span style="color:#6ab825;font-weight:bold">except</span> <span style="color:#bbb">Exception</span>:
         site_down = True
 
-    <span style=color:#6ab825;font-weight:700>if</span> site_down:
-        alarm(b, <span style=color:#3677a9>1</span>, <span style=color:#3677a9>5</span>, <span style=color:#3677a9>10</span>)
+    <span style="color:#6ab825;font-weight:bold">if</span> site_down:
+        alarm(b, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>)
 
-    sys.exit(<span style=color:#3677a9>0</span>)
-</code></pre></div><h2 id=use-cron-to-call-your-script-every-minutes>Use cron to call your script every minutes</h2><p>You can install cron on your personal machine or on your server to run your scripts every minutes to check your website. Of course, this will only work if your computer is in the same network as the light. If you have a NAS, you should have a <strong>Scheduled Tasks</strong> program which allow you to execute something whenever you want; This is generally cron with a GUI.</p><p>Copy the script on your server, and then edit your cron configuration. And don&rsquo;t forget to install python, pip, phue and cron on the server.</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>crontab -e
+    sys.exit(<span style="color:#3677a9">0</span>)
+</code></pre></div><h2 id="use-cron-to-call-your-script-every-minutes">Use cron to call your script every minutes</h2>
+<p>You can install cron on your personal machine or on your server to run your scripts every minutes to check your website. Of course, this will only work if your computer is in the same network as the light. If you have a NAS, you should have a <strong>Scheduled Tasks</strong> program which allow you to execute something whenever you want; This is generally cron with a GUI.</p>
+<p>Copy the script on your server, and then edit your cron configuration. And don&rsquo;t forget to install python, pip, phue and cron on the server.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">crontab -e
 </code></pre></div><p>This will open your cron configuration with your pre-configured (or not) editor.
-At the end of it, add a line like the following:</p><div class=highlight><pre style=color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>* * * * * /usr/bin/python[3/2.7/...] /home/login/path/to/the/script/webCheck.py &gt; /dev/null
-</code></pre></div><p>That should call the given command every minute of every hour of every day of the current month for every months and for every days in the current week.Just that :)</p><p>If you want to run it every 15 minutes, just change the first star by <code>*/15</code>.</p><p><code>> /dev/null</code> allow you to ignore standard outputs, which has the effect to only send you mails if your script fails (if you have a mail service configured).</p><h2 id=credits>Credits</h2><p>Thanks to <a href=http://lucasehlinger.com/>Lucas</a> who owns these lights and the NAS on which I made this stuff.</p></div><div class=post-footer><section id=isso-thread></section><script data-isso=https://isso.oktomus.com/ src=https://isso.oktomus.com/js/embed.min.js defer></script></div></article></main><script src=https://oktomus.com/js/matomo.6767f6a74e49660a57c7272610f9abc3edb7253ff71868c61eba591989962cef.js defer></script></body></html>
+At the end of it, add a line like the following:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/python[3/2.7/...] /home/login/path/to/the/script/webCheck.py &gt; /dev/null
+</code></pre></div><p>That should call the given command every minute of every hour of every day of the current month for every months and for every days in the current week.Just that :)</p>
+<p>If you want to run it every 15 minutes, just change the first star by <code>*/15</code>.</p>
+<p><code>&gt; /dev/null</code> allow you to ignore standard outputs, which has the effect to only send you mails if your script fails (if you have a mail service configured).</p>
+<h2 id="credits">Credits</h2>
+<p>Thanks to <a href="http://lucasehlinger.com/">Lucas</a> who owns these lights and the NAS on which I made this stuff.</p>
+
+    </div>
+    <!-- begin comments //-->
+    <div class="post-footer">
+      <section id="isso-thread"></section>
+      <script data-isso="https://isso.oktomus.com/" src="https://isso.oktomus.com/js/embed.min.js" defer></script>
+    </div>
+    <!-- end comments //-->
+  </article>
+
+    </main>
+
+    <script src="https://oktomus.com/js/matomo.6767f6a74e49660a57c7272610f9abc3edb7253ff71868c61eba591989962cef.js" defer></script>
+  </body>
+</html>
