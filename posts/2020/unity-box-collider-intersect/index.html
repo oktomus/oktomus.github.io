@@ -99,7 +99,7 @@
     <div class="post-content">
       <p>To check if a point is inside a box in Unity, you will probably use <code>BoxCollder.Bounds.Contains</code>. Although, the results you get can be really confusing, like the following:</p>
 <p><img src="/2020/the-problem-with-box-collider.gif" alt="The problem with box bolliders"></p>
-<p>The code running for the above gif is this one (attached on the moving point):</p>
+<p>The code running for the above gif is this one (attached to moving point):</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#bbb">[SerializeField]</span> BoxCollider BoxCollider;
 
 <span style="color:#6ab825;font-weight:bold">private</span> <span style="color:#6ab825;font-weight:bold">void</span> OnDrawGizmosSelected()
@@ -109,11 +109,11 @@
     Gizmos.color = isPointInside ? Color.green : Color.red;
     Gizmos.DrawSphere(transform.position, <span style="color:#3677a9">0.1f</span>);
 }
-</code></pre></div><p>I will try to explain here as clearly as possible what&rsquo;s hapenning and how to fix it.</p>
-<h2 id="whats-hapenning-">What&rsquo;s hapenning ?</h2>
+</code></pre></div><p>I will try to explain here as clearly as possible what&rsquo;s happening and how to fix it.</p>
+<h2 id="whats-happening-">What&rsquo;s happening ?</h2>
 <p>First of all, you may have noticed that the results are wrong only when the box is rotated or scaled. Here is the same code running on a box with rotation <code>0, 0, 0</code>:</p>
 <p><img src="/2020/non-rotated-box.gif" alt="Non rotated box"></p>
-<p>The reason is that the <a href="https://docs.unity3d.com/ScriptReference/Bounds.html">bounds of the box collider is <em>axis-aligned</em></a>. This mean that it can&rsquo;t be rotated and so it won&rsquo;t take into account your box rotation.</p>
+<p>The reason is that the <a href="https://docs.unity3d.com/ScriptReference/Bounds.html">bounds of the box collider is <em>axis-aligned</em></a>. This means that it can&rsquo;t be rotated and so it won&rsquo;t take into account your box rotation.</p>
 <p>It can be really confusing, especially when you see this that green wireframe following the box closely when rotating it:</p>
 <p><img src="/2020/rotated-bounds.png" alt="Rotated bounds"></p>
 <p>Moreover, the bounds attached to the box collider are closely following the space occupied by the mesh. Which means that the bounds size is changing as the object is rotating ! That&rsquo;s because bounds can&rsquo;t be rotated, the only way it has to surround the mesh is to change its size. See how the bounds of the box <strong>really</strong> look like in blue:</p>
@@ -127,7 +127,7 @@
     Gizmos.DrawCube(BoxCollider.bounds.center, BoxCollider.bounds.size);
 }
 </code></pre></div><h2 id="how-to-fix-it-">How to fix it ?</h2>
-<p>A way to fix it is to place the point in the box space. By doing so, the rotation is correctly taken into account and the results are correct. Althoug, it is a more expensive call as you have to transform points. The bounds is also re-created to make sure the size is correct.</p>
+<p>A way to fix it is to place the point in the box space. By doing so, the rotation is correctly taken into account and the results are correct. Although, it is a more expensive call as you have to transform the points. The bounds is also re-created to make sure the size is correct.</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#999;font-style:italic">// Place the point in box space.
 </span><span style="color:#999;font-style:italic"></span>Vector3 pointBoxSpace = BoxCollider.transform.InverseTransformPoint(transform.position);
 
@@ -137,7 +137,7 @@
 <span style="color:#6ab825;font-weight:bold">bool</span> isPointInside = correctBounds.Contains(pointBoxSpace);
 </code></pre></div><p><img src="/2020/point-inside-fixed.gif" alt="Point inside fixed"></p>
 <h2 id="what-about-box-intersection-">What about box intersection ?</h2>
-<p>Testing intersection between multiple boxes using <code>BoxCollider.Bounds.Intersect</code> is easy, as long as the boxes are in the same space. But if one of the boxes doesn&rsquo;t have uniform rotation (0, 90, 180, 270), then there is no easy and working way to test for intersection.</p>
+<p>Testing intersection between multiple boxes using <code>BoxCollider.Bounds.Intersect</code> is easy, as long as the boxes are in the same space. But if one of the boxes doesn&rsquo;t have a uniform rotation (0, 90, 180, 270), then there is no easy and working way to test for intersection.</p>
 <p>You would need to create a oriented box (<em>OBB</em> as opposed to <em>AABB</em>) from the box collider and then write an intersection test for these boxes. More info <a href="https://www.gamasutra.com/view/feature/131790/simple_intersection_tests_for_games.php">here</a> in the <em>An Oriented Bounding Box (OBB) Intersection Test</em> section.</p>
 
     </div>

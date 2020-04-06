@@ -18,8 +18,8 @@
       
       <guid>https://oktomus.com/posts/2020/unity-box-collider-intersect/</guid>
       <description>To check if a point is inside a box in Unity, you will probably use BoxCollder.Bounds.Contains. Although, the results you get can be really confusing, like the following:
-The code running for the above gif is this one (attached on the moving point):
-[SerializeField] BoxCollider BoxCollider;private void OnDrawGizmosSelected(){bool isPointInside = BoxCollider.bounds.Contains(transform.position);Gizmos.color = isPointInside ? Color.green : Color.red;Gizmos.DrawSphere(transform.position, 0.1f);}I will try to explain here as clearly as possible what&amp;rsquo;s hapenning and how to fix it.</description>
+The code running for the above gif is this one (attached to moving point):
+[SerializeField] BoxCollider BoxCollider;private void OnDrawGizmosSelected(){bool isPointInside = BoxCollider.bounds.Contains(transform.position);Gizmos.color = isPointInside ? Color.green : Color.red;Gizmos.DrawSphere(transform.position, 0.1f);}I will try to explain here as clearly as possible what&amp;rsquo;s happening and how to fix it.</description>
     </item>
     
     <item>

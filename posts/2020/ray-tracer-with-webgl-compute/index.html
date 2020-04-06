@@ -395,7 +395,7 @@ console.assert(gpu_i == vertices_buffer.length, <span style="color:#ed9d13">&#34
 console.assert(gpu_i == ((total_vertice_count / <span style="color:#3677a9">3</span>) * <span style="color:#3677a9">4</span>));
 
 <span style="color:#999;font-style:italic">// Send the vertices buffer to the gpu.
-</span><span style="color:#999;font-style:italic"></span>cons vertices_buffer_id = context.createBuffer();
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">const</span> vertices_buffer_id = context.createBuffer();
 context.bindBuffer(context.SHADER_STORAGE_BUFFER, vertices_buffer_id);
 context.bufferData(context.SHADER_STORAGE_BUFFER, vertices_buffer.length * <span style="color:#3677a9">4</span>, context.STATIC_DRAW);
 context.bufferSubData(context.SHADER_STORAGE_BUFFER, <span style="color:#3677a9">0</span>, vertices_buffer);
