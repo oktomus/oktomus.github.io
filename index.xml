@@ -6,10 +6,17 @@
     <description>Recent content on oktomus | computer graphics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://oktomus.com/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sat, 24 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://oktomus.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simple steps to optimize a Unity project</title>
+      <link>https://oktomus.com/posts/2021/optimize-a-unity-project/</link>
+      <pubDate>Sat, 24 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://oktomus.com/posts/2021/optimize-a-unity-project/</guid>
+      <description>I have spent hours using the Unity profiler to understand how to make things go faster. By doing so, I have learned a lot about Unity, how does it work and how to prevent a bad framerate or a FPS drop. In this post, I introduce 4 simple tips that you can implement to improve your framerate and learn more about Unity.
+TL; DR:
+ Use sharedMesh instead of mesh and sharedMaterial instead of material.</description>
+    </item>
     
     <item>
       <title>What&#39;s wrong with Unity box colliders ?</title>
